@@ -34,7 +34,7 @@ namespace Imphenzia.SpaceForUnity
     public class AsteroidFieldEditor : Editor
     {
         // Range Values Configuration
-        private int _displayMinAsteroidCount = 1;
+        private int _displayMinAsteroidCount = 0;
         private int _displayMaxAsteroidCount = 10000;
         private int _displayMinRange = 10;
         private int _displayMaxRange = 100000;
@@ -87,14 +87,14 @@ namespace Imphenzia.SpaceForUnity
 
         // Bool display collapse/expand section helpers
         private bool _showPrefabs;
-        private bool _showMaterials;
+        private bool _showWeights;
 
         void OnEnable()
         {
             // Reference the serialized object (instance of AsteroidField.cs)
             myTarget = new SerializedObject(target);
 
-            // Find and reference the properties of the target object		
+            // Find and reference the properties of the target object
             polyCount = myTarget.FindProperty("polyCount");
             polyCountCollider = myTarget.FindProperty("polyCountCollider");
             maxAsteroids = myTarget.FindProperty("maxAsteroids");
@@ -226,8 +226,8 @@ namespace Imphenzia.SpaceForUnity
                 EditorGUILayout.LabelField("Warning! Using detailed collider meshes may heavily impact performance or raise errors if the mesh is too detailed.", EditorStyles.wordWrappedMiniLabel);
             }
 
-            // Asteroid Prefab (array of asteroid shapes the asteroid field should randomly consist of) 
-            EditorGUILayout.LabelField("Asteroid Prefabs", EditorStyles.boldLabel);
+            // Asteroid Prefab (array of asteroid shapes the asteroid field should randomly consist of)
+            EditorGUILayout.LabelField("Debris Prefabs", EditorStyles.boldLabel);
             _showPrefabs = EditorGUILayout.Foldout(_showPrefabs, "Prefabs");
             if (_showPrefabs)
             {
@@ -237,18 +237,11 @@ namespace Imphenzia.SpaceForUnity
 
             // Asteroid Materials (array of asteroid materials the asteroid field should randomly consist of)
             // The random selection is weighted between common and rare materials.
-            EditorGUILayout.LabelField("Asteroid Materials", EditorStyles.boldLabel);
-            _showMaterials = EditorGUILayout.Foldout(_showMaterials, "Materials");
-            if (_showMaterials)
+            EditorGUILayout.LabelField("Debris Weights", EditorStyles.boldLabel);
+            _showWeights = EditorGUILayout.Foldout(_showWeights, "Weights");
+            if (_showWeights)
             {
-                EditorGUILayout.LabelField("Very Common Materials (50%)", EditorStyles.boldLabel);
-                ArrayGUI(myTarget, "materialVeryCommon");
-                EditorGUILayout.LabelField("Common Materials (30%)", EditorStyles.boldLabel);
-                ArrayGUI(myTarget, "materialCommon");
-                EditorGUILayout.LabelField("Rare Materials (15%)", EditorStyles.boldLabel);
-                ArrayGUI(myTarget, "materialRare");
-                EditorGUILayout.LabelField("Very Rare Materials (5%)", EditorStyles.boldLabel);
-                ArrayGUI(myTarget, "materialVeryRare");
+                ArrayGUI(myTarget, "asteroidWeights");
             }
 
             // Apply the modified properties
@@ -256,7 +249,7 @@ namespace Imphenzia.SpaceForUnity
         }
 
 
-        // Function to ovveride and display custom object array in inspector
+        // Function to overide and display custom object array in inspector
         void ArrayGUI(SerializedObject obj, string name)
         {
             int size = obj.FindProperty(name + ".Array.size").intValue;
