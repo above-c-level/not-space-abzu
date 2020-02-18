@@ -43,8 +43,8 @@ namespace Imphenzia.SpaceForUnity
     public class Asteroid : MonoBehaviour
     {
         // Originally to present choice of high, medium, or low quality mesh
-        public enum PolyCount { LOW };
-        // Variable to set the poly count (quality) of the asteroid, defualt is High quality
+        public enum PolyCount { LOW, PARENT };
+        // Variable to set the poly count (quality) of the asteroid, default is Low quality
         public PolyCount polyCount = PolyCount.LOW;
         // Variable to set the poly count for the collider (MUCH faster to use the low poly version)
         public PolyCount polyCountCollider = PolyCount.LOW;
@@ -78,6 +78,10 @@ namespace Imphenzia.SpaceForUnity
 
         void Start()
         {
+            if (polyCount == PolyCount.PARENT)
+            {
+                return;
+            }
             meshLowPoly = GetComponent<MeshFilter>();
             // Cache transforms to increase performance
             _transform = transform;
@@ -150,6 +154,56 @@ namespace Imphenzia.SpaceForUnity
                         break;
                 }
             }
+        }
+        public void SetRandomVelocity(float minSpeed, float maxSpeed)
+        {
+            // If this is a parent node, then it contains children that must be
+            // iterated over
+            if (polyCount == PolyCount.PARENT)
+            {
+                // TODO
+                // Iterate here, but how?
+            }
+            // Otherwise, this is a standalone child
+            else
+            {
+                RandomVelocity(minSpeed, maxSpeed);
+            }
+        }
+
+        public void SetRandomRotation(float minSpeed, float maxSpeed)
+        {
+            // If this is a parent node, then it contains children that must be
+            // iterated over
+            if (polyCount == PolyCount.PARENT)
+            {
+                // TODO
+                // Iterate here, but how?
+            }
+            // Otherwise, this is a standalone child
+            else
+            {
+                RandomRotation(minSpeed, maxSpeed);
+            }
+
+        }
+
+        private void RandomVelocity(float minSpeed, float maxSpeed)
+        {
+            driftSpeed = Random.Range(minSpeed, maxSpeed);
+            driftAxis = new Vector3(Random.Range(0.0f, 1.0f),
+                                    Random.Range(0.0f, 1.0f),
+                                    Random.Range(0.0f, 1.0f));
+            driftAxis.Normalize();
+        }
+
+        private void RandomRotation(float minSpeed, float maxSpeed)
+        {
+            rotationSpeed = Random.Range(minSpeed, maxSpeed);
+            rotationalAxis = new Vector3(Random.Range(0.0f, 1.0f),
+                                         Random.Range(0.0f, 1.0f),
+                                         Random.Range(0.0f, 1.0f));
+            rotationalAxis.Normalize();
         }
 
     }

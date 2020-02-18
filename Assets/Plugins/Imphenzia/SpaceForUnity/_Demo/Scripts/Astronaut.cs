@@ -16,7 +16,7 @@
     1.6     - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
             - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
     1.5     - Added support for SU_TravelWarp for the spaceship to travel fast in a scene with a visual warp effect.
-    1.06    - Updated for Unity 5.5, removed deprecated code. 
+    1.06    - Updated for Unity 5.5, removed deprecated code.
     1.02    - Prefixed with SU_Spaceship to avoid naming conflicts.
     1.01    - Initial Release.
 */
@@ -27,20 +27,20 @@ using System.Collections.Generic;
 
 namespace Imphenzia.SpaceForUnity
 {
-    public class Spaceship : MonoBehaviour
+    public class Astronaut : MonoBehaviour
     {
         [Tooltip("Thruster array containing reference to thrusters prefabs attached to the ship for propulsion")]
         public Thruster[] thrusters;
-        
-        [Tooltip("Specify the roll rate (multiplier for rolling the ship when steering left/right)")]        
+
+        [Tooltip("Specify the roll rate (multiplier for rolling the ship when steering left/right)")]
         public float rollRate = 100.0f;
 
         [Tooltip("Specify the yaw rate (multiplier for rudder/steering the ship when steering left/right)")]
         public float yawRate = 30.0f;
 
-        [Tooltip("Specify the pitch rate (multiplier for pitch when steering up/down)")]        
+        [Tooltip("Specify the pitch rate (multiplier for pitch when steering up/down)")]
         public float pitchRate = 100.0f;
-        
+
         [Tooltip("Vector3 array for mount points relative to ship where weapons will fire from")]
         public Vector3[] weaponMountPoints;
 

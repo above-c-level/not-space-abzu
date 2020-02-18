@@ -14,7 +14,7 @@
     PROPERTIES:
     range           (radius of asteroid field)
     rotationSpeed   (rotational speed of the asteroid)
-    driftSpeed      (drift/movement speed of the asteroid)
+    velocity      (drift/movement speed of the asteroid)
 
     Version History
     1.6     - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
@@ -92,17 +92,18 @@ namespace Imphenzia.SpaceForUnity
 
         // NON-RIGIDBODY ASTEROIDS ---
         // Minimum rotational speed of asteroid
-        public float minAsteroidRotationSpeed = 0.0f;
+        public float minAsteroidRotationLimit = 0.0f;
         // Maximum rotational speed of asteroid
-        public float maxAsteroidRotationSpeed = 1.0f;
+        public float maxAsteroidRotationLimit = 1.0f;
         // Rotation speed multiplier
         public float rotationSpeedMultiplier = 1.0f;
         // Minimum drift/movement speed of asteroid
-        public float minAsteroidDriftSpeed = 0.0f;
-        // Maximum drift/movement speed of asteroid
-        public float maxAsteroidDriftSpeed = 1.0f;
-        // Multiplier of driftSpeed
-        public float driftSpeedMultiplier = 1.0f;
+
+        public float minAsteroidVelocityLimit = 0.0f;
+        // Maximum velocity of asteroid (drift/movement speed)
+        public float maxAsteroidVelocityLimit = 1.0f;
+        // Velocity (drift/movement speed) multiplier
+        public float velocityMultiplier = 1.0f;
         // ---------------------------
 
         // RIGIDBODY ASTEROIDS -------
@@ -114,15 +115,13 @@ namespace Imphenzia.SpaceForUnity
         public float maxAsteroidAngularVelocity = 1.0f;
         // Angular velocity (rotational speed) multiplier
         public float angularVelocityMultiplier = 1.0f;
-        // Minimum velocity of asteroid (drift/movement speed)
-        public float minAsteroidVelocity = 0.0f;
-        // Maximum velocity of asteroid (drift/movement speed)
-        public float maxAsteroidVelocity = 1.0f;
-        // Velocity (drift/movement speed) multiplier
-        public float velocityMultiplier = 1.0f;
         // ----------------------------
 
         // Private variables
+        private float minAsteroidRotationSpeed;
+        private float maxAsteroidRotationSpeed;
+        private float minAsteroidVelocity;
+        private float maxAsteroidVelocity;
         private float _distanceToSpawn;
         private Transform _transform;
         private List<Transform> _asteroidsTransforms = new List<Transform>();
@@ -130,10 +129,7 @@ namespace Imphenzia.SpaceForUnity
 
         void OnEnable()
         {
-            if (prefabAsteroids.Length == 0)
-            {
-                return;
-            }
+            DoSetup();
             // Cache reference to transform to increase performance
             _transform = transform;
 
@@ -280,8 +276,6 @@ namespace Imphenzia.SpaceForUnity
                 // If the asteroid has the Asteroid script attached to it...
                 if (_asteroid != null)
                 {
-                    // Set the mesh of the asteroid based on chosen polycount
-                    _asteroid.SetPolyCount(polyCount);
                     // If the asteroid has a collider...
                     if (_newAsteroid.GetComponent<Collider>() != null)
                     {
@@ -304,19 +298,17 @@ namespace Imphenzia.SpaceForUnity
                     // If the asteroid prefab has a rigidbody...
                     if (_rigidbody != null)
                     {
-                        // Set the mass to mass specified in AsteroidField mutiplied by scale
+                        // Set the mass to mass specified in AsteroidField multiplied by scale
                         _rigidbody.mass = mass * _newScale;
                         // Set the velocity (speed) of the rigidbody to within the min/max velocity range multiplier by velocityMultiplier
-                        _rigidbody.velocity = _newAsteroid.transform.forward * Random.Range(minAsteroidVelocity, maxAsteroidVelocity) * velocityMultiplier;
+                        _rigidbody.velocity = _newAsteroid.transform.forward * Random.Range(minAsteroidVelocity, maxAsteroidVelocity);
                         // Set the angular velocity (rotational speed) of the rigidbody to within the min/max velocity range multiplier by velocityMultiplier
                         _rigidbody.angularVelocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)) * Random.Range(minAsteroidAngularVelocity, maxAsteroidAngularVelocity) * angularVelocityMultiplier;
                     }
                     else
                     {
-                        if (!_newAsteroid.GetComponent<GameObject>())
-                        {
-                            Debug.LogWarning("AsteroidField is set to spawn rigidbody asteroids but one or more asteroid prefabs do not have rigidbody component attached.");
-                        }
+                        Debug.LogWarning("AsteroidField is set to spawn rigidbody asteroids but one or more asteroid prefabs do not have rigidbody component attached.");
+
 
                     }
                 }
@@ -334,18 +326,28 @@ namespace Imphenzia.SpaceForUnity
                     if (_asteroid != null)
                     {
                         // Set rotation and drift axis and speed
-                        _asteroid.rotationSpeed = Random.Range(minAsteroidRotationSpeed, maxAsteroidRotationSpeed);
-                        _asteroid.rotationalAxis = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
-                        _asteroid.driftSpeed = Random.Range(minAsteroidDriftSpeed, maxAsteroidDriftSpeed);
-                        _asteroid.driftAxis = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f));
+                        _asteroid.SetRandomRotation(minAsteroidRotationSpeed,
+                                                    maxAsteroidRotationSpeed);
+                        _asteroid.SetRandomVelocity(minAsteroidVelocity,
+                                                    maxAsteroidVelocity);
                     }
-
                 }
-
             }
-
         }
 
+        void DoSetup()
+        {
+            if (prefabAsteroids.Length == 0)
+            {
+                return;
+            }
+            minAsteroidRotationSpeed = minAsteroidRotationLimit * rotationSpeedMultiplier;
+            maxAsteroidRotationSpeed = maxAsteroidRotationLimit * rotationSpeedMultiplier;
+            minAsteroidVelocity = minAsteroidVelocityLimit * velocityMultiplier;
+            maxAsteroidVelocity = maxAsteroidVelocityLimit * velocityMultiplier;
+
+
+        }
 
         // Internal function to allow weighted random selection of materials
         static T WeightedRandom<T>(SortedList<int, T> _list)

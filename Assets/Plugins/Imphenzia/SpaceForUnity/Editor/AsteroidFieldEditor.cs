@@ -58,12 +58,12 @@ namespace Imphenzia.SpaceForUnity
         SerializedProperty minAsteroidScale;
         SerializedProperty maxAsteroidScale;
         SerializedProperty scaleMultiplier;
-        SerializedProperty minAsteroidRotationSpeed;
-        SerializedProperty maxAsteroidRotationSpeed;
+        SerializedProperty minAsteroidRotationLimit;
+        SerializedProperty maxAsteroidRotationLimit;
         SerializedProperty rotationSpeedMultiplier;
-        SerializedProperty minAsteroidDriftSpeed;
-        SerializedProperty maxAsteroidDriftSpeed;
-        SerializedProperty driftSpeedMultiplier;
+        SerializedProperty minAsteroidVelocityLimit;
+        SerializedProperty maxAsteroidVelocityLimit;
+        SerializedProperty velocityMultiplier;
         SerializedProperty isRigidbody;
         SerializedProperty mass;
         SerializedProperty minAsteroidAngularVelocity;
@@ -71,15 +71,14 @@ namespace Imphenzia.SpaceForUnity
         SerializedProperty angularVelocityMultiplier;
         SerializedProperty minAsteroidVelocity;
         SerializedProperty maxAsteroidVelocity;
-        SerializedProperty velocityMultiplier;
 
         // Temporary variables since properties can't be modified directly when using Ref and/or Out paremeters
         private float _minScale;
         private float _maxScale;
         private float _minRotationSpeed;
         private float _maxRotationSpeed;
-        private float _minDriftSpeed;
-        private float _maxDriftSpeed;
+        private float _minvelocity;
+        private float _maxvelocity;
         private float _minAngularVelocity;
         private float _maxAngularVelocity;
         private float _minVelocity;
@@ -107,12 +106,12 @@ namespace Imphenzia.SpaceForUnity
             minAsteroidScale = myTarget.FindProperty("minAsteroidScale");
             maxAsteroidScale = myTarget.FindProperty("maxAsteroidScale");
             scaleMultiplier = myTarget.FindProperty("scaleMultiplier");
-            minAsteroidRotationSpeed = myTarget.FindProperty("minAsteroidRotationSpeed");
-            maxAsteroidRotationSpeed = myTarget.FindProperty("maxAsteroidRotationSpeed");
+            minAsteroidRotationLimit = myTarget.FindProperty("minAsteroidRotationLimit");
+            maxAsteroidRotationLimit = myTarget.FindProperty("maxAsteroidRotationLimit");
             rotationSpeedMultiplier = myTarget.FindProperty("rotationSpeedMultiplier");
-            minAsteroidDriftSpeed = myTarget.FindProperty("minAsteroidDriftSpeed");
-            maxAsteroidDriftSpeed = myTarget.FindProperty("maxAsteroidDriftSpeed");
-            driftSpeedMultiplier = myTarget.FindProperty("driftSpeedMultiplier");
+            minAsteroidVelocityLimit = myTarget.FindProperty("minAsteroidVelocityLimit");
+            maxAsteroidVelocityLimit = myTarget.FindProperty("maxAsteroidVelocityLimit");
+            velocityMultiplier = myTarget.FindProperty("velocityMultiplier");
             isRigidbody = myTarget.FindProperty("isRigidbody");
             minAsteroidAngularVelocity = myTarget.FindProperty("minAsteroidAngularVelocity");
             maxAsteroidAngularVelocity = myTarget.FindProperty("maxAsteroidAngularVelocity");
@@ -186,22 +185,22 @@ namespace Imphenzia.SpaceForUnity
             else
             {
                 EditorGUILayout.LabelField("Asteroid Rotation Speed (Min/Max Range)", EditorStyles.boldLabel);
-                _minRotationSpeed = minAsteroidRotationSpeed.floatValue;
-                _maxRotationSpeed = maxAsteroidRotationSpeed.floatValue;
+                _minRotationSpeed = minAsteroidRotationLimit.floatValue;
+                _maxRotationSpeed = maxAsteroidRotationLimit.floatValue;
                 GUIContent _rotationContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minRotationSpeed, _maxRotationSpeed));
                 EditorGUILayout.MinMaxSlider(_rotationContent, ref _minRotationSpeed, ref _maxRotationSpeed, 0.0f, 1.0f);
-                minAsteroidRotationSpeed.floatValue = _minRotationSpeed;
-                maxAsteroidRotationSpeed.floatValue = _maxRotationSpeed;
+                minAsteroidRotationLimit.floatValue = _minRotationSpeed;
+                maxAsteroidRotationLimit.floatValue = _maxRotationSpeed;
                 rotationSpeedMultiplier.floatValue = EditorGUILayout.FloatField("Rotation Speed Multiplier", rotationSpeedMultiplier.floatValue);
 
                 EditorGUILayout.LabelField("Asteroid Drift Speed (Min/Max Range)", EditorStyles.boldLabel);
-                _minDriftSpeed = minAsteroidDriftSpeed.floatValue;
-                _maxDriftSpeed = maxAsteroidDriftSpeed.floatValue;
-                GUIContent _driftContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minDriftSpeed, _maxDriftSpeed));
-                EditorGUILayout.MinMaxSlider(_driftContent, ref _minDriftSpeed, ref _maxDriftSpeed, 0.0f, 1.0f);
-                minAsteroidDriftSpeed.floatValue = _minDriftSpeed;
-                maxAsteroidDriftSpeed.floatValue = _maxDriftSpeed;
-                driftSpeedMultiplier.floatValue = EditorGUILayout.FloatField("Drift Speed Multiplier", driftSpeedMultiplier.floatValue);
+                _minvelocity = minAsteroidVelocityLimit.floatValue;
+                _maxvelocity = maxAsteroidVelocityLimit.floatValue;
+                GUIContent _driftContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minvelocity, _maxvelocity));
+                EditorGUILayout.MinMaxSlider(_driftContent, ref _minvelocity, ref _maxvelocity, 0.0f, 1.0f);
+                minAsteroidVelocityLimit.floatValue = _minvelocity;
+                maxAsteroidVelocityLimit.floatValue = _maxvelocity;
+                velocityMultiplier.floatValue = EditorGUILayout.FloatField("Drift Speed Multiplier", velocityMultiplier.floatValue);
             }
             EditorGUILayout.Separator();
 
