@@ -313,7 +313,11 @@ namespace Imphenzia.SpaceForUnity
                     }
                     else
                     {
-                        Debug.LogWarning("AsteroidField is set to spawn rigidbody asteroids but one or more asteroid prefabs do not have rigidbody component attached.");
+                        if (!_newAsteroid.GetComponent<GameObject>())
+                        {
+                            Debug.LogWarning("AsteroidField is set to spawn rigidbody asteroids but one or more asteroid prefabs do not have rigidbody component attached.");
+                        }
+
                     }
                 }
                 else

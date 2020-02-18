@@ -21,7 +21,7 @@
     1.6     - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
             - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
     1.5     - Changed the way asteroids fade. Instead of using expensive alpha (transparency) fading scaling is used at the perimeter instead.
-              The scaling is performed in a vertex shader so the GPU does the work for performance. This also looks better as the previous 
+              The scaling is performed in a vertex shader so the GPU does the work for performance. This also looks better as the previous
               method of fading in asteroids when there was a light background, like a star or galaxy, looked odd.
               The asteroid shader requires a _AsteroidOrigin parameter to be set so the vertex shader knows where the view center is so it can fade
               at the perimeter. The shader origin is set globally by SU_AsteroidFadeOrigin.cs and the script is added to the main camera at runtime (non-persistent)
@@ -42,17 +42,15 @@ namespace Imphenzia.SpaceForUnity
 {
     public class Asteroid : MonoBehaviour
     {
-        // Enum to present choise of high, medium, or low quality mesh
-        public enum PolyCount { HIGH, MEDIUM, LOW }
+        // Originally to present choice of high, medium, or low quality mesh
+        public enum PolyCount { LOW };
         // Variable to set the poly count (quality) of the asteroid, defualt is High quality
-        public PolyCount polyCount = PolyCount.HIGH;
+        public PolyCount polyCount = PolyCount.LOW;
         // Variable to set the poly count for the collider (MUCH faster to use the low poly version)
         public PolyCount polyCountCollider = PolyCount.LOW;
 
         // Reference to different quality meshes
-        public MeshFilter meshLowPoly;
-        public MeshFilter meshMediumPoly;
-        public MeshFilter meshHighPoly;
+        private MeshFilter meshLowPoly;
 
         // Rotation speed
         public float rotationSpeed = 0.0f;
@@ -80,6 +78,7 @@ namespace Imphenzia.SpaceForUnity
 
         void Start()
         {
+            meshLowPoly = GetComponent<MeshFilter>();
             // Cache transforms to increase performance
             _transform = transform;
             // Set the mesh based on poly count (quality)
@@ -137,14 +136,6 @@ namespace Imphenzia.SpaceForUnity
                         // access the MeshFilter component and change the sharedMesh to the low poly version
                         transform.GetComponent<MeshFilter>().sharedMesh = meshLowPoly.sharedMesh;
                         break;
-                    case PolyCount.MEDIUM:
-                        // access the MeshFilter component and change the sharedMesh to the medium poly version
-                        transform.GetComponent<MeshFilter>().sharedMesh = meshMediumPoly.sharedMesh;
-                        break;
-                    case PolyCount.HIGH:
-                        // access the MeshFilter component and change the sharedMesh to the high poly version
-                        transform.GetComponent<MeshFilter>().sharedMesh = meshHighPoly.sharedMesh;
-                        break;
                 }
             }
             else
@@ -156,14 +147,6 @@ namespace Imphenzia.SpaceForUnity
                     case PolyCount.LOW:
                         // access the MeshFilter component and change the sharedMesh to the low poly version
                         transform.GetComponent<MeshCollider>().sharedMesh = meshLowPoly.sharedMesh;
-                        break;
-                    case PolyCount.MEDIUM:
-                        // access the MeshFilter component and change the sharedMesh to the medium poly version
-                        transform.GetComponent<MeshCollider>().sharedMesh = meshMediumPoly.sharedMesh;
-                        break;
-                    case PolyCount.HIGH:
-                        // access the MeshFilter component and change the sharedMesh to the high poly version
-                        transform.GetComponent<MeshCollider>().sharedMesh = meshHighPoly.sharedMesh;
                         break;
                 }
             }
