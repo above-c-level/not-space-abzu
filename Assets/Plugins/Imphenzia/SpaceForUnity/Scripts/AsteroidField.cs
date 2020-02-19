@@ -122,25 +122,24 @@ namespace Imphenzia.SpaceForUnity
         private float maxAsteroidRotationSpeed;
         private float minAsteroidVelocity;
         private float maxAsteroidVelocity;
-        private float _distanceToSpawn;
-        private Transform _transform;
-        private List<Transform> _asteroidsTransforms = new List<Transform>();
-        private SortedList<int, string> _materialList = new SortedList<int, string>(4);
+        private float distanceToSpawn;
+        private Transform asteroidTransform;
+        private List<Transform> asteroidsTransforms = new List<Transform>();
 
         void OnEnable()
         {
             DoSetup();
             // Cache reference to transform to increase performance
-            _transform = transform;
+            asteroidTransform = transform;
 
             // Calculate the actual spawn
-            _distanceToSpawn = range * distanceSpawn;
+            distanceToSpawn = range * distanceSpawn;
 
             // Check if there are any asteroid objects that was spawned prior to this script being disabled
             // If there are asteroids in the list, activate the gameObject again.
-            for (int i = 0; i < _asteroidsTransforms.Count; i++)
+            for (int i = 0; i < asteroidsTransforms.Count; i++)
             {
-                _asteroidsTransforms[i].gameObject.SetActive(true);
+                asteroidsTransforms[i].gameObject.SetActive(true);
             }
 
             // Spawn new asteroids in the entire sphere (not just at spawn range, hence the "false" parameter)
@@ -150,16 +149,16 @@ namespace Imphenzia.SpaceForUnity
             if (asteroidFieldOriginTransform == null) asteroidFieldOriginTransform = transform;
 
             // Set the parameters for each asteroid for fading/scaling
-            for (int i = 0; i < _asteroidsTransforms.Count; i++)
+            for (int i = 0; i < asteroidsTransforms.Count; i++)
             {
-                Asteroid _a = _asteroidsTransforms[i].GetComponent<Asteroid>();
-                if (_a != null)
+                Asteroid a = asteroidsTransforms[i].GetComponent<Asteroid>();
+                if (a != null)
                 {
                     // When spawning asteroids, set the parameters for the shader based on parameters of this asteroid field
-                    _a.fadeAsteroids = fadeAsteroids;
-                    _a.fadeAsteroidsFalloffExponent = 1f; // fadeAsteroidsFalloffExponent;
-                    _a.distanceFade = distanceFade;
-                    _a.visibilityRange = range;
+                    a.fadeAsteroids = fadeAsteroids;
+                    a.fadeAsteroidsFalloffExponent = 1f; // fadeAsteroidsFalloffExponent;
+                    a.distanceFade = distanceFade;
+                    a.visibilityRange = range;
                 }
             }
         }
@@ -167,13 +166,13 @@ namespace Imphenzia.SpaceForUnity
         void OnDisable()
         {
             // Asteroid field game object has been disabled, disable all the asteroids as well
-            for (int i = 0; i < _asteroidsTransforms.Count; i++)
+            for (int i = 0; i < asteroidsTransforms.Count; i++)
             {
                 // If the transform of the asteroid exists (it won't be upon application exit for example)...
-                if (_asteroidsTransforms[i] != null)
+                if (asteroidsTransforms[i] != null)
                 {
                     // deactivate the asteroid gameObject
-                    _asteroidsTransforms[i].gameObject.SetActive(false);
+                    asteroidsTransforms[i].gameObject.SetActive(false);
                 }
             }
         }
@@ -193,40 +192,40 @@ namespace Imphenzia.SpaceForUnity
             }
 
             // Iterate through asteroids and relocate them as parent object moves
-            for (int i = _asteroidsTransforms.Count - 1; i >= 0; i--)
+            for (int i = asteroidsTransforms.Count - 1; i >= 0; i--)
             {
                 // Cache the reference to the Transform of the asteroid in the list
-                Transform _asteroid = _asteroidsTransforms[i];
+                Transform asteroid = asteroidsTransforms[i];
 
                 // If the asteroid in the list has a Transform...
-                if (_asteroid != null)
+                if (asteroid != null)
                 {
                     // Calculate the distance of the asteroid to the center of the asteroid field
-                    float _distance = Vector3.Distance(_asteroid.position, _transform.position);
+                    float distance = Vector3.Distance(asteroid.position, asteroidTransform.position);
 
                     // If the distance is greater than the range variable...
-                    if (_distance > range && respawnIfOutOfRange)
+                    if (distance > range && respawnIfOutOfRange)
                     {
                         // Relocate ("respawn") the asteroid to a new position at spawning distance
-                        _asteroid.position = (Random.onUnitSphere * _distanceToSpawn) + _transform.position;
+                        asteroid.position = (Random.onUnitSphere * distanceToSpawn) + asteroidTransform.position;
                         // Give the asteroid a new scale within the min/max scale range
-                        float _newScale = Random.Range(minAsteroidScale, maxAsteroidScale) * scaleMultiplier;
-                        _asteroid.localScale = new Vector3(_newScale, _newScale, _newScale);
+                        float newScale = Random.Range(minAsteroidScale, maxAsteroidScale) * scaleMultiplier;
+                        asteroid.localScale = new Vector3(newScale, newScale, newScale);
                         // Give the asteroid a new random rotation
-                        Vector3 _newRotation = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
-                        _asteroid.eulerAngles = _newRotation;
+                        Vector3 newRotation = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                        asteroid.eulerAngles = newRotation;
                         // Recalculate the distance since it has been relocated
-                        //_distance = Vector3.Distance(_asteroid.position, _cacheTransform.position);
+                        //distance = Vector3.Distance(asteroid.position, cacheTransform.position);
                     }
                 }
                 else
                 {
                     // Asteroid transform must have been been destroyed for some reason (from another script?), remove it from the lists
-                    _asteroidsTransforms.RemoveAt(i);
+                    asteroidsTransforms.RemoveAt(i);
                 }
 
                 // 	If respawning is enabled and asteroid count is lower than Max Asteroids...
-                if (respawnDestroyedAsteroids && _asteroidsTransforms.Count < maxAsteroids)
+                if (respawnDestroyedAsteroids && asteroidsTransforms.Count < maxAsteroids)
                 {
                     // Spawn new asteroids (where true states that they are to be spawned at spawn distance rather than anywhere in range)
                     SpawnAsteroids(true);
@@ -245,65 +244,65 @@ namespace Imphenzia.SpaceForUnity
         void SpawnAsteroids(bool atSpawnDistance)
         {
             // Spawn new asteroids at a distance if count is below maxAsteroids (e.g. asteroids were destroyed outside of this script)
-            while (_asteroidsTransforms.Count < maxAsteroids)
+            while (asteroidsTransforms.Count < maxAsteroids)
             {
                 // Select a random asteroid from the prefab array
-                GameObject _newAsteroidPrefab = prefabAsteroids[Random.Range(0, prefabAsteroids.Length)];
+                GameObject newAsteroidPrefab = prefabAsteroids[Random.Range(0, prefabAsteroids.Length)];
 
-                Vector3 _newPosition = Vector3.zero;
+                Vector3 newPosition = Vector3.zero;
                 if (atSpawnDistance)
                 {
                     // Spawn asteroid at spawn distance (this is used for existing asteroid fields so it spawns out of visible range)
-                    _newPosition = _transform.position + Random.onUnitSphere * _distanceToSpawn;
+                    newPosition = asteroidTransform.position + Random.onUnitSphere * distanceToSpawn;
                 }
                 else
                 {
                     // Spawn asteroid anywhere within range (this is used for new asteroid fields before it becomes visible)
-                    _newPosition = _transform.position + Random.insideUnitSphere * _distanceToSpawn;
+                    newPosition = asteroidTransform.position + Random.insideUnitSphere * distanceToSpawn;
                 }
 
                 // Instantiate the new asteroid at a random location
-                GameObject _newAsteroid = Instantiate(_newAsteroidPrefab, _newPosition, _transform.rotation) as GameObject;
-                Renderer _renderer = _newAsteroid.GetComponent<Renderer>();
-                Asteroid _asteroid = _newAsteroid.GetComponent<Asteroid>();
+                GameObject newAsteroid = Instantiate(newAsteroidPrefab, newPosition, asteroidTransform.rotation) as GameObject;
+                Renderer renderer = newAsteroid.GetComponent<Renderer>();
+                Asteroid asteroid = newAsteroid.GetComponent<Asteroid>();
 
                 // Add the asteroid to a list used to keep track of them
-                _asteroidsTransforms.Add(_newAsteroid.transform);
+                asteroidsTransforms.Add(newAsteroid.transform);
 
                 // Add the asteroid to a list used to keep track of them
-                _asteroidsTransforms.Add(_newAsteroid.transform);
+                asteroidsTransforms.Add(newAsteroid.transform);
 
                 // If the asteroid has the Asteroid script attached to it...
-                if (_asteroid != null)
+                if (asteroid != null)
                 {
                     // If the asteroid has a collider...
-                    if (_newAsteroid.GetComponent<Collider>() != null)
+                    if (newAsteroid.GetComponent<Collider>() != null)
                     {
-                        _asteroid.SetPolyCount(polyCountCollider, true);
+                        asteroid.SetPolyCount(polyCountCollider, true);
                     }
                 }
 
                 // Set scale of asteroid within min/max scale * scaleMultiplier
-                float _newScale = Random.Range(minAsteroidScale, maxAsteroidScale) * scaleMultiplier;
-                _newAsteroid.transform.localScale = new Vector3(_newScale, _newScale, _newScale);
+                float newScale = Random.Range(minAsteroidScale, maxAsteroidScale) * scaleMultiplier;
+                newAsteroid.transform.localScale = new Vector3(newScale, newScale, newScale);
 
                 // Set a random orientation of the asteroid
-                _newAsteroid.transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                newAsteroid.transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 
 
-                Rigidbody _rigidbody = _newAsteroid.GetComponent<Rigidbody>();
+                Rigidbody rigidbody = newAsteroid.GetComponent<Rigidbody>();
                 if (isRigidbody)
                 {
                     // RIGIDBODY ASTEROIDS
                     // If the asteroid prefab has a rigidbody...
-                    if (_rigidbody != null)
+                    if (rigidbody != null)
                     {
                         // Set the mass to mass specified in AsteroidField multiplied by scale
-                        _rigidbody.mass = mass * _newScale;
+                        rigidbody.mass = mass * newScale;
                         // Set the velocity (speed) of the rigidbody to within the min/max velocity range multiplier by velocityMultiplier
-                        _rigidbody.velocity = _newAsteroid.transform.forward * Random.Range(minAsteroidVelocity, maxAsteroidVelocity);
+                        rigidbody.velocity = newAsteroid.transform.forward * Random.Range(minAsteroidVelocity, maxAsteroidVelocity);
                         // Set the angular velocity (rotational speed) of the rigidbody to within the min/max velocity range multiplier by velocityMultiplier
-                        _rigidbody.angularVelocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)) * Random.Range(minAsteroidAngularVelocity, maxAsteroidAngularVelocity) * angularVelocityMultiplier;
+                        rigidbody.angularVelocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)) * Random.Range(minAsteroidAngularVelocity, maxAsteroidAngularVelocity) * angularVelocityMultiplier;
                     }
                     else
                     {
@@ -317,19 +316,19 @@ namespace Imphenzia.SpaceForUnity
                     // NON-RIGIDBODY ASTEROIDS
 
                     // If the asteroid prefab has a rigidbody...
-                    if (_rigidbody != null)
+                    if (rigidbody != null)
                     {
                         // Destroy the rigidbody since the asteroid field is spawning non-rigidbody asteroids
-                        Destroy(_rigidbody);
+                        Destroy(rigidbody);
                     }
                     // If the asteroid has the Asteroid script attached to it...
-                    if (_asteroid != null)
+                    if (asteroid != null)
                     {
                         // Set rotation and drift axis and speed
-                        _asteroid.SetRandomRotation(minAsteroidRotationSpeed,
-                                                    maxAsteroidRotationSpeed);
-                        _asteroid.SetRandomVelocity(minAsteroidVelocity,
-                                                    maxAsteroidVelocity);
+                        asteroid.SetRandomRotation(minAsteroidRotationSpeed,
+                                                   maxAsteroidRotationSpeed);
+                        asteroid.SetRandomVelocity(minAsteroidVelocity,
+                                                   maxAsteroidVelocity);
                     }
                 }
             }
@@ -350,15 +349,15 @@ namespace Imphenzia.SpaceForUnity
         }
 
         // Internal function to allow weighted random selection of materials
-        static T WeightedRandom<T>(SortedList<int, T> _list)
+        static T WeightedRandom<T>(SortedList<int, T> list)
         {
-            int _max = _list.Keys[_list.Keys.Count - 1];
-            int _random = Random.Range(0, _max);
-            foreach (int _key in _list.Keys)
+            int max = list.Keys[list.Keys.Count - 1];
+            int random = Random.Range(0, max);
+            foreach (int key in list.Keys)
             {
-                if (_random <= _key)
+                if (random <= key)
                 {
-                    return _list[_key];
+                    return list[key];
                 }
             }
             return default(T);

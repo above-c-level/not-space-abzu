@@ -63,32 +63,32 @@ namespace Imphenzia.SpaceForUnity
         public AudioSource audioSourceWarpUltra;
 
         // Private variables
-        private Rigidbody _cacheRigidbody;
-        private TravelWarp _travelWarp;
-        private float _orgWarpSpeed;
-        private float _orgWarpStrength;
+        private Rigidbody cacheRigidbody;
+        private TravelWarp travelWarp;
+        private float orgWarpSpeed;
+        private float orgWarpStrength;
 
         void Start()
         {
             // Ensure that the thrusters in the array have been linked properly
-            foreach (Thruster _thruster in thrusters)
-                if (_thruster == null)
+            foreach (Thruster thruster in thrusters)
+                if (thruster == null)
                     Debug.LogError("Thruster array not properly configured. Attach thrusters to the game object and link them to the Thrusters array.");
 
             // Cache reference to rigidbody to improve performance
-            _cacheRigidbody = GetComponent<Rigidbody>();
-            if (_cacheRigidbody == null)
+            cacheRigidbody = GetComponent<Rigidbody>();
+            if (cacheRigidbody == null)
                 Debug.LogError("Spaceship has no rigidbody - the thruster scripts will fail. Add rigidbody component to the spaceship.");
 
             // If there is a SU_TravelWarp component on this ship, grab the reference to it
             if (gameObject.GetComponent<TravelWarp>() != null)
-                _travelWarp = gameObject.GetComponent<TravelWarp>();
+                travelWarp = gameObject.GetComponent<TravelWarp>();
 
             // Remember the original parameters to return to when exiting ultra warp (demo)
-            if (_travelWarp)
+            if (travelWarp)
             {
-                _orgWarpSpeed = _travelWarp.visualTextureSpeed;
-                _orgWarpStrength = _travelWarp.visualWarpEffectMagnitude;
+                orgWarpSpeed = travelWarp.visualTextureSpeed;
+                orgWarpStrength = travelWarp.visualWarpEffectMagnitude;
             }
         }
 
@@ -97,28 +97,28 @@ namespace Imphenzia.SpaceForUnity
             // Start all thrusters when pressing Fire 1
             if (Input.GetButtonDown("Fire1"))
             {
-                foreach (Thruster _thruster in thrusters)
-                    _thruster.StartThruster();
+                foreach (Thruster thruster in thrusters)
+                    thruster.StartThruster();
 
             }
             // Stop all thrusters when releasing Fire 1
             if (Input.GetButtonUp("Fire1"))
             {
-                foreach (Thruster _thruster in thrusters)
-                    _thruster.StopThruster();
+                foreach (Thruster thruster in thrusters)
+                    thruster.StopThruster();
             }
 
             if (Input.GetButtonDown("Fire2"))
             {
-                // Itereate through each weapon mount point Vector3 in array
-                foreach (Vector3 _wmp in weaponMountPoints)
+                // Iterate through each weapon mount point Vector3 in array
+                foreach (Vector3 wmp in weaponMountPoints)
                 {
                     // Calculate where the position is in world space for the mount point
-                    Vector3 _pos = transform.position + transform.right * _wmp.x + transform.up * _wmp.y + transform.forward * _wmp.z;
+                    Vector3 pos = transform.position + transform.right * wmp.x + transform.up * wmp.y + transform.forward * wmp.z;
                     // Instantiate the laser prefab at position with the spaceships rotation
-                    Transform _laserShot = (Transform)Instantiate(laserShotPrefab, _pos, transform.rotation);
+                    Transform laserShot = (Transform)Instantiate(laserShotPrefab, pos, transform.rotation);
                     // Specify which transform it was that fired this round so we can ignore it for collision/hit
-                    _laserShot.GetComponent<LaserShot>().firedBy = transform;
+                    laserShot.GetComponent<LaserShot>().firedBy = transform;
 
                 }
                 // Play sound effect when firing
@@ -129,72 +129,72 @@ namespace Imphenzia.SpaceForUnity
             }
 
 
-            // If space key is held down...
-            if (Input.GetKey(KeyCode.Space))
-            {
-                // Play the particle systems in the warpFlames array - these are for visuals only, not proper thrusters
-                foreach (ParticleSystem _ps in warpFlames)
-                    _ps.Play();
-                // Ensure that the normal thrusters are on
-                foreach (Thruster _thruster in thrusters)
-                    _thruster.StartThruster();
+            // // If space key is held down...
+            // if (Input.GetKey(KeyCode.Space))
+            // {
+            //     // Play the particle systems in the warpFlames array - these are for visuals only, not proper thrusters
+            //     foreach (ParticleSystem ps in warpFlames)
+            //         ps.Play();
+            //     // Ensure that the normal thrusters are on
+            //     foreach (Thruster thruster in thrusters)
+            //         thruster.StartThruster();
 
-                // Set the Warp property of the SU_TravelWarp script to true so it knows we want to warp
-                if (_travelWarp != null)
-                    _travelWarp.Warp = true;
+            //     // Set the Warp property of the SU_TravelWarp script to true so it knows we want to warp
+            //     if (travelWarp != null)
+            //         travelWarp.Warp = true;
 
-                // Demo of modifying properties of TravelWarp - this example changes speed and strength of effect to simulte overdrive / ultra fast warping
-                if (Input.GetKeyDown(KeyCode.RightShift))
-                {
-                    if (!warpUltra.isPlaying)
-                        warpUltra.Play();
+            //     // Demo of modifying properties of TravelWarp - this example changes speed and strength of effect to simulate overdrive / ultra fast warping
+            //     if (Input.GetKeyDown(KeyCode.RightShift))
+            //     {
+            //         if (!warpUltra.isPlaying)
+            //             warpUltra.Play();
 
-                    if (_travelWarp != null)
-                    {
-                        _travelWarp.SetBrightness(2f);
-                        _travelWarp.SetSpeed(4f);
-                        _travelWarp.SetStrength(1f);
-                        _travelWarp.SetUltraSpeedAddon(60f);
-                        audioSourceWarpUltra.Play();
+            //         if (travelWarp != null)
+            //         {
+            //             travelWarp.SetBrightness(2f);
+            //             travelWarp.SetSpeed(4f);
+            //             travelWarp.SetStrength(1f);
+            //             travelWarp.SetUltraSpeedAddon(60f);
+            //             audioSourceWarpUltra.Play();
 
-                    }
-                }
-                if (Input.GetKeyUp(KeyCode.RightShift))
-                {
-                    if (_travelWarp != null)
-                    {
-                        _travelWarp.SetBrightness(1f);
-                        _travelWarp.SetSpeed(_orgWarpSpeed);
-                        _travelWarp.SetStrength(_orgWarpStrength);
-                        _travelWarp.SetUltraSpeedAddon(0f);
-                    }
-                    if (warpUltra.isPlaying)
-                        warpUltra.Stop();
-                }
+            //         }
+            //     }
+            //     if (Input.GetKeyUp(KeyCode.RightShift))
+            //     {
+            //         if (travelWarp != null)
+            //         {
+            //             travelWarp.SetBrightness(1f);
+            //             travelWarp.SetSpeed(orgWarpSpeed);
+            //             travelWarp.SetStrength(orgWarpStrength);
+            //             travelWarp.SetUltraSpeedAddon(0f);
+            //         }
+            //         if (warpUltra.isPlaying)
+            //             warpUltra.Stop();
+            //     }
 
 
-            }
-            else
-            {
-                // If key is not held down...
-                // Stop the particle systems in the array warpFlames
-                foreach (ParticleSystem _ps in warpFlames)
-                    _ps.Stop();
-                // If Fire1 is not pressed down, also stop the thrusters of the spaceship
-                if (!Input.GetButton("Fire1"))
-                    foreach (Thruster _thruster in thrusters)
-                        _thruster.StopThruster();
-                // Set the Warp property of SU_TravelWarp to false so we don't warp anymore
-                if (_travelWarp != null)
-                {
-                    _travelWarp.Warp = false;
-                    _travelWarp.SetBrightness(1f);
-                    _travelWarp.SetSpeed(0.5f);
-                    _travelWarp.SetStrength(0.2f);
-                    _travelWarp.SetUltraSpeedAddon(0);
-                }
-                if (warpUltra.isPlaying) warpUltra.Stop();
-            }
+            // }
+            // else
+            // {
+            //     // If key is not held down...
+            //     // Stop the particle systems in the array warpFlames
+            //     foreach (ParticleSystem _ps in warpFlames)
+            //         _ps.Stop();
+            //     // If Fire1 is not pressed down, also stop the thrusters of the spaceship
+            //     if (!Input.GetButton("Fire1"))
+            //         foreach (Thruster _thruster in thrusters)
+            //             _thruster.StopThruster();
+            //     // Set the Warp property of SU_TravelWarp to false so we don't warp anymore
+            //     if (travelWarp != null)
+            //     {
+            //         travelWarp.Warp = false;
+            //         travelWarp.SetBrightness(1f);
+            //         travelWarp.SetSpeed(0.5f);
+            //         travelWarp.SetStrength(0.2f);
+            //         travelWarp.SetUltraSpeedAddon(0);
+            //     }
+            //     if (warpUltra.isPlaying) warpUltra.Stop();
+            // }
 
         }
 
@@ -203,11 +203,11 @@ namespace Imphenzia.SpaceForUnity
         {
             // In the physics update...
             // Add relative rotational roll torque when steering left/right
-            _cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, -Input.GetAxis("Horizontal") * rollRate * _cacheRigidbody.mass));
+            cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, -Input.GetAxis("Horizontal") * rollRate * cacheRigidbody.mass));
             // Add rudder yaw torque when steering left/right
-            _cacheRigidbody.AddRelativeTorque(new Vector3(0, Input.GetAxis("Horizontal") * yawRate * _cacheRigidbody.mass, 0));
+            cacheRigidbody.AddRelativeTorque(new Vector3(0, Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass, 0));
             // Add pitch torque when steering up/down
-            _cacheRigidbody.AddRelativeTorque(new Vector3(Input.GetAxis("Vertical") * pitchRate * _cacheRigidbody.mass, 0, 0));
+            cacheRigidbody.AddRelativeTorque(new Vector3(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass, 0, 0));
         }
     }
 }

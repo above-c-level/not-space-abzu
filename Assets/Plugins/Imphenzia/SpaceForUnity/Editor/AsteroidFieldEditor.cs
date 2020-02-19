@@ -34,13 +34,13 @@ namespace Imphenzia.SpaceForUnity
     public class AsteroidFieldEditor : Editor
     {
         // Range Values Configuration
-        private int _displayMinAsteroidCount = 0;
-        private int _displayMaxAsteroidCount = 10000;
-        private int _displayMinRange = 10;
-        private int _displayMaxRange = 100000;
+        private int displayMinAsteroidCount = 0;
+        private int displayMaxAsteroidCount = 10000;
+        private int displayMinRange = 10;
+        private int displayMaxRange = 100000;
 
         // Warning Threshholds
-        private int _warningHighAsteroidCount = 2500;
+        private int warningHighAsteroidCount = 2500;
 
         // Serialized Object
         SerializedObject myTarget;
@@ -73,20 +73,20 @@ namespace Imphenzia.SpaceForUnity
         SerializedProperty maxAsteroidVelocity;
 
         // Temporary variables since properties can't be modified directly when using Ref and/or Out paremeters
-        private float _minScale;
-        private float _maxScale;
-        private float _minRotationSpeed;
-        private float _maxRotationSpeed;
-        private float _minvelocity;
-        private float _maxvelocity;
-        private float _minAngularVelocity;
-        private float _maxAngularVelocity;
-        private float _minVelocity;
-        private float _maxVelocity;
+        private float minScale;
+        private float maxScale;
+        private float minRotationSpeed;
+        private float maxRotationSpeed;
+        private float minvelocity;
+        private float maxvelocity;
+        private float minAngularVelocity;
+        private float maxAngularVelocity;
+        private float minVelocity;
+        private float maxVelocity;
 
         // Bool display collapse/expand section helpers
-        private bool _showPrefabs;
-        private bool _showWeights;
+        private bool showPrefabs;
+        private bool showWeights;
 
         void OnEnable()
         {
@@ -130,12 +130,12 @@ namespace Imphenzia.SpaceForUnity
             myTarget.Update();
 
             // Present inspector GUI gadgets/objects and modify AsteroidField.cs instances with configured values
-            maxAsteroids.intValue = EditorGUILayout.IntSlider("Number of Asteroids", maxAsteroids.intValue, _displayMinAsteroidCount, _displayMaxAsteroidCount);
-            if (maxAsteroids.intValue > _warningHighAsteroidCount)
+            maxAsteroids.intValue = EditorGUILayout.IntSlider("Number of Asteroids", maxAsteroids.intValue, displayMinAsteroidCount, displayMaxAsteroidCount);
+            if (maxAsteroids.intValue > warningHighAsteroidCount)
             {
                 EditorGUILayout.LabelField("Warning! Many asteroids may impact performance! Consider smaller range and fewer asteroids instead.", EditorStyles.wordWrappedMiniLabel);
             }
-            range.floatValue = EditorGUILayout.Slider("Range", range.floatValue, _displayMinRange, _displayMaxRange);
+            range.floatValue = EditorGUILayout.Slider("Range", range.floatValue, displayMinRange, displayMaxRange);
             if (range.floatValue > Camera.main.farClipPlane)
             {
                 EditorGUILayout.LabelField("Warning! Main camera clipping plane is closer than asteroid range.", EditorStyles.wordWrappedMiniLabel);
@@ -150,12 +150,12 @@ namespace Imphenzia.SpaceForUnity
             EditorGUILayout.Separator();
 
             EditorGUILayout.LabelField("Asteroid Scale (Min/Max Range)", EditorStyles.boldLabel);
-            _minScale = minAsteroidScale.floatValue;
-            _maxScale = maxAsteroidScale.floatValue;
-            GUIContent _scaleContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minScale, _maxScale));
-            EditorGUILayout.MinMaxSlider(_scaleContent, ref _minScale, ref _maxScale, 0.1f, 1.0f);
-            minAsteroidScale.floatValue = _minScale;
-            maxAsteroidScale.floatValue = _maxScale;
+            minScale = minAsteroidScale.floatValue;
+            maxScale = maxAsteroidScale.floatValue;
+            GUIContent scaleContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", minScale, maxScale));
+            EditorGUILayout.MinMaxSlider(scaleContent, ref minScale, ref maxScale, 0.1f, 1.0f);
+            minAsteroidScale.floatValue = minScale;
+            maxAsteroidScale.floatValue = maxScale;
             scaleMultiplier.floatValue = EditorGUILayout.FloatField("Scale Multiplier", scaleMultiplier.floatValue);
             EditorGUILayout.Separator();
 
@@ -165,41 +165,41 @@ namespace Imphenzia.SpaceForUnity
             {
                 mass.floatValue = EditorGUILayout.FloatField("Mass (scales with size)", mass.floatValue);
                 EditorGUILayout.LabelField("Asteroid Angular Velocity (Min/Max Range)", EditorStyles.boldLabel);
-                _minAngularVelocity = minAsteroidAngularVelocity.floatValue;
-                _maxAngularVelocity = maxAsteroidAngularVelocity.floatValue;
-                GUIContent _rotationContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minAngularVelocity, _maxAngularVelocity));
-                EditorGUILayout.MinMaxSlider(_rotationContent, ref _minAngularVelocity, ref _maxAngularVelocity, 0.0f, 1.0f);
-                minAsteroidAngularVelocity.floatValue = _minAngularVelocity;
-                maxAsteroidAngularVelocity.floatValue = _maxAngularVelocity;
+                minAngularVelocity = minAsteroidAngularVelocity.floatValue;
+                maxAngularVelocity = maxAsteroidAngularVelocity.floatValue;
+                GUIContent rotationContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", minAngularVelocity, maxAngularVelocity));
+                EditorGUILayout.MinMaxSlider(rotationContent, ref minAngularVelocity, ref maxAngularVelocity, 0.0f, 1.0f);
+                minAsteroidAngularVelocity.floatValue = minAngularVelocity;
+                maxAsteroidAngularVelocity.floatValue = maxAngularVelocity;
                 angularVelocityMultiplier.floatValue = EditorGUILayout.FloatField("Rotation Speed Multiplier", angularVelocityMultiplier.floatValue);
 
                 EditorGUILayout.LabelField("Asteroid Velocity (Min/Max Range)", EditorStyles.boldLabel);
-                _minVelocity = minAsteroidVelocity.floatValue;
-                _maxVelocity = maxAsteroidVelocity.floatValue;
-                GUIContent _driftContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minVelocity, _maxVelocity));
-                EditorGUILayout.MinMaxSlider(_driftContent, ref _minVelocity, ref _maxVelocity, 0.0f, 1.0f);
-                minAsteroidVelocity.floatValue = _minVelocity;
-                maxAsteroidVelocity.floatValue = _maxVelocity;
+                minVelocity = minAsteroidVelocity.floatValue;
+                maxVelocity = maxAsteroidVelocity.floatValue;
+                GUIContent driftContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", minVelocity, maxVelocity));
+                EditorGUILayout.MinMaxSlider(driftContent, ref minVelocity, ref maxVelocity, 0.0f, 1.0f);
+                minAsteroidVelocity.floatValue = minVelocity;
+                maxAsteroidVelocity.floatValue = maxVelocity;
                 velocityMultiplier.floatValue = EditorGUILayout.FloatField("Drift Speed Multiplier", velocityMultiplier.floatValue);
             }
             else
             {
                 EditorGUILayout.LabelField("Asteroid Rotation Speed (Min/Max Range)", EditorStyles.boldLabel);
-                _minRotationSpeed = minAsteroidRotationLimit.floatValue;
-                _maxRotationSpeed = maxAsteroidRotationLimit.floatValue;
-                GUIContent _rotationContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minRotationSpeed, _maxRotationSpeed));
-                EditorGUILayout.MinMaxSlider(_rotationContent, ref _minRotationSpeed, ref _maxRotationSpeed, 0.0f, 1.0f);
-                minAsteroidRotationLimit.floatValue = _minRotationSpeed;
-                maxAsteroidRotationLimit.floatValue = _maxRotationSpeed;
+                minRotationSpeed = minAsteroidRotationLimit.floatValue;
+                maxRotationSpeed = maxAsteroidRotationLimit.floatValue;
+                GUIContent rotationContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", minRotationSpeed, maxRotationSpeed));
+                EditorGUILayout.MinMaxSlider(rotationContent, ref minRotationSpeed, ref maxRotationSpeed, 0.0f, 1.0f);
+                minAsteroidRotationLimit.floatValue = minRotationSpeed;
+                maxAsteroidRotationLimit.floatValue = maxRotationSpeed;
                 rotationSpeedMultiplier.floatValue = EditorGUILayout.FloatField("Rotation Speed Multiplier", rotationSpeedMultiplier.floatValue);
 
                 EditorGUILayout.LabelField("Asteroid Drift Speed (Min/Max Range)", EditorStyles.boldLabel);
-                _minvelocity = minAsteroidVelocityLimit.floatValue;
-                _maxvelocity = maxAsteroidVelocityLimit.floatValue;
-                GUIContent _driftContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", _minvelocity, _maxvelocity));
-                EditorGUILayout.MinMaxSlider(_driftContent, ref _minvelocity, ref _maxvelocity, 0.0f, 1.0f);
-                minAsteroidVelocityLimit.floatValue = _minvelocity;
-                maxAsteroidVelocityLimit.floatValue = _maxvelocity;
+                minvelocity = minAsteroidVelocityLimit.floatValue;
+                maxvelocity = maxAsteroidVelocityLimit.floatValue;
+                GUIContent driftContent = new GUIContent(string.Format("Min:{0:F1}, Max:{1:F1}", minvelocity, maxvelocity));
+                EditorGUILayout.MinMaxSlider(driftContent, ref minvelocity, ref maxvelocity, 0.0f, 1.0f);
+                minAsteroidVelocityLimit.floatValue = minvelocity;
+                maxAsteroidVelocityLimit.floatValue = maxvelocity;
                 velocityMultiplier.floatValue = EditorGUILayout.FloatField("Drift Speed Multiplier", velocityMultiplier.floatValue);
             }
             EditorGUILayout.Separator();
@@ -227,8 +227,8 @@ namespace Imphenzia.SpaceForUnity
 
             // Asteroid Prefab (array of asteroid shapes the asteroid field should randomly consist of)
             EditorGUILayout.LabelField("Debris Prefabs", EditorStyles.boldLabel);
-            _showPrefabs = EditorGUILayout.Foldout(_showPrefabs, "Prefabs");
-            if (_showPrefabs)
+            showPrefabs = EditorGUILayout.Foldout(showPrefabs, "Prefabs");
+            if (showPrefabs)
             {
                 ArrayGUI(myTarget, "prefabAsteroids");
             }
@@ -237,8 +237,8 @@ namespace Imphenzia.SpaceForUnity
             // Asteroid Materials (array of asteroid materials the asteroid field should randomly consist of)
             // The random selection is weighted between common and rare materials.
             EditorGUILayout.LabelField("Debris Weights", EditorStyles.boldLabel);
-            _showWeights = EditorGUILayout.Foldout(_showWeights, "Weights");
-            if (_showWeights)
+            showWeights = EditorGUILayout.Foldout(showWeights, "Weights");
+            if (showWeights)
             {
                 ArrayGUI(myTarget, "asteroidWeights");
             }

@@ -1,4 +1,4 @@
-// Planet C# Script (version: 1.6)
+    // Planet C# Script (version: 1.6)
 // SPACE UNITY - Space Scene Construction Kit
 // http://www.imphenzia.com/space-for-unity
 // (c) 2019 Imphenzia AB

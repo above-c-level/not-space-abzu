@@ -39,28 +39,28 @@ namespace Imphenzia.SpaceForUnity
         public float rotationSpeed = 0.0f;
 
         // Private Variables
-        private Transform _cacheTransform;
-        private Transform _cacheMeshTransform;
+        private Transform cacheTransform;
+        private Transform cacheMeshTransform;
 
         void Start()
         {
             // Cache transforms to increase performance
-            _cacheTransform = transform;
-            _cacheMeshTransform = transform.Find("MoonObject");
+            cacheTransform = transform;
+            cacheMeshTransform = transform.Find("MoonObject");
         }
 
         void Update()
         {
             // Orbit around the planet at orbitSpeed
-            if (_cacheTransform != null)
+            if (cacheTransform != null)
             {
-                _cacheTransform.Rotate(Vector3.up * orbitSpeed * Time.deltaTime);
+                cacheTransform.Rotate(Vector3.up * orbitSpeed * Time.deltaTime);
             }
 
             // Rotate around own axis
-            if (_cacheMeshTransform != null)
+            if (cacheMeshTransform != null)
             {
-                _cacheMeshTransform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+                cacheMeshTransform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
             }
         }
     }

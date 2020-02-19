@@ -71,35 +71,36 @@ namespace Imphenzia.SpaceForUnity
         // Exponent for fading asteroid 1.0 = linear (use 0.125, 0.5, 1 (linear), 2, 4, 8... for different fade curves)
         public float fadeAsteroidsFalloffExponent = 1f;
         // Private variables
-        private Transform _transform;
+        private Transform cachedTransform;
 
         // Material of asteroid, needed to send parameters to shader for distance fade/scale effect
-        private Material _material;
+        private Material material;
 
         void Start()
         {
+            cachedTransform = transform;
             if (polyCount == PolyCount.PARENT)
             {
                 return;
             }
             meshLowPoly = GetComponent<MeshFilter>();
             // Cache transforms to increase performance
-            _transform = transform;
+
             // Set the mesh based on poly count (quality)
             SetPolyCount(polyCount);
 
             // Material of asteroid, needed to send parameters to shader for distance fade/scale effect
-            _material = GetComponent<Renderer>().material;
+            material = GetComponent<Renderer>().material;
 
             // Set asteroid material shader fade/scale settings
             if (fadeAsteroids)
             {
                 // Fading (or scaling) of asteroids is enabled, set the shader of the asteroid to "SU_AsteroidFade"
-                _material.shader = Shader.Find("SpaceUnity/SU_AsteroidFade");
+                material.shader = Shader.Find("SpaceUnity/SU_AsteroidFade");
                 // Set the shader parameters falloff, inner, and outer radius. Asteroids will fade/scale in the region between inner and outer radius.
-                _material.SetFloat("_FadeFalloffExp", fadeAsteroidsFalloffExponent);
-                _material.SetFloat("_InnerRadius", visibilityRange * distanceFade);
-                _material.SetFloat("_OuterRadius", visibilityRange);
+                material.SetFloat("_FadeFalloffExp", fadeAsteroidsFalloffExponent);
+                material.SetFloat("_InnerRadius", visibilityRange * distanceFade);
+                material.SetFloat("_OuterRadius", visibilityRange);
 
                 // If there is no fade origin in the scene, add one to the main camera object during run time....
                 if (FindObjectOfType<AsteroidFadeOrigin>() == null)
@@ -109,32 +110,32 @@ namespace Imphenzia.SpaceForUnity
             else
             {
                 // If fading is not used, use the SU_Asteroid shader instead - it does not contain the vertex transormation requierd for scaling.
-                _material.shader = Shader.Find("SpaceUnity/SU_Asteroid");
+                material.shader = Shader.Find("SpaceUnity/SU_Asteroid");
             }
 
         }
 
         void Update()
         {
-            if (_transform != null)
+            if (cachedTransform != null)
             {
                 // Rotate around own axis
-                _transform.Rotate(rotationalAxis * rotationSpeed * Time.deltaTime);
+                cachedTransform.Rotate(rotationalAxis * rotationSpeed * Time.deltaTime);
                 // Move in world space according to drift speed
-                _transform.Translate(driftAxis * driftSpeed * Time.deltaTime, Space.World);
+                cachedTransform.Translate(driftAxis * driftSpeed * Time.deltaTime, Space.World);
             }
         }
 
         // Set the mesh based on the poly count (quality)
-        public void SetPolyCount(PolyCount _newPolyCount) { SetPolyCount(_newPolyCount, false); }
-        public void SetPolyCount(PolyCount _newPolyCount, bool _collider)
+        public void SetPolyCount(PolyCount newPolyCount) { SetPolyCount(newPolyCount, false); }
+        public void SetPolyCount(PolyCount newPolyCount, bool collider)
         {
             // If this is not the collider...
-            if (!_collider)
+            if (!collider)
             {
                 // This is the actual asteroid mesh.. so specify which poly count we want
-                polyCount = _newPolyCount;
-                switch (_newPolyCount)
+                polyCount = newPolyCount;
+                switch (newPolyCount)
                 {
                     case PolyCount.LOW:
                         // access the MeshFilter component and change the sharedMesh to the low poly version
@@ -145,8 +146,8 @@ namespace Imphenzia.SpaceForUnity
             else
             {
                 // This is the collider mesh we set this time
-                polyCountCollider = _newPolyCount;
-                switch (_newPolyCount)
+                polyCountCollider = newPolyCount;
+                switch (newPolyCount)
                 {
                     case PolyCount.LOW:
                         // access the MeshFilter component and change the sharedMesh to the low poly version
@@ -161,8 +162,14 @@ namespace Imphenzia.SpaceForUnity
             // iterated over
             if (polyCount == PolyCount.PARENT)
             {
-                // TODO
+
                 // Iterate here, but how?
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    Transform child = transform.GetChild(i);
+                    Asteroid subcomponent = child.GetComponent<Asteroid>();
+                    subcomponent.RandomVelocity(minSpeed, maxSpeed);
+                }
             }
             // Otherwise, this is a standalone child
             else
@@ -171,19 +178,20 @@ namespace Imphenzia.SpaceForUnity
             }
         }
 
-        public void SetRandomRotation(float minSpeed, float maxSpeed)
+        public void SetRandomRotation(float minSpeed,
+                                      float maxSpeed,
+                                      float scaleMultiplier = 0.0001f)
         {
+            // RandomRotation(minSpeed, maxSpeed);
             // If this is a parent node, then it contains children that must be
             // iterated over
-            if (polyCount == PolyCount.PARENT)
+            if (polyCount != PolyCount.PARENT)
             {
-                // TODO
-                // Iterate here, but how?
+                RandomRotation(minSpeed, maxSpeed );
             }
-            // Otherwise, this is a standalone child
             else
             {
-                RandomRotation(minSpeed, maxSpeed);
+
             }
 
         }
