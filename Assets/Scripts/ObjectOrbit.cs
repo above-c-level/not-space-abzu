@@ -95,16 +95,13 @@ public class ObjectOrbit : MonoBehaviour
         {
             int index1 = Mathf.FloorToInt(currentPos);
             int index2 = index1 + 1;
-            if (index2 == 1)
-            {
-                print("loop");
-            }
 
-            float param = currentPos - index1;
-            Vector3 currentPosition = (1 - param) * orbit[index1].position + param * (orbit[index2].position);
+            // A value in the range [0, 1] for linearly interpolating between points
+            float lerpPoint = currentPos - index1;
+            Vector3 currentPosition = (1 - lerpPoint) * orbit[index1].position + lerpPoint * (orbit[index2].position);
             transform.position = currentPosition + focusPoint.position;
 
-            float currentVel = (1 - param) * orbit[index1].velocity + param * (orbit[index2].velocity);
+            float currentVel = (1 - lerpPoint) * orbit[index1].velocity + lerpPoint * (orbit[index2].velocity);
 
             currentPos += currentVel;
 
