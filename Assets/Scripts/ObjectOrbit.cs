@@ -15,7 +15,7 @@ public class ObjectOrbit : MonoBehaviour
     public float currentPos = 0;
     public Vector3 rotationAxis = new Vector3(1, 2, 3);
     public float rotationSpeed = 1.75f;
-    public Transform offset;
+    public Transform focusPoint;
 
     private float semiMajorAxis;
     private float semiMinorAxis;
@@ -102,7 +102,7 @@ public class ObjectOrbit : MonoBehaviour
 
             float param = currentPos - index1;
             Vector3 currentPosition = (1 - param) * orbit[index1].position + param * (orbit[index2].position);
-            transform.position = currentPosition + offset.position;
+            transform.position = currentPosition + focusPoint.position;
 
             float currentVel = (1 - param) * orbit[index1].velocity + param * (orbit[index2].velocity);
 
