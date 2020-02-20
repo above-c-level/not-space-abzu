@@ -74,7 +74,6 @@ public class ObjectOrbit : MonoBehaviour
             prev = temp;
 
             temp = new Vector3(nPosX2, nPosY, nPosZ);
-            temp = temp + offset.position;
             float tempVel = speedMultiplier * Mathf.Sqrt((G * mass) * ((2 / r) - (1 / semiMajorAxis)));
 
             orbitPoint tempOrbitPoint;
@@ -103,7 +102,7 @@ public class ObjectOrbit : MonoBehaviour
 
             float param = currentPos - index1;
             Vector3 currentPosition = (1 - param) * orbit[index1].position + param * (orbit[index2].position);
-            transform.position = currentPosition;
+            transform.position = currentPosition + offset.position;
 
             float currentVel = (1 - param) * orbit[index1].velocity + param * (orbit[index2].velocity);
 
