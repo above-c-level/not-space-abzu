@@ -203,7 +203,16 @@ namespace Imphenzia.SpaceForUnity
         {
             // In the physics update...
             // Add relative rotational roll torque when steering left/right
-            cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, -Input.GetAxis("Horizontal") * rollRate * cacheRigidbody.mass));
+            if (Input.GetKey(KeyCode.Q))
+            {
+                cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, rollRate * cacheRigidbody.mass));
+            }
+            if (Input.GetKey(KeyCode.E))
+            {
+                cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, -rollRate * cacheRigidbody.mass));
+            }
+
+
             // Add rudder yaw torque when steering left/right
             cacheRigidbody.AddRelativeTorque(new Vector3(0, Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass, 0));
             // Add pitch torque when steering up/down

@@ -44,6 +44,7 @@ namespace Imphenzia.SpaceForUnity
 {
     public class AsteroidField : MonoBehaviour
     {
+        private float brokenSatelliteChance = 0.1f;
         // Poly Count (quality) of the asteroids in the field
         public Asteroid.PolyCount polyCount = Asteroid.PolyCount.LOW;
         // Poly Count (quality) of the asteroid colliders (LOW = fast, HIGH = slow)
@@ -246,8 +247,18 @@ namespace Imphenzia.SpaceForUnity
             // Spawn new asteroids at a distance if count is below maxAsteroids (e.g. asteroids were destroyed outside of this script)
             while (asteroidsTransforms.Count < maxAsteroids)
             {
+                int arrayChoice;
+                if (Random.Range(0f, 1f) < brokenSatelliteChance)
+                {
+                    arrayChoice = prefabAsteroids.Length - 1;
+                }
+                else
+                {
+                    arrayChoice = Random.Range(0, prefabAsteroids.Length - 1);
+
+                }
                 // Select a random asteroid from the prefab array
-                GameObject newAsteroidPrefab = prefabAsteroids[Random.Range(0, prefabAsteroids.Length)];
+                GameObject newAsteroidPrefab = prefabAsteroids[arrayChoice];
 
                 Vector3 newPosition = Vector3.zero;
                 if (atSpawnDistance)
@@ -269,19 +280,6 @@ namespace Imphenzia.SpaceForUnity
                 // Add the asteroid to a list used to keep track of them
                 asteroidsTransforms.Add(newAsteroid.transform);
 
-                // Add the asteroid to a list used to keep track of them
-                asteroidsTransforms.Add(newAsteroid.transform);
-
-                // If the asteroid has the Asteroid script attached to it...
-                if (asteroid != null)
-                {
-                    // If the asteroid has a collider...
-                    if (newAsteroid.GetComponent<Collider>() != null)
-                    {
-                        asteroid.SetPolyCount(polyCountCollider, true);
-                    }
-                }
-
                 // Set scale of asteroid within min/max scale * scaleMultiplier
                 float newScale = Random.Range(minAsteroidScale, maxAsteroidScale) * scaleMultiplier;
                 newAsteroid.transform.localScale = new Vector3(newScale, newScale, newScale);
@@ -290,46 +288,13 @@ namespace Imphenzia.SpaceForUnity
                 newAsteroid.transform.eulerAngles = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 
 
-                Rigidbody rigidbody = newAsteroid.GetComponent<Rigidbody>();
-                if (isRigidbody)
+                if (asteroid != null)
                 {
-                    // RIGIDBODY ASTEROIDS
-                    // If the asteroid prefab has a rigidbody...
-                    if (rigidbody != null)
-                    {
-                        // Set the mass to mass specified in AsteroidField multiplied by scale
-                        rigidbody.mass = mass * newScale;
-                        // Set the velocity (speed) of the rigidbody to within the min/max velocity range multiplier by velocityMultiplier
-                        rigidbody.velocity = newAsteroid.transform.forward * Random.Range(minAsteroidVelocity, maxAsteroidVelocity);
-                        // Set the angular velocity (rotational speed) of the rigidbody to within the min/max velocity range multiplier by velocityMultiplier
-                        rigidbody.angularVelocity = new Vector3(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)) * Random.Range(minAsteroidAngularVelocity, maxAsteroidAngularVelocity) * angularVelocityMultiplier;
-                    }
-                    else
-                    {
-                        Debug.LogWarning("AsteroidField is set to spawn rigidbody asteroids but one or more asteroid prefabs do not have rigidbody component attached.");
-
-
-                    }
-                }
-                else
-                {
-                    // NON-RIGIDBODY ASTEROIDS
-
-                    // If the asteroid prefab has a rigidbody...
-                    if (rigidbody != null)
-                    {
-                        // Destroy the rigidbody since the asteroid field is spawning non-rigidbody asteroids
-                        Destroy(rigidbody);
-                    }
-                    // If the asteroid has the Asteroid script attached to it...
-                    if (asteroid != null)
-                    {
-                        // Set rotation and drift axis and speed
-                        asteroid.SetRandomRotation(minAsteroidRotationSpeed,
-                                                   maxAsteroidRotationSpeed);
-                        asteroid.SetRandomVelocity(minAsteroidVelocity,
-                                                   maxAsteroidVelocity);
-                    }
+                    // Set rotation and drift axis and speed
+                    asteroid.SetRandomRotation(minAsteroidRotationSpeed,
+                                                maxAsteroidRotationSpeed);
+                    asteroid.SetRandomVelocity(minAsteroidVelocity,
+                                                maxAsteroidVelocity);
                 }
             }
         }

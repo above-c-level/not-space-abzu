@@ -135,64 +135,63 @@ namespace Imphenzia.SpaceForUnity
             {
                 // This is the actual asteroid mesh.. so specify which poly count we want
                 polyCount = newPolyCount;
-                switch (newPolyCount)
-                {
-                    case PolyCount.LOW:
-                        // access the MeshFilter component and change the sharedMesh to the low poly version
-                        transform.GetComponent<MeshFilter>().sharedMesh = meshLowPoly.sharedMesh;
-                        break;
-                }
+                // switch (newPolyCount)
+                // {
+                //     case PolyCount.LOW:
+                //         // access the MeshFilter component and change the sharedMesh to the low poly version
+                //         transform.GetComponent<MeshFilter>().sharedMesh = meshLowPoly.sharedMesh;
+                //         break;
+                // }
             }
             else
             {
                 // This is the collider mesh we set this time
                 polyCountCollider = newPolyCount;
-                switch (newPolyCount)
-                {
-                    case PolyCount.LOW:
-                        // access the MeshFilter component and change the sharedMesh to the low poly version
-                        transform.GetComponent<MeshCollider>().sharedMesh = meshLowPoly.sharedMesh;
-                        break;
-                }
+                // switch (newPolyCount)
+                // {
+                //     case PolyCount.LOW:
+                //         // access the MeshFilter component and change the sharedMesh to the low poly version
+                //         transform.GetComponent<MeshCollider>().sharedMesh = meshLowPoly.sharedMesh;
+                //         break;
+                // }
             }
         }
-        public void SetRandomVelocity(float minSpeed, float maxSpeed)
+        public void SetRandomVelocity(float minSpeed,
+                                      float maxSpeed,
+                                      float scaleMultiplier = 0.0001f)
         {
             // If this is a parent node, then it contains children that must be
             // iterated over
-            if (polyCount == PolyCount.PARENT)
-            {
+            // if (polyCount == PolyCount.LOW)
+            // {
 
-                // Iterate here, but how?
-                for (int i = 0; i < transform.childCount; i++)
-                {
-                    Transform child = transform.GetChild(i);
-                    Asteroid subcomponent = child.GetComponent<Asteroid>();
-                    subcomponent.RandomVelocity(minSpeed, maxSpeed);
-                }
-            }
-            // Otherwise, this is a standalone child
-            else
-            {
-                RandomVelocity(minSpeed, maxSpeed);
-            }
+            //     // Iterate here, but how?
+            //     // for (int i = 0; i < transform.childCount; i++)
+            //     // {
+            //     //     Transform child = transform.GetChild(i);
+            //     //     Asteroid subcomponent = child.GetComponent<Asteroid>();
+            //     //     subcomponent.RandomVelocity(minSpeed * scaleMultiplier,
+            //     //                                 maxSpeed * scaleMultiplier);
+            //     // }
+            // }
+            // // Otherwise, this is a standalone child
+            // else
+            // {
+            //     RandomVelocity(minSpeed, maxSpeed);
+            // }
         }
 
         public void SetRandomRotation(float minSpeed,
                                       float maxSpeed,
                                       float scaleMultiplier = 0.0001f)
         {
-            // RandomRotation(minSpeed, maxSpeed);
-            // If this is a parent node, then it contains children that must be
-            // iterated over
-            if (polyCount != PolyCount.PARENT)
-            {
-                RandomRotation(minSpeed, maxSpeed );
-            }
-            else
-            {
-
-            }
+            // // RandomRotation(minSpeed, maxSpeed);
+            // // If this is a parent node, then it contains children that must be
+            // // iterated over
+            // if (polyCount == PolyCount.LOW)
+            // {
+            //     RandomRotation(minSpeed, maxSpeed);
+            // }
 
         }
 
