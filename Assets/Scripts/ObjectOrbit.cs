@@ -24,7 +24,7 @@ public class ObjectOrbit : MonoBehaviour
     private float posZ = 0;
     private float posY = 0;
     private float r;
-    private float timer = 0; // Values between 0 and 2PI
+    private float angle = 0; // Values between 0 and 2PI
     private float G = 6.67408f;
 
     private Vector3 prev;
@@ -58,10 +58,10 @@ public class ObjectOrbit : MonoBehaviour
 
         float movOffset = ((apoapsis + periapsis) / 2) - periapsis;
 
-        while (timer < Mathf.PI * 2)
+        while (angle < Mathf.PI * 2)
         {
-            posX = semiMajorAxis * Mathf.Cos(timer) - movOffset;
-            posZ = semiMinorAxis * Mathf.Sin(timer);
+            posX = semiMajorAxis * Mathf.Cos(angle) - movOffset;
+            posZ = semiMinorAxis * Mathf.Sin(angle);
 
             r = Mathf.Sqrt(posX * posX + posZ * posZ);
 
@@ -83,10 +83,10 @@ public class ObjectOrbit : MonoBehaviour
             orbit[index] = tempOrbitPoint;
 
 
-            timer += (Mathf.PI * 2) / 720;
+            angle += (Mathf.PI * 2) / 720;
             index++;
         }
-        timer = 0;
+        angle = 0;
     }
 
     void moveSatellite()
