@@ -25,6 +25,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+
+
 namespace Imphenzia.SpaceForUnity
 {
     public class Astronaut : MonoBehaviour
@@ -61,6 +63,9 @@ namespace Imphenzia.SpaceForUnity
 
         [Tooltip("Audio source for spaceship warp speed sound effect")]
         public AudioSource audioSourceWarpUltra;
+
+        public int collectedStarPieces = 0;
+        public Canvas canvas;
 
         // Private variables
         private Rigidbody cacheRigidbody;
@@ -217,6 +222,29 @@ namespace Imphenzia.SpaceForUnity
             cacheRigidbody.AddRelativeTorque(new Vector3(0, Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass, 0));
             // Add pitch torque when steering up/down
             cacheRigidbody.AddRelativeTorque(new Vector3(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass, 0, 0));
+        }
+
+        /// <summary>
+        /// OnTriggerEnter is called when the Collider other enters the trigger.
+        /// </summary>
+        /// <param name="other">The other Collider involved in this collision.</param>
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "StarPiece")
+            {
+                other.GetComponent<ObjectOrbit>().enabled = true;
+                other.GetComponent<Collider>().enabled = false;
+                other.transform.GetChild(1).GetComponent<Light>().intensity = 0.05f;
+                collectedStarPieces += 1;
+                // TODO: Smooth between original position and orbit position
+                // TODO: Smooth between full illumination and zero before disabling, possibly with coroutine?
+
+            }
+            if (collectedStarPieces >= 5)
+            {
+                print("you're winner !");
+                canvas.enabled = true;
+            }
         }
     }
 }

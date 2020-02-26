@@ -9,14 +9,17 @@ public class ObjectOrbit : MonoBehaviour
     public float speedMultiplier = 2;
     public float apoapsis = 4; // Apoapsis
     public float periapsis = 1; // Periapsis
-    public float inclinationNode = 0; // Values between 0 and 2PI
-    public float inclinationAngle = 0; // Values between -PI/2 and PI/2
+    public float inclinationNodeDegrees = 0; // Values between 0 and 360
+    public float inclinationAngleDegrees = 0; // Values between -90 and 90
     public float mass = 1;
     public float currentPos = 0;
     public Vector3 rotationAxis = new Vector3(1, 2, 3);
     public float rotationSpeed = 1.75f;
     public Transform focusPoint;
 
+
+    private float inclinationNode; // Values between 0 and 2PI
+    private float inclinationAngle; // Values between -PI/2 and PI/2
     private float semiMajorAxis;
     private float semiMinorAxis;
     private float eccentricity;
@@ -39,6 +42,8 @@ public class ObjectOrbit : MonoBehaviour
     {
         orbit = new orbitPoint[721];
         generateOrbit();
+        inclinationNode = inclinationNodeDegrees * Mathf.Deg2Rad;
+        inclinationAngle = inclinationAngleDegrees * Mathf.Deg2Rad;
     }
 
     void Update()
