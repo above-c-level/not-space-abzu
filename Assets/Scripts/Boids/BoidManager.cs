@@ -82,4 +82,16 @@ public class BoidManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Callback to draw gizmos that are pickable and always drawn.
+    /// </summary>
+    void OnDrawGizmos()
+    {
+        if (settings.showEpsilonSphere)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(target.position, settings.distanceEpsilon);
+        }
+    }
 }
