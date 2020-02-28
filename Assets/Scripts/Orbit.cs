@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// An incredibly simple circular orbit class that acts by rotating a transform
+/// </summary>
 public class Orbit : MonoBehaviour
 {
 
@@ -12,15 +15,16 @@ public class Orbit : MonoBehaviour
 
     void Start()
     {
-        // Cache transforms to increase performance
+        // Cache the transform of the orbiting object to increase performance
         cacheTransform = transform;
     }
 
     void Update()
     {
-        // Orbit around the planet at orbitSpeed
+        // If the transform is cached
         if (cacheTransform != null)
         {
+            // Then rotate the transform about the vertical axis (up)
             cacheTransform.Rotate(Vector3.up * orbitSpeed * Time.deltaTime);
         }
     }
