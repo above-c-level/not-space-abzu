@@ -28,7 +28,7 @@ public class Boid : MonoBehaviour
     public Vector3 avgAvoidanceHeading;
     // The central point of all flockmates
     [HideInInspector]
-    public Vector3 centreOfFlockmates;
+    public Vector3 centerOfFlockmates;
     // Number of flockmates that this particular boid can see
     [HideInInspector]
     public int numPerceivedFlockmates;
@@ -112,15 +112,15 @@ public class Boid : MonoBehaviour
         if (numPerceivedFlockmates > 0)
         {
             // Divide the center by the number of flockmates this boid sees
-            centreOfFlockmates /= numPerceivedFlockmates;
+            centerOfFlockmates /= numPerceivedFlockmates;
 
             // Calculate the offset to the center
-            Vector3 offsetToFlockmatesCentre = (centreOfFlockmates - position);
+            Vector3 offsetToFlockmatescenter = (centerOfFlockmates - position);
 
             // Next, get acceleration towards the average flock direction, towards
             // the flock center, and away from crashing into other boids (each with their own weight)
             var alignmentForce = SteerTowards(avgFlockHeading) * settings.alignWeight;
-            var cohesionForce = SteerTowards(offsetToFlockmatesCentre) * settings.cohesionWeight;
+            var cohesionForce = SteerTowards(offsetToFlockmatescenter) * settings.cohesionWeight;
             var seperationForce = SteerTowards(avgAvoidanceHeading) * settings.separateWeight;
 
             // Add each force to the total acceleration

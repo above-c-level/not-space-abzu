@@ -9,7 +9,7 @@ struct Boid
     float3 direction;
 
     float3 flockHeading;
-    float3 flockCentre;
+    float3 flockcenter;
     float3 separationHeading;
     int numFlockmates;
 };
@@ -31,7 +31,7 @@ float avoidRadius;
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     // For each boid in the collection of all boids
-    for (int boidIndex = 0; boidIndex < numBoids; boidIndex ++)
+    for (uint boidIndex = 0; boidIndex < numBoids; boidIndex ++)
     {
         // If the boid index is different from the thread index (I think this is
         // for making sure not to compare the boid to itself)
@@ -56,7 +56,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
                 // Add the other boid's direction to the perceived flock heading
                 boids[id.x].flockHeading += otherBoid.direction;
                 // Do the same for the flock center
-                boids[id.x].flockCentre += otherBoid.position;
+                boids[id.x].flockcenter += otherBoid.position;
 
                 // If the squared distance is less than (closer than)
                 // `avoidRadius` squared
