@@ -1,42 +1,3 @@
-/*  Asteroid Field C# Script (version: 1.6)
-    SPACE for UNITY - Space Scene Construction Kit
-    https://www.imphenzia.com/space-for-unity
-    (c) 2019 Imphenzia AB
-
-    DESCRIPTION:
-    This script creates a localized asteroid field around itself. As the object moves
-    the asteroids will optionally re-spawn out of range asteroids within range (but out of sight.)
-
-    INSTRUCTIONS:
-    Use the AsteroidField prefab and make it a child of an object you wish to spawn asteroids around (e.g. a space ship)
-    Alternatively, drag this script onto the game object that should be the center of the asteroid field.
-
-    PROPERTIES:
-    range           (radius of asteroid field)
-    rotationSpeed   (rotational speed of the asteroid)
-    velocity      (drift/movement speed of the asteroid)
-
-    Version History
-    1.6     - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
-            - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
-    1.5     - Changed the way asteroids fade. Instead of using expensive alpha (transparency) fading scaling is used at the perimeter instead.
-            The scaling is performed in a vertex shader so the GPU does the work for performance. This also looks better as the previous
-            method of fading in asteroids when there was a light background, like a star or galaxy, looked odd.
-            The asteroid shader requires a _AsteroidOrigin parameter to be set so the vertex shader knows where the view center is so it can fade
-            at the perimeter. The shader origin is set globally by SU_AsteroidFadeOrigin.cs and the script is added to the main camera at runtime (non-persistent)
-            by default. If you want a different object to be the center, e.g. a spaceship or another camera, manually add the SU_AsteroidFadeOrigin component/script
-            to a desired object.
-            - Performance of asteroids greatly increased by using GPU Vertex shader for fading/scaling and removing alpha transparency.
-    1.05    - Removed compiler conditional code, only 5.x supported.
-    1.03    - Added compiler conditional code for major versions 4.1, 4.2, 4.3
-            - Changed transparent asteroid material to new shader SpaceUnity/AsteroidTransparent located
-            in a Resources subfolder to ensure it is included during compile (before, transparent asteroids
-            wouldn't render in 4.x since the shader was not included in the build)
-    1.02    - Prefixed with SU_AsteroidField to avoid naming conflicts.
-            Added documentation.
-    1.01    - Initial Release.
-*/
-
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -44,11 +5,14 @@ namespace Imphenzia.SpaceForUnity
 {
     public class AsteroidField : MonoBehaviour
     {
+        // TODO: This is a really hacky and not so great way of making sure that there
+        //       aren't too many broken satellites. Ideally this will be updated.
+        //       It probably also doesn't quite work as intended.
         private float brokenSatelliteChance = 0.1f;
         // Poly Count (quality) of the asteroids in the field
-        public Asteroid.PolyCount polyCount = Asteroid.PolyCount.LOW;
+        public Asteroid.ChildrenContainer polyCount = Asteroid.ChildrenContainer.STANDALONE;
         // Poly Count (quality) of the asteroid colliders (LOW = fast, HIGH = slow)
-        public Asteroid.PolyCount polyCountCollider = Asteroid.PolyCount.LOW;
+        public Asteroid.ChildrenContainer polyCountCollider = Asteroid.ChildrenContainer.STANDALONE;
 
         // Array of prefabs that the asteroid fields should consist of
         public GameObject[] prefabAsteroids;
@@ -247,6 +211,9 @@ namespace Imphenzia.SpaceForUnity
             // Spawn new asteroids at a distance if count is below maxAsteroids (e.g. asteroids were destroyed outside of this script)
             while (asteroidsTransforms.Count < maxAsteroids)
             {
+                // TODO: Related to the todo at the top, this assumes that there
+                //       is exactly one broken satellite, and that it is always
+                //       at the end of the array.
                 int arrayChoice;
                 if (Random.Range(0f, 1f) < brokenSatelliteChance)
                 {
@@ -299,6 +266,9 @@ namespace Imphenzia.SpaceForUnity
             }
         }
 
+        /// <summary>
+        /// Sets up the `asteroids`, or in this case, debris.
+        /// </summary>
         void DoSetup()
         {
             if (prefabAsteroids.Length == 0)
@@ -313,7 +283,10 @@ namespace Imphenzia.SpaceForUnity
 
         }
 
-        // Internal function to allow weighted random selection of materials
+        // Previously, an internal function to allow weighted random selection
+        // of materials. However, materials were removed and thus this currently
+        // doesn't do anything. It might still be useful for creating debris
+        // in a weighted manner.
         static T WeightedRandom<T>(SortedList<int, T> list)
         {
             int max = list.Keys[list.Keys.Count - 1];

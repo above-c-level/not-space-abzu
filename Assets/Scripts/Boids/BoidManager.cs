@@ -147,25 +147,38 @@ public class BoidManager : MonoBehaviour
             // This gets a random point within the spawn sphere, with
             // an offset of the spawner's position
             Vector3 pos = transform.position + Random.insideUnitSphere * spawnRadius;
+            // Make a new copy of the prefab, then give it the previously
+            // calculated position and a random direction
             Boid boid = Instantiate(prefab);
             boid.transform.position = pos;
             boid.transform.forward = Random.insideUnitSphere;
-
+            // Then also set its color
+            // Note: it might be worth putting this in an `if` block, to check
+            // whether or not it should have a color applied
             boid.SetColour(color);
         }
     }
 
+    /// <summary>
+    /// Callback to draw gizmos only if the object is selected.
+    /// </summary>
     void OnDrawGizmosSelected()
     {
+        // This should be straightforward.
         if (showSpawnRegion == GizmoType.SelectedOnly)
         {
             DrawGizmos();
         }
     }
 
+    /// <summary>
+    /// A callback to draw gizmos. Not a builtin from Unity or C#, just
+    /// a helper method to be called by other builtins.
+    /// </summary>
     void DrawGizmos()
     {
-
+        // Draws a sphere with the specified color (and 0.3 alpha, so mostly
+        // transparent) and with the same radius as the spawning sphere
         Gizmos.color = new Color(color.r, color.g, color.b, 0.3f);
         Gizmos.DrawSphere(transform.position, spawnRadius);
     }

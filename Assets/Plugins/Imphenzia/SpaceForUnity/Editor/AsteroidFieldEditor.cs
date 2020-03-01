@@ -220,7 +220,7 @@ namespace Imphenzia.SpaceForUnity
             EditorGUILayout.LabelField("Asteroid Mesh Quality", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(polyCount);
             EditorGUILayout.PropertyField(polyCountCollider);
-            if (polyCountCollider.enumValueIndex != (int)Asteroid.PolyCount.LOW)
+            if (polyCountCollider.enumValueIndex != (int)Asteroid.ChildrenContainer.STANDALONE)
             {
                 EditorGUILayout.LabelField("Warning! Using detailed collider meshes may heavily impact performance or raise errors if the mesh is too detailed.", EditorStyles.wordWrappedMiniLabel);
             }

@@ -2037,8 +2037,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2931604500597588581, guid: a68eabc10bd1b4dcaa03efa0e2052ddb, type: 3}
   spawnRadius: 10
-  spawnCount: 350
-  colour: {r: 0.47058824, g: 0.60784316, b: 0.8980392, a: 0}
+  spawnCount: 50
+  color: {r: 0.23064259, g: 0.543731, b: 0.6886792, a: 0}
   showSpawnRegion: 0
   target: {fileID: 609983551}
   settings: {fileID: 11400000, guid: fd4bc51c395304add92e7ac263cc6d3f, type: 2}

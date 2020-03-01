@@ -1,21 +1,3 @@
-// Laser Impact C# Script (version: 1.6)
-// SPACE UNITY - Space Scene Construction Kit
-// http://www.spaceunity.com
-// (c) 2019 Impehzia AB
-
-// DESCRIPTION:
-// Small script to animate light intensity for impact effects.
-
-// INSTRUCTIONS:
-// This script is attached to the LaserImpact prefab for demo purposes.
-
-// Version History
-// 1.6  - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
-//      - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
-// 1.06 - Updated for Unity 5.5, removed deprecated code. Changed light cache from transform to component.
-// 1.02 - Prefixed with SU_LaserImpact to avoid naming conflicts.
-//        Added documentation. Removed unused variables. Introduced simple error checking.
-// 1.01 - Initial Release.
 
 using UnityEngine;
 using System.Collections;

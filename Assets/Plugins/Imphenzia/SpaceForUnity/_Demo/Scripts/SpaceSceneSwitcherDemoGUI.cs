@@ -1,22 +1,3 @@
-// Space Scene Switcher Demo GUI C# Script (version: 1.6)
-// SPACE UNITY - Space Scene Construction Kit
-// http://www.spaceunity.com
-// (c) 2019 Imphenzia AB
-
-// DESCRIPTION:
-// Small demo script to allow space scene switchign with GUI buttons and function keys.
-
-// INSTRUCTIONS:
-// Attach this script to a gameobject in the scene.
-
-// Version History
-// 1.6  - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
-//      - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best
-// 1.03 - Changed deprecated Camera.mainCamera to Camera.main
-// 1.02 - Prefixed with SU_SpaceSceneSwitcherDemoGUI to avoid naming conflicts.
-//        Added camera follow mode, particles, fog, and asteroid toggle.
-//        Added documentation.
-// 1.01 - Initial Release.
 
 using UnityEngine;
 using System.Collections;
@@ -27,7 +8,7 @@ namespace Imphenzia.SpaceForUnity
     {
         [Tooltip("Assign the space particles transform in the inspector (drag and drop from e.g. MainCamera/SpaceParticles)")]
         public Transform spaceParticles;
-        
+
         [Tooltip("Assign the space fog transform in the inspector (drag and drop from e.g. MainCamera/SpaceFog)")]
         public Transform spaceFog;
 

@@ -23,8 +23,10 @@ namespace Imphenzia.SpaceForUnity
 {
     public class Planet : MonoBehaviour
     {
-        [Tooltip("The rotational vector (axis and speed) of the planet.")]
-        public Vector3 planetRotation;
+        [Tooltip("The rotational vector (axis) of the planet.")]
+        public Vector3 planetRotation = Vector3.up;
+        [Tooltip("The rotational speed of the planet.")]
+        public float rotationSpeed = 5;
 
         // Private variables
         private Transform _cacheTransform;
@@ -33,6 +35,7 @@ namespace Imphenzia.SpaceForUnity
         {
             // Cache reference to transform to improve performance
             _cacheTransform = transform;
+            planetRotation = planetRotation.normalized;
         }
 
         void Update()
@@ -40,7 +43,7 @@ namespace Imphenzia.SpaceForUnity
             // Rotate the planet based on the rotational vector
             if (_cacheTransform != null)
             {
-                _cacheTransform.Rotate(planetRotation * Time.deltaTime);
+                _cacheTransform.Rotate(planetRotation * rotationSpeed * Time.deltaTime);
             }
         }
     }

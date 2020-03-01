@@ -1,22 +1,3 @@
-// Thruster C# Script (version: 1.6)
-// SPACE UNITY - Space Scene Construction Kit
-// http://www.spaceunity.com
-// (c) 2019 Imphenzia AB
-
-// DESCRIPTION:
-// This script controls the thruster used for spaceship propulsion.
-
-// INSTRUCTIONS:
-// Use the thruster prefab which has the required particle system this script depends upon.
-// Configure the thruster force and other parameters as desired.
-
-// Version History
-// 1.6  - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
-//      - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
-// 1.06 - Updated for Unity 5.5, removed deprecated code. Changed light cache from transform to component.
-// 1.02 - Prefixed with SU_Thruster to avoid naming conflicts.
-// 1.01 - Initial Release.
-
 using UnityEngine;
 using System.Collections;
 
@@ -24,12 +5,12 @@ namespace Imphenzia.SpaceForUnity
 {
     public class Thruster : MonoBehaviour
     {
-        [Tooltip("The thruster force to be applied to it's rigidbody parent when active")]
+        [Tooltip("The thruster force to be applied to its rigidbody parent when active")]
         public float thrusterForce = 10000;
 
         [Tooltip("Whether or not to add force at position which introduces torque, use with care as it is super sensitive for positioning")]
         public bool addForceAtPosition = false;
-        
+
         [Tooltip("Sound effect volume of thruster")]
         public float soundEffectVolume = 1.0f;
 
@@ -41,7 +22,7 @@ namespace Imphenzia.SpaceForUnity
         private ParticleSystem _cacheParticleSystem;
 
         /// <summary>
-        /// Call StartThruster() function from other scripts to start the thruster 
+        /// Call StartThruster() function from other scripts to start the thruster
         /// </summary>
         public void StartThruster()
         {
@@ -54,7 +35,7 @@ namespace Imphenzia.SpaceForUnity
         /// </summary>
         public void StopThruster()
         {
-            // Set the thruster active flag to false		
+            // Set the thruster active flag to false
             _isActive = false;
         }
 

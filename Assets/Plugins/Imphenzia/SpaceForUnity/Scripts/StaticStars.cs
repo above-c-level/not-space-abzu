@@ -1,20 +1,10 @@
-/*  SU_StaticStars Script (version: 1.6)
-	SPACE for UNITY - Space Scene Construction Kit
-	https://www.imphenzia.com/space-for-unity
-	(c) 2019 Imphenzia AB
+// I'll be honest, I don't even know where to start with this code, or what the
+// guy who wrote it was thinking. It looks like it was originally written in Java,
+// ported to ANSI C, then ported to C#. If somehow we have an issue with the code,
+// I don't know how to fix it without spending a lot more time than just documenting
+// it anyway.
 
-    DESCRIPTION:
-    This script generates a procedural cube mesh which is used instead of the skybox from previous versions.
-    The benefit of a custom approach is to save drawcalls because the original skybox component uses 6 draw calls
-    but since we use the same texture in all directions this uses 1 draw call (or 2 if static nebula noise is enabled).
-    Another benefit is that the color of stars and nebula noise can be tinted with this script.    
-
-    Version History
-    1.6     - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
-            - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
-            - Changed so that Static Star skybox is much larger and also stays fixed in the center to replicate behavior of nebulas.
-    1.5     - New feature in version 1.5.
-*/
+// Either way, hopefully nobody ever even reads these comments.
 
 using UnityEngine;
 using System.Collections;
@@ -149,7 +139,7 @@ namespace Imphenzia.SpaceForUnity
 
         void OnPreCull()
         {
-            // Rotation of the cube is always reset in Play mode to act as a skybox (to prevent it from rotating with the camera)        
+            // Rotation of the cube is always reset in Play mode to act as a skybox (to prevent it from rotating with the camera)
             if (customSkybox != null)
                 customSkybox.transform.rotation = Quaternion.identity;
         }
@@ -183,7 +173,7 @@ namespace Imphenzia.SpaceForUnity
                 return;
             }
 
-            // Update shader to reflect changes to Static Stars instantly		
+            // Update shader to reflect changes to Static Stars instantly
             if (customSkybox.GetComponent<Renderer>().sharedMaterial.GetTexture("_MainTex") != starsTexture)
                 customSkybox.GetComponent<Renderer>().sharedMaterial.SetTexture("_MainTex", starsTexture);
 
@@ -263,45 +253,45 @@ namespace Imphenzia.SpaceForUnity
 
             Vector3[] _vertices = new Vector3[]
             {
-			// Bottom
-			_p0, _p1, _p2, _p3,
-		 
-			// Left
-			_p7, _p4, _p0, _p3,
-		 
-			// Front
-			_p4, _p5, _p1, _p0,
-		 
-			// Back
-			_p6, _p7, _p3, _p2,
-		 
-			// Right
-			_p5, _p6, _p2, _p1,
-		 
-			// Top
-			_p7, _p6, _p5, _p4
+            // Bottom
+            _p0, _p1, _p2, _p3,
+
+            // Left
+            _p7, _p4, _p0, _p3,
+
+            // Front
+            _p4, _p5, _p1, _p0,
+
+            // Back
+            _p6, _p7, _p3, _p2,
+
+            // Right
+            _p5, _p6, _p2, _p1,
+
+            // Top
+            _p7, _p6, _p5, _p4
             };
 
 
             Vector3[] _normales = new Vector3[]
             {
-			// Bottom
-			Vector3.up, Vector3.up, Vector3.up, Vector3.up,
-		 
-			// Left
-			Vector3.right, Vector3.right, Vector3.right, Vector3.right,
-		 
-			// Front			
-		 	Vector3.back, Vector3.back, Vector3.back, Vector3.back,
-			
-			// Back			
-			Vector3.forward, Vector3.forward, Vector3.forward, Vector3.forward,
-		 
-			// Right			
-			Vector3.left, Vector3.left, Vector3.left, Vector3.left,
-		 
-			// Top			
-			Vector3.down, Vector3.down, Vector3.down, Vector3.down
+            // Bottom
+            Vector3.up, Vector3.up, Vector3.up, Vector3.up,
+
+            // Left
+            Vector3.right, Vector3.right, Vector3.right, Vector3.right,
+
+            // Front
+            Vector3.back, Vector3.back, Vector3.back, Vector3.back,
+
+            // Back
+            Vector3.forward, Vector3.forward, Vector3.forward, Vector3.forward,
+
+            // Right
+            Vector3.left, Vector3.left, Vector3.left, Vector3.left,
+
+            // Top
+            Vector3.down, Vector3.down, Vector3.down, Vector3.down
             };
 
             Vector2 _00 = new Vector2(0f, 0f);
@@ -311,49 +301,49 @@ namespace Imphenzia.SpaceForUnity
 
             Vector2[] _uvs = new Vector2[]
             {
-			// Bottom
-			_11, _01, _00, _10,
-		 
-			// Left
-			_11, _01, _00, _10,
-		 
-			// Front
-			_11, _01, _00, _10,
-		 
-			// Vector3.back
-			_11, _01, _00, _10,
-		 
-			// Right
-			_11, _01, _00, _10,
-		 
-			// Top
-			_11, _01, _00, _10,
+            // Bottom
+            _11, _01, _00, _10,
+
+            // Left
+            _11, _01, _00, _10,
+
+            // Front
+            _11, _01, _00, _10,
+
+            // Vector3.back
+            _11, _01, _00, _10,
+
+            // Right
+            _11, _01, _00, _10,
+
+            // Top
+            _11, _01, _00, _10,
             };
 
             int[] _triangles = new int[]
             {
-			// Bottom
-			0, 1, 3,
-            1, 2, 3,			
-		 
-			// Left
-			0 + 4 * 1, 1 + 4 * 1, 3 + 4 * 1,
+            // Bottom
+            0, 1, 3,
+            1, 2, 3,
+
+            // Left
+            0 + 4 * 1, 1 + 4 * 1, 3 + 4 * 1,
             1 + 4 * 1, 2 + 4 * 1, 3 + 4 * 1,
-		 
-			// Front
-			0 + 4 * 2, 1 + 4 * 2, 3 + 4 * 2,
+
+            // Front
+            0 + 4 * 2, 1 + 4 * 2, 3 + 4 * 2,
             1 + 4 * 2, 2 + 4 * 2, 3 + 4 * 2,
-		 
-			// Back
-			0 + 4 * 3, 1 + 4 * 3, 3 + 4 * 3,
+
+            // Back
+            0 + 4 * 3, 1 + 4 * 3, 3 + 4 * 3,
             1 + 4 * 3, 2 + 4 * 3, 3 + 4 * 3,
-		 
-			// Right
-			0 + 4 * 4, 1 + 4 * 4, 3 + 4 * 4,
+
+            // Right
+            0 + 4 * 4, 1 + 4 * 4, 3 + 4 * 4,
             1 + 4 * 4, 2 + 4 * 4, 3 + 4 * 4,
-		 
-			// Top
-			0 + 4 * 5, 1 + 4 * 5, 3 + 4 * 5,
+
+            // Top
+            0 + 4 * 5, 1 + 4 * 5, 3 + 4 * 5,
             1 + 4 * 5, 2 + 4 * 5, 3 + 4 * 5,
 
             };
@@ -370,4 +360,3 @@ namespace Imphenzia.SpaceForUnity
     }
 
 }
-

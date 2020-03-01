@@ -1,28 +1,3 @@
-// Laser Shot C# Script (version: 1.6)
-// SPACE UNITY - Space Scene Construction Kit
-// http://www.spaceunity.com
-// (c) 2019 Impehzia AB
-
-// DESCRIPTION:
-// Laser shot script for demo purposes. Moves the transform with a velocity and
-// uses raycast to check for hit and spawn impact effect. It also randomly destroys
-// objects it hits. The reason for randomness is just to allow impact effect and you
-// would most likely want to implement a "hit points" script for targets where you
-// can deduct hitpoints on impact until it is destroyed rather than using the random
-// demo function in this script.
-
-// INSTRUCTIONS:
-// This script is attached to the LaserShot prefab for demo purposes.
-
-// Version History
-// 1.6  - New Imphenzia.SpaceForUnity namespace to replace SU_ prefix.
-//      - Moved asset into Plugins/Imphenzia/SpaceForUnity for asset best practices.
-
-// 1.06 - Updated for Unity 5.5, removed deprecated code. 
-// 1.02 - Prefixed with SU_LaserShot to avoid naming conflicts.
-//        Added documentation.
-// 1.01 - Initial Release.
-
 using UnityEngine;
 using System.Collections;
 
@@ -38,7 +13,7 @@ namespace Imphenzia.SpaceForUnity
 
         [Tooltip("Reference to impact effect prefab to spawn upon impact")]
         public Transform impactEffect;
-        
+
         [Tooltip("Reference to explosion effect prefab to spawn if object is destroyed")]
         public Transform explosionEffect;
 
