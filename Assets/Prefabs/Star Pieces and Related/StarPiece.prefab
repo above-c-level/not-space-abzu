@@ -100,10 +100,11 @@ MonoBehaviour:
   inclinationNodeDegrees: 0
   inclinationAngleDegrees: 0
   mass: 1
-  currentPos: 0
+  startingPosition: 0
   rotationAxis: {x: 1, y: 2, z: 3}
   rotationSpeed: 1
   focusPoint: {fileID: 0}
+  usePrecalculatedOrbit: 1
 --- !u!135 &1476019128291268021
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.015
+  m_Radius: 0.115
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1110734308826170349
 PrefabInstance:

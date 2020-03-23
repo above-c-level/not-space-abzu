@@ -113,10 +113,8 @@ public class ObjectOrbit : MonoBehaviour
         float internalSpeedMultiplier = speedMultiplier;
         if (!usePrecalculatedOrbit)
         {
-            // I don't know exactly where this comes from, but the precalculated
-            // orbit runs much slower (in rotational terms) than one calculated
-            // on the fly. This multiplier approximates the difference.
-            internalSpeedMultiplier *= 0.008723f;
+            // The ratio between radians in a circle and half-degrees in a circle
+            internalSpeedMultiplier *= (float)(2 * Math.PI / 720);
         }
         // This entire section is just lots of math. It's a combination of
         // trigonometry and the Keplerian equations. I'm not entirely convinced
