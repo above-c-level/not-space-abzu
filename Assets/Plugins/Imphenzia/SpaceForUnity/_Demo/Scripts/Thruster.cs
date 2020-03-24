@@ -156,7 +156,7 @@ namespace Imphenzia.SpaceForUnity
                 else
                 {
                     // Add force without rotational torque
-                    _cacheParentRigidbody.AddRelativeForce(Vector3.forward * thrusterForce);
+                    _cacheParentRigidbody.AddRelativeForce(Vector3.up * thrusterForce);
                 }
             }
         }

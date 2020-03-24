@@ -65,6 +65,9 @@ namespace Imphenzia.SpaceForUnity
         private TravelWarp travelWarp;
         private float orgWarpSpeed;
         private float orgWarpStrength;
+        private Vector3 rollAxis = new Vector3(0, 1, 0);
+        private Vector3 pitchAxis = new Vector3(1, 0, 0);
+        private Vector3 yawAxis = new Vector3(0, 0, 1);
 
         private List<objectInOrbit> orbitingObjects;
         class objectInOrbit
@@ -225,18 +228,18 @@ namespace Imphenzia.SpaceForUnity
             // Add relative rotational roll torque when steering left/right
             if (Input.GetKey(KeyCode.Q))
             {
-                cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, rollRate * cacheRigidbody.mass));
+                cacheRigidbody.AddRelativeTorque(rollRate * cacheRigidbody.mass * rollAxis);
             }
             if (Input.GetKey(KeyCode.E))
             {
-                cacheRigidbody.AddRelativeTorque(new Vector3(0, 0, -rollRate * cacheRigidbody.mass));
+                cacheRigidbody.AddRelativeTorque(-rollRate * cacheRigidbody.mass * rollAxis);
             }
 
 
             // Add rudder yaw torque when steering left/right
-            cacheRigidbody.AddRelativeTorque(new Vector3(0, Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass, 0));
+            cacheRigidbody.AddRelativeTorque(Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass * yawAxis);
             // Add pitch torque when steering up/down
-            cacheRigidbody.AddRelativeTorque(new Vector3(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass, 0, 0));
+            cacheRigidbody.AddRelativeTorque(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass * pitchAxis);
 
         }
 
@@ -386,8 +389,8 @@ namespace Imphenzia.SpaceForUnity
             float percentage = Vector3.Angle(objectToMove.targetPosition - objectToMove.originPosition,
                                              cacheRigidbody.velocity);
             percentage /= 180f;
-            float moveSpeedAddition = percentage * cacheRigidbody.velocity.magnitude;
-            print(percentage + "\t" + moveSpeedAddition);
+            float moveSpeedAddition = 0 * cacheRigidbody.velocity.magnitude;
+            // print(percentage + "\t" + moveSpeedAddition);
 
             while (Vector3.Distance(objectToMove.originPosition,
                                     objectToMove.targetPosition) > closeEnough)

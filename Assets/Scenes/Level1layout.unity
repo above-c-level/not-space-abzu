@@ -316,7 +316,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &22060401
 Transform:
   m_ObjectHideFlags: 0
@@ -1654,7 +1654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &100144048
 Transform:
   m_ObjectHideFlags: 0
@@ -1720,7 +1720,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1204650120}
+  - {fileID: 839012420}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1748,7 +1748,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101568896}
-  m_Mesh: {fileID: 1659355479}
+  m_Mesh: {fileID: 1658767001}
 --- !u!4 &104918735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5900215366058082490, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
@@ -22991,21 +22991,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 920990487711161065, guid: f15615a0e8bf2bd45ac82ab020322ede,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.33074
-      objectReference: {fileID: 0}
-    - target: {fileID: 920990487711161065, guid: f15615a0e8bf2bd45ac82ab020322ede,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.33074
-      objectReference: {fileID: 0}
-    - target: {fileID: 920990487711161065, guid: f15615a0e8bf2bd45ac82ab020322ede,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.33074
-      objectReference: {fileID: 0}
     - target: {fileID: 9068660934167702634, guid: f15615a0e8bf2bd45ac82ab020322ede,
         type: 3}
       propertyPath: m_Name
@@ -26557,6 +26542,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 837391534}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &839012420
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpaceUnity/SU_StaticStars_Noise
+  m_Shader: {fileID: 4800000, guid: d6d0001dd9cba204a886e5a71b26ff51, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3135dbac1e8b56646848b3f59b52f5c5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 1f26abe5592159b4fbb095113a9a1773, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _NoiseColor: {r: 0, g: 0, b: 0.41697153, a: 1}
 --- !u!4 &854330127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
@@ -27914,7 +27929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &959228434
 Transform:
   m_ObjectHideFlags: 0
@@ -28901,6 +28916,10 @@ PrefabInstance:
     - target: {fileID: 11400000, guid: 9783b65863602db41bda013272222888, type: 3}
       propertyPath: planetRotation.z
       value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 9783b65863602db41bda013272222888, type: 3}
+      propertyPath: rotationSpeed
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9783b65863602db41bda013272222888, type: 3}
@@ -31187,36 +31206,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 291444345}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1204650120
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SpaceUnity/SU_StaticStars_Noise
-  m_Shader: {fileID: 4800000, guid: d6d0001dd9cba204a886e5a71b26ff51, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3135dbac1e8b56646848b3f59b52f5c5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 1f26abe5592159b4fbb095113a9a1773, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _NoiseColor: {r: 0, g: 0, b: 0.41697153, a: 1}
 --- !u!1001 &1206516850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31764,7 +31753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1238949998
 Transform:
   m_ObjectHideFlags: 0
@@ -39696,7 +39685,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1656143574}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &1659355479
+--- !u!43 &1658767001
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45366,7 +45355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2133520574
 Transform:
   m_ObjectHideFlags: 0
@@ -46661,7 +46650,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864467338001231006}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 15, y: 15, z: 15}
   m_Children:
