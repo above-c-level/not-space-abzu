@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class SolarWind : MonoBehaviour
 {
+    [HideInInspector]
     public bool isActive = false;
+    [HideInInspector]
     public Rigidbody astronautBody;
+    [HideInInspector]
     public float windForce;
 
     /// <summary>

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2460182014659714771}
   - component: {fileID: 3892189506259668800}
   - component: {fileID: 1863226715}
+  - component: {fileID: 1863226718}
   m_Layer: 0
   m_Name: Solar Wind Particle
   m_TagString: Wind
@@ -4776,3 +4777,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 21.07}
   m_Center: {x: 0, y: 0, z: 10.6}
+--- !u!114 &1863226718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068660934167702634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602e03a65ee83b24cacd112483f80bfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  astronautBody: {fileID: 0}
+  windForce: 1

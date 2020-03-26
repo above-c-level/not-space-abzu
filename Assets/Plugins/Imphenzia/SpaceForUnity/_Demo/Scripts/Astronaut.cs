@@ -53,7 +53,8 @@ public class Astronaut : MonoBehaviour
     [Tooltip("An array of particle effects that show visual damage")]
     public Transform[] visualDamageParticles;
     [Tooltip("How hard the solar wind should push the astronaut")]
-    public float solarWindPushForce = 1f;
+    public float solarWindPushForce = 25000f;
+    public AudioSource bonkSource;
     // TODO: restructure code. It might not be worth having all these variables
     public float apoapsis = 5;
     public float periapsis = 5;
@@ -190,6 +191,7 @@ public class Astronaut : MonoBehaviour
     {
         if (other.collider.tag == "Debris")
         {
+            bonkSource.PlayOneShot(bonkSource.clip);
             hitCount++;
             if (hitCount > visualDamageParticles.Length)
             {
@@ -210,6 +212,7 @@ public class Astronaut : MonoBehaviour
     {
         if (other.tag == "StarPiece")
         {
+
             // other.GetComponent<ObjectOrbit>().enabled = true;
             Transform starpiece = other.GetComponent<Transform>();
 
@@ -217,11 +220,16 @@ public class Astronaut : MonoBehaviour
             AddObjectToOrbit(starpiece);
             other.GetComponent<Collider>().enabled = false;
             StartCoroutine(FadeIntensity(other.transform.GetChild(1).GetComponent<Light>()));
-            collectedStarPieces += 1;
+            collectedStarPieces++;
             if (collectedStarPieces >= 5)
             {
                 print("you're winner !");
                 canvas.enabled = true;
+                bonkSource.PlayOneShot(bonkSource.clip);
+            }
+            else
+            {
+                bonkSource.PlayOneShot(bonkSource.clip);
             }
         }
 
