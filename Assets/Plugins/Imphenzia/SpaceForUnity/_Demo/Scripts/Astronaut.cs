@@ -52,6 +52,7 @@ namespace Imphenzia.SpaceForUnity
         public float orbitSpeedMultiplier = 1;
         [Tooltip("How close the object should be to its orbit point before it's close enough")]
         public float closeEnough = 0.05f;
+        public Transform[] visualDamageParticles;
         // TODO: restructure code. It might not be worth having all these variables
         public float apoapsis = 5;
         public float periapsis = 5;
@@ -61,6 +62,7 @@ namespace Imphenzia.SpaceForUnity
         private Vector3 startPosition;
 
         // Private variables
+        private int hitCount;
         private Rigidbody cacheRigidbody;
         private TravelWarp travelWarp;
         private float orgWarpSpeed;
@@ -237,10 +239,30 @@ namespace Imphenzia.SpaceForUnity
 
 
             // Add rudder yaw torque when steering left/right
-            cacheRigidbody.AddRelativeTorque(Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass * yawAxis);
+            cacheRigidbody.AddRelativeTorque(-Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass * yawAxis);
             // Add pitch torque when steering up/down
             cacheRigidbody.AddRelativeTorque(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass * pitchAxis);
 
+        }
+        /// <summary>
+        /// OnCollisionEnter is called when this collider/rigidbody has begun
+        /// touching another rigidbody/collider.
+        /// </summary>
+        /// <param name="other">The Collision data associated with this collision.</param>
+        void OnCollisionEnter(Collision other)
+        {
+            if (other.collider.tag == "Debris")
+            {
+                hitCount++;
+                if (hitCount > visualDamageParticles.Length)
+                {
+                    return;
+                }
+                else
+                {
+                    visualDamageParticles[hitCount-1].gameObject.SetActive(true);
+                }
+            }
         }
 
         /// <summary>

@@ -769,6 +769,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &32334393
@@ -782,6 +787,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -861,6 +871,169 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2093032297}
   m_PrefabAsset: {fileID: 0}
+--- !u!43 &33928407
+Mesh:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 36
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 24
+    localAABB:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 10000, y: 10000, z: 10000}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose: []
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB: []
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 000001000300010002000300040005000700050006000700080009000b0009000a000b000c000d000f000d000e000f00100011001300110012001300140015001700150016001700
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 24
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    m_DataSize: 768
+    _typelessdata: 00401cc600401cc600401c46000000000000803f000000000000803f0000803f00401c4600401cc600401c46000000000000803f00000000000000000000803f00401c4600401cc600401cc6000000000000803f00000000000000000000000000401cc600401cc600401cc6000000000000803f000000000000803f0000000000401cc600401c4600401cc60000803f00000000000000000000803f0000803f00401cc600401c4600401c460000803f0000000000000000000000000000803f00401cc600401cc600401c460000803f0000000000000000000000000000000000401cc600401cc600401cc60000803f00000000000000000000803f0000000000401cc600401c4600401c460000000000000000000080bf0000803f0000803f00401c4600401c4600401c460000000000000000000080bf000000000000803f00401c4600401cc600401c460000000000000000000080bf000000000000000000401cc600401cc600401c460000000000000000000080bf0000803f0000000000401c4600401c4600401cc600000000000000000000803f0000803f0000803f00401cc600401c4600401cc600000000000000000000803f000000000000803f00401cc600401cc600401cc600000000000000000000803f000000000000000000401c4600401cc600401cc600000000000000000000803f0000803f0000000000401c4600401c4600401c46000080bf00000000000000000000803f0000803f00401c4600401c4600401cc6000080bf0000000000000000000000000000803f00401c4600401cc600401cc6000080bf0000000000000000000000000000000000401c4600401cc600401c46000080bf00000000000000000000803f0000000000401cc600401c4600401cc600000000000080bf000000000000803f0000803f00401c4600401c4600401cc600000000000080bf00000000000000000000803f00401c4600401c4600401c4600000000000080bf00000000000000000000000000401cc600401c4600401c4600000000000080bf000000000000803f00000000
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 10000, y: 10000, z: 10000}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
 --- !u!1001 &36985434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -872,6 +1045,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -1117,6 +1295,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (25)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &54321257
@@ -1200,6 +1383,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -1720,7 +1908,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 839012420}
+  - {fileID: 2070226321}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1748,7 +1936,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101568896}
-  m_Mesh: {fileID: 1658767001}
+  m_Mesh: {fileID: 33928407}
 --- !u!4 &104918735 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5900215366058082490, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
@@ -1971,6 +2159,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -3727,6 +3920,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3874,6 +4072,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3957,6 +4160,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -4105,6 +4313,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4194,6 +4407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -4810,6 +5028,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4893,6 +5116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -5248,6 +5476,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5402,6 +5635,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &396643071
@@ -5485,6 +5723,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -5866,6 +6109,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6109,6 +6357,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -11317,6 +11570,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11490,6 +11748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -11931,6 +12194,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -16698,6 +16966,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &507755204 stripped
@@ -16717,6 +16990,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -22180,6 +22458,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &539270594 stripped
@@ -22437,6 +22720,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -22753,6 +23041,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &561847325
@@ -22836,6 +23129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -23328,6 +23626,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -23867,6 +24170,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &639398260
@@ -23969,12 +24277,12 @@ PrefabInstance:
     - target: {fileID: 6799501849279251018, guid: 54126ec44d874b44b844c01fc38eeeb8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0223
+      value: -0.02456
       objectReference: {fileID: 0}
     - target: {fileID: 6799501849279251018, guid: 54126ec44d874b44b844c01fc38eeeb8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.016200002
+      value: 0.01623
       objectReference: {fileID: 0}
     - target: {fileID: 6799501849279251018, guid: 54126ec44d874b44b844c01fc38eeeb8,
         type: 3}
@@ -24026,110 +24334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: airleaklarge
       objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
+    - target: {fileID: 6799501849279251019, guid: 54126ec44d874b44b844c01fc38eeeb8,
         type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.size
+      propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_BurstCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minScalar
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PreInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_PostInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_RotationOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PreInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_PostInfinity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_RotationOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].cycleCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6799501849279251020, guid: 54126ec44d874b44b844c01fc38eeeb8,
-        type: 3}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].probability
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54126ec44d874b44b844c01fc38eeeb8, type: 3}
@@ -24862,6 +25070,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &725473502 stripped
@@ -24881,6 +25094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -25036,6 +25254,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &736069010 stripped
@@ -25131,6 +25354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -25258,21 +25486,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632216404895752487, guid: 5f5874f820532a0469f5eaa3ce864943,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 4.482181
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632216404895752487, guid: 5f5874f820532a0469f5eaa3ce864943,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.482181
-      objectReference: {fileID: 0}
-    - target: {fileID: 4632216404895752487, guid: 5f5874f820532a0469f5eaa3ce864943,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 4.482181
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f5874f820532a0469f5eaa3ce864943, type: 3}
@@ -25807,6 +26020,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -26542,36 +26760,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 837391534}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &839012420
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: SpaceUnity/SU_StaticStars_Noise
-  m_Shader: {fileID: 4800000, guid: d6d0001dd9cba204a886e5a71b26ff51, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3135dbac1e8b56646848b3f59b52f5c5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 1f26abe5592159b4fbb095113a9a1773, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _NoiseColor: {r: 0, g: 0, b: 0.41697153, a: 1}
 --- !u!4 &854330127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
@@ -26660,6 +26848,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &865434554 stripped
@@ -26685,6 +26878,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -27166,6 +27364,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27403,6 +27606,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27485,12 +27693,12 @@ PrefabInstance:
     - target: {fileID: 5239547526186611522, guid: 6d5cee89edc48d54c8219de6dd476fd4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.019900003
+      value: 0.02151
       objectReference: {fileID: 0}
     - target: {fileID: 5239547526186611522, guid: 6d5cee89edc48d54c8219de6dd476fd4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00118
       objectReference: {fileID: 0}
     - target: {fileID: 5239547526186611522, guid: 6d5cee89edc48d54c8219de6dd476fd4,
         type: 3}
@@ -27537,25 +27745,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.99999
       objectReference: {fileID: 0}
-    - target: {fileID: 5239547526186611522, guid: 6d5cee89edc48d54c8219de6dd476fd4,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.38143015
-      objectReference: {fileID: 0}
-    - target: {fileID: 5239547526186611522, guid: 6d5cee89edc48d54c8219de6dd476fd4,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.38143024
-      objectReference: {fileID: 0}
-    - target: {fileID: 5239547526186611522, guid: 6d5cee89edc48d54c8219de6dd476fd4,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.3814302
-      objectReference: {fileID: 0}
     - target: {fileID: 5239547526186611523, guid: 6d5cee89edc48d54c8219de6dd476fd4,
         type: 3}
       propertyPath: m_Name
       value: airleaksmall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5239547526186611523, guid: 6d5cee89edc48d54c8219de6dd476fd4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d5cee89edc48d54c8219de6dd476fd4, type: 3}
@@ -27757,6 +27955,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27840,6 +28043,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -28935,6 +29143,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29210,6 +29423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -29832,6 +30050,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -30011,6 +30234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -30357,6 +30585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -30883,6 +31116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1 &1188258259
@@ -31043,6 +31281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -31308,6 +31551,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31488,6 +31736,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid4 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -31664,6 +31917,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -32030,6 +32288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid4 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32294,6 +32557,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid4 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32383,6 +32651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -32827,6 +33100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -33736,6 +34014,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sputnik
       objectReference: {fileID: 0}
+    - target: {fileID: 1066344965920805933, guid: 591e24f462eca9043bdaf0452b3353e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 4077783788529821246, guid: 591e24f462eca9043bdaf0452b3353e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33890,6 +34173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1338044545
@@ -33994,6 +34282,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34083,6 +34376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -34451,6 +34749,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -35070,6 +35373,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35250,6 +35558,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -35333,6 +35646,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -35943,6 +36261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1451284642
@@ -36027,6 +36350,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1451733232
@@ -36110,6 +36438,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -36304,6 +36637,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -37697,6 +38035,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37961,6 +38304,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38057,6 +38405,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -38140,6 +38493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -38230,6 +38588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -38384,6 +38747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -39067,6 +39435,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid3 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -39150,6 +39523,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -39503,6 +39881,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1649126070
@@ -39685,169 +40068,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1656143574}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &1658767001
-Mesh:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 10
-  m_SubMeshes:
-  - serializedVersion: 2
-    firstByte: 0
-    indexCount: 36
-    topology: 0
-    baseVertex: 0
-    firstVertex: 0
-    vertexCount: 24
-    localAABB:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 10000, y: 10000, z: 10000}
-  m_Shapes:
-    vertices: []
-    shapes: []
-    channels: []
-    fullWeights: []
-  m_BindPose: []
-  m_BoneNameHashes: 
-  m_RootBoneNameHash: 0
-  m_BonesAABB: []
-  m_VariableBoneCountWeights:
-    m_Data: 
-  m_MeshCompression: 0
-  m_IsReadable: 1
-  m_KeepVertices: 1
-  m_KeepIndices: 1
-  m_IndexFormat: 0
-  m_IndexBuffer: 000001000300010002000300040005000700050006000700080009000b0009000a000b000c000d000f000d000e000f00100011001300110012001300140015001700150016001700
-  m_VertexData:
-    serializedVersion: 3
-    m_VertexCount: 24
-    m_Channels:
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 12
-      format: 0
-      dimension: 3
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 24
-      format: 0
-      dimension: 2
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    - stream: 0
-      offset: 0
-      format: 0
-      dimension: 0
-    m_DataSize: 768
-    _typelessdata: 00401cc600401cc600401c46000000000000803f000000000000803f0000803f00401c4600401cc600401c46000000000000803f00000000000000000000803f00401c4600401cc600401cc6000000000000803f00000000000000000000000000401cc600401cc600401cc6000000000000803f000000000000803f0000000000401cc600401c4600401cc60000803f00000000000000000000803f0000803f00401cc600401c4600401c460000803f0000000000000000000000000000803f00401cc600401cc600401c460000803f0000000000000000000000000000000000401cc600401cc600401cc60000803f00000000000000000000803f0000000000401cc600401c4600401c460000000000000000000080bf0000803f0000803f00401c4600401c4600401c460000000000000000000080bf000000000000803f00401c4600401cc600401c460000000000000000000080bf000000000000000000401cc600401cc600401c460000000000000000000080bf0000803f0000000000401c4600401c4600401cc600000000000000000000803f0000803f0000803f00401cc600401c4600401cc600000000000000000000803f000000000000803f00401cc600401cc600401cc600000000000000000000803f000000000000000000401c4600401cc600401cc600000000000000000000803f0000803f0000000000401c4600401c4600401c46000080bf00000000000000000000803f0000803f00401c4600401c4600401cc6000080bf0000000000000000000000000000803f00401c4600401cc600401cc6000080bf0000000000000000000000000000000000401c4600401cc600401c46000080bf00000000000000000000803f0000000000401cc600401c4600401cc600000000000080bf000000000000803f0000803f00401c4600401c4600401cc600000000000080bf00000000000000000000803f00401c4600401c4600401c4600000000000080bf00000000000000000000000000401cc600401c4600401c4600000000000080bf000000000000803f00000000
-  m_CompressedMesh:
-    m_Vertices:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UV:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Normals:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Tangents:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Weights:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_NormalSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_TangentSigns:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_FloatColors:
-      m_NumItems: 0
-      m_Range: 0
-      m_Start: 0
-      m_Data: 
-      m_BitSize: 0
-    m_BoneIndices:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_Triangles:
-      m_NumItems: 0
-      m_Data: 
-      m_BitSize: 0
-    m_UVInfo: 0
-  m_LocalAABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 10000, y: 10000, z: 10000}
-  m_MeshUsageFlags: 0
-  m_BakedConvexCollisionMesh: 
-  m_BakedTriangleCollisionMesh: 
-  m_MeshMetrics[0]: 1
-  m_MeshMetrics[1]: 1
-  m_MeshOptimizationFlags: 1
-  m_StreamData:
-    offset: 0
-    size: 0
-    path: 
 --- !u!1001 &1659506607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40562,6 +40782,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid4 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -40645,6 +40870,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -40890,6 +41120,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1723088116
@@ -41063,6 +41298,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -41352,6 +41592,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &1769409292 stripped
@@ -41371,6 +41616,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -41545,6 +41795,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -41789,6 +42044,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid1 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
@@ -42060,6 +42320,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1834143037
@@ -42234,6 +42499,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!1001 &1848699845
@@ -42247,6 +42517,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -42806,6 +43081,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -43158,6 +43438,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7474461652686434985, guid: 1efcb38da04ac4c4daed2e692f8f2db9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1efcb38da04ac4c4daed2e692f8f2db9, type: 3}
 --- !u!4 &1930902320 stripped
@@ -43285,6 +43570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid3 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1287354011513221298, guid: 13009b03af507294690bd6e8a97f685e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2848175470145274529, guid: 13009b03af507294690bd6e8a97f685e,
         type: 3}
@@ -44174,6 +44464,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2 (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -44321,6 +44616,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid2
       objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -44404,6 +44704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid2 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295952379755537024, guid: 1663520f3e69aeb4891daaa2a85740d2,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 2992507118585401491, guid: 1663520f3e69aeb4891daaa2a85740d2,
         type: 3}
@@ -44726,6 +45031,36 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1255331459}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &2070226321
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpaceUnity/SU_StaticStars_Noise
+  m_Shader: {fileID: 4800000, guid: d6d0001dd9cba204a886e5a71b26ff51, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3135dbac1e8b56646848b3f59b52f5c5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: 1f26abe5592159b4fbb095113a9a1773, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats: []
+    m_Colors:
+    - _NoiseColor: {r: 0, g: 0, b: 0.41697153, a: 1}
 --- !u!1001 &2077612060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44918,6 +45253,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asteroid4 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
+      objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -45001,6 +45341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -45397,6 +45742,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid4 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1824735655997474287, guid: d855a0645f97b4c4aa1a37b8bea31290,
+        type: 3}
+      propertyPath: m_TagString
+      value: Debris
       objectReference: {fileID: 0}
     - target: {fileID: 3389410282377771004, guid: d855a0645f97b4c4aa1a37b8bea31290,
         type: 3}
@@ -46090,9 +46440,9 @@ MonoBehaviour:
   thrusters:
   - {fileID: 445341540}
   - {fileID: 528186200}
-  rollRate: 150
-  yawRate: 150
-  pitchRate: 150
+  rollRate: 100
+  yawRate: 100
+  pitchRate: 100
   weaponMountPoints: []
   laserShotPrefab: {fileID: 0}
   soundEffectFire: {fileID: 0}
@@ -46105,6 +46455,9 @@ MonoBehaviour:
   moveTowardsSpeed: 1
   orbitSpeedMultiplier: 1
   closeEnough: 0.05
+  visualDamageParticles:
+  - {fileID: 1911689143}
+  - {fileID: 1364730070}
   apoapsis: 5
   periapsis: 5
   inclinationAngleDegrees: 20

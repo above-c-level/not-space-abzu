@@ -12,6 +12,7 @@ TagManager:
   - Thruster
   - SpaceScene_Moon
   - StarPiece
+  - Debris
   layers:
   - Default
   - TransparentFX
