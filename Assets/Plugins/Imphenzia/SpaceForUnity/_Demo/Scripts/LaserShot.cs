@@ -1,85 +1,82 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Imphenzia.SpaceForUnity
+public class LaserShot : MonoBehaviour
 {
-    public class LaserShot : MonoBehaviour
+    [Tooltip("Default life of laser beam")]
+    public float life = 2.0f;
+
+    [Tooltip("Default velocity of laser beam")]
+    public float velocity = 1000.0f;
+
+    [Tooltip("Reference to impact effect prefab to spawn upon impact")]
+    public Transform impactEffect;
+
+    [Tooltip("Reference to explosion effect prefab to spawn if object is destroyed")]
+    public Transform explosionEffect;
+
+    // Fired By Reference to ignore collision detection for the ship that fired the laser
+    public Transform firedBy { get; set; }
+
+    // Private variables
+    private Vector3 _velocity;
+    private Vector3 _newPos;
+    private Vector3 _oldPos;
+
+    void Start()
     {
-        [Tooltip("Default life of laser beam")]
-        public float life = 2.0f;
+        // Set the new position to the current position of the transform
+        _newPos = transform.position;
+        // Set the old position to the same value
+        _oldPos = _newPos;
+        // Set the velocity vector 3 to the specified velocity and set the direction to face forward of the transform
+        _velocity = velocity * transform.forward;
+        // Set the gameobject to destroy after period "life"
+        Destroy(gameObject, life);
+    }
 
-        [Tooltip("Default velocity of laser beam")]
-        public float velocity = 1000.0f;
+    void Update()
+    {
+        // Change new position by the velocity magnitude (in the direction of transform.forward) and since
+        // we are in the update function we need to multiply by deltatime.
+        _newPos += transform.forward * _velocity.magnitude * Time.deltaTime;
+        // SDet direction to the difference between new position and old position
+        Vector3 _direction = _newPos - _oldPos;
+        // Get the distance which is the magnitude of the direction vector
+        float _distance = _direction.magnitude;
 
-        [Tooltip("Reference to impact effect prefab to spawn upon impact")]
-        public Transform impactEffect;
-
-        [Tooltip("Reference to explosion effect prefab to spawn if object is destroyed")]
-        public Transform explosionEffect;
-
-        // Fired By Reference to ignore collision detection for the ship that fired the laser
-        public Transform firedBy { get; set; }
-
-        // Private variables
-        private Vector3 _velocity;
-        private Vector3 _newPos;
-        private Vector3 _oldPos;
-
-        void Start()
+        // If distance is greater than nothing...
+        if (_distance > 0)
         {
-            // Set the new position to the current position of the transform
-            _newPos = transform.position;
-            // Set the old position to the same value
-            _oldPos = _newPos;
-            // Set the velocity vector 3 to the specified velocity and set the direction to face forward of the transform
-            _velocity = velocity * transform.forward;
-            // Set the gameobject to destroy after period "life"
-            Destroy(gameObject, life);
-        }
-
-        void Update()
-        {
-            // Change new position by the velocity magnitude (in the direction of transform.forward) and since
-            // we are in the update function we need to multiply by deltatime.
-            _newPos += transform.forward * _velocity.magnitude * Time.deltaTime;
-            // SDet direction to the difference between new position and old position
-            Vector3 _direction = _newPos - _oldPos;
-            // Get the distance which is the magnitude of the direction vector
-            float _distance = _direction.magnitude;
-
-            // If distance is greater than nothing...
-            if (_distance > 0)
+            // Define a RayCast
+            RaycastHit _hit;
+            // If the raycast from previous position in the specified direction at (or before) the distance...
+            if (Physics.Raycast(_oldPos, _direction, out _hit, _distance))
             {
-                // Define a RayCast
-                RaycastHit _hit;
-                // If the raycast from previous position in the specified direction at (or before) the distance...
-                if (Physics.Raycast(_oldPos, _direction, out _hit, _distance))
+                // and if the transform we hit isn't a the ship that fired the weapon and the collider isn't just a trigger...
+                if (_hit.transform != firedBy && !_hit.collider.isTrigger)
                 {
-                    // and if the transform we hit isn't a the ship that fired the weapon and the collider isn't just a trigger...
-                    if (_hit.transform != firedBy && !_hit.collider.isTrigger)
+                    // Set the rotation of the impact effect to the normal of the impact surface (we wan't the impact effect to
+                    // throw particles out from the object we just hit...
+                    Quaternion _rotation = Quaternion.FromToRotation(Vector3.up, _hit.normal);
+                    // Instantiate the imapct effect at impact position
+                    Instantiate(impactEffect, _hit.point, _rotation);
+                    // If random number is a small value...
+                    if (Random.Range(0, 20) < 2)
                     {
-                        // Set the rotation of the impact effect to the normal of the impact surface (we wan't the impact effect to
-                        // throw particles out from the object we just hit...
-                        Quaternion _rotation = Quaternion.FromToRotation(Vector3.up, _hit.normal);
-                        // Instantiate the imapct effect at impact position
-                        Instantiate(impactEffect, _hit.point, _rotation);
-                        // If random number is a small value...
-                        if (Random.Range(0, 20) < 2)
-                        {
-                            // Instantiate the explosion effect at the point of impact
-                            Instantiate(explosionEffect, _hit.transform.position, _rotation);
-                            // Destroy the game object that we just hit
-                            Destroy(_hit.transform.gameObject);
-                        }
-                        // Destroy the laser shot game object
-                        Destroy(gameObject);
+                        // Instantiate the explosion effect at the point of impact
+                        Instantiate(explosionEffect, _hit.transform.position, _rotation);
+                        // Destroy the game object that we just hit
+                        Destroy(_hit.transform.gameObject);
                     }
+                    // Destroy the laser shot game object
+                    Destroy(gameObject);
                 }
             }
-            // Set the old position tho the current position
-            _oldPos = transform.position;
-            // Set the actual position to the new position
-            transform.position = _newPos;
         }
+        // Set the old position tho the current position
+        _oldPos = transform.position;
+        // Set the actual position to the new position
+        transform.position = _newPos;
     }
 }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 920990487711161065}
   - component: {fileID: 2460182014659714771}
   - component: {fileID: 3892189506259668800}
+  - component: {fileID: 1863226715}
   m_Layer: 0
   m_Name: Solar Wind Particle
-  m_TagString: Untagged
+  m_TagString: Wind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -982,7 +983,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 0.5
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -990,13 +991,22 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 1
-          value: 0.1
-          inSlope: -0.7718893
-          outSlope: -0.7718893
+          time: 0.49956203
+          value: 1
+          inSlope: -0.06959816
+          outSlope: -0.06959816
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.22058892
+          inWeight: 0.34119505
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 1
+          value: 0
+          inSlope: -0.07625481
+          outSlope: -0.07625481
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.35412025
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4753,3 +4763,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!65 &1863226715
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068660934167702634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4, z: 21.07}
+  m_Center: {x: 0, y: 0, z: 10.6}

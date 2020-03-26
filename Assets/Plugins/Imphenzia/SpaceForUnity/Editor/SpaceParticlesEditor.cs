@@ -23,8 +23,6 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Imphenzia.SpaceForUnity
-{
     [CustomEditor(typeof(SpaceParticles))]
     public class SpaceParticlesEditor : Editor
     {
@@ -64,7 +62,7 @@ namespace Imphenzia.SpaceForUnity
             // Reference the serialized object (instance of SpaceParticles.cs)
             myTarget = new SerializedObject(target);
 
-            // Find and reference the properties of the target object		
+            // Find and reference the properties of the target object
             maxParticles = myTarget.FindProperty("maxParticles");
             range = myTarget.FindProperty("range");
             distanceSpawn = myTarget.FindProperty("distanceSpawn");
@@ -154,4 +152,3 @@ namespace Imphenzia.SpaceForUnity
             EditorGUI.indentLevel = 0;
         }
     }
-}

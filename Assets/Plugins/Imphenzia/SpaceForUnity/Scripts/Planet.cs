@@ -1,4 +1,4 @@
-    // Planet C# Script (version: 1.6)
+// Planet C# Script (version: 1.6)
 // SPACE UNITY - Space Scene Construction Kit
 // http://www.imphenzia.com/space-for-unity
 // (c) 2019 Imphenzia AB
@@ -19,32 +19,29 @@
 using UnityEngine;
 using System.Collections;
 
-namespace Imphenzia.SpaceForUnity
+public class Planet : MonoBehaviour
 {
-    public class Planet : MonoBehaviour
+    [Tooltip("The rotational vector (axis) of the planet.")]
+    public Vector3 planetRotation = Vector3.up;
+    [Tooltip("The rotational speed of the planet.")]
+    public float rotationSpeed = 5;
+
+    // Private variables
+    private Transform _cacheTransform;
+
+    void Start()
     {
-        [Tooltip("The rotational vector (axis) of the planet.")]
-        public Vector3 planetRotation = Vector3.up;
-        [Tooltip("The rotational speed of the planet.")]
-        public float rotationSpeed = 5;
+        // Cache reference to transform to improve performance
+        _cacheTransform = transform;
+        planetRotation = planetRotation.normalized;
+    }
 
-        // Private variables
-        private Transform _cacheTransform;
-
-        void Start()
+    void Update()
+    {
+        // Rotate the planet based on the rotational vector
+        if (_cacheTransform != null)
         {
-            // Cache reference to transform to improve performance
-            _cacheTransform = transform;
-            planetRotation = planetRotation.normalized;
-        }
-
-        void Update()
-        {
-            // Rotate the planet based on the rotational vector
-            if (_cacheTransform != null)
-            {
-                _cacheTransform.Rotate(planetRotation * rotationSpeed * Time.deltaTime);
-            }
+            _cacheTransform.Rotate(planetRotation * rotationSpeed * Time.deltaTime);
         }
     }
 }
