@@ -169,10 +169,6 @@ public class Astronaut : MonoBehaviour
         }
         MoveSatellites();
 
-    }
-
-    void FixedUpdate()
-    {
         // In the physics update
         // Add relative rotational roll torque when steering left/right
         if (Input.GetKey(KeyCode.Q))
@@ -189,6 +185,11 @@ public class Astronaut : MonoBehaviour
         // Add pitch torque when steering up/down
         cacheRigidbody.AddRelativeTorque(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass * pitchAxis);
     }
+
+    // void FixedUpdate()
+    // {
+
+    // }
 
     /// <summary>
     /// OnCollisionEnter is called when this collider/rigidbody has begun
