@@ -24,6 +24,10 @@ public class RandomizeChildRotation : MonoBehaviour
             // For each grandchild
             foreach (Transform debrisItem in debrisGroup)
             {
+                if (debrisItem.tag == "StarPiece")
+                {
+                    continue;
+                }
                 // Rotate this object to a random x, y, and z angle, but convert first
                 // to a quaternion, since that's how things are stored internally.
                 debrisItem.rotation = Quaternion.Euler(

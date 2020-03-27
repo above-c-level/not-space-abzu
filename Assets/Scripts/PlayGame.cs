@@ -7,6 +7,6 @@ public class PlayGame : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene("Level1layout");
+        SceneManager.LoadScene("Flat");
     }
 }

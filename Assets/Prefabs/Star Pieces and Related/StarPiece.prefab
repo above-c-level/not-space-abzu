@@ -130,6 +130,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shine
       objectReference: {fileID: 0}
+    - target: {fileID: 3483439042644805165, guid: 4a157f3ab0c2d98498697c099f55d87a,
+        type: 3}
+      propertyPath: m_TagString
+      value: StarPiece
+      objectReference: {fileID: 0}
     - target: {fileID: 6947244946957282794, guid: 4a157f3ab0c2d98498697c099f55d87a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,6 +209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Point Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 1820911744275882087, guid: 80379c8b7b86f1546b1c4e316fe23b58,
+        type: 3}
+      propertyPath: m_TagString
+      value: StarPiece
       objectReference: {fileID: 0}
     - target: {fileID: 2028094718736596119, guid: 80379c8b7b86f1546b1c4e316fe23b58,
         type: 3}
