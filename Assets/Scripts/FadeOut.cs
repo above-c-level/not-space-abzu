@@ -8,7 +8,7 @@ public class FadeOut : MonoBehaviour
 {
     public void FadeMe()
     {
-        StartCoroutine (DoFade());
+        StartCoroutine(DoFade());
     }
 
     IEnumerator DoFade()
