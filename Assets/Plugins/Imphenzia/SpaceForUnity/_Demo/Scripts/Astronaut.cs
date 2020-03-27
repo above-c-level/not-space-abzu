@@ -3,7 +3,12 @@ using System.Drawing;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
+
+//! follow script
+// set up rocket on beginning of level / connect two levels - lukas / jesse
+//// Figure out why particles randomly stop working with astronaut
 
 
 public class Astronaut : MonoBehaviour
@@ -230,11 +235,10 @@ public class Astronaut : MonoBehaviour
             other.GetComponent<Collider>().enabled = false;
             StartCoroutine(FadeIntensity(other.transform.GetChild(1).GetComponent<Light>()));
             collectedStarPieces++;
-            if (collectedStarPieces >= 5)
+            if (collectedStarPieces >= 1)
             {
-                print("you're winner !");
-                canvas.enabled = true;
                 astronautAudio.PlayOneShot(collectFinalStarPiece);
+                Invoke("GoToWinScene", 3);
             }
             else
             {
@@ -250,6 +254,10 @@ public class Astronaut : MonoBehaviour
             solarWindArea.windForce = solarWindPushForce;
             solarWindArea.astronautBody = cacheRigidbody;
         }
+    }
+    void GoToWinScene()
+    {
+        SceneManager.LoadScene("Win");
     }
 
     /// <summary>
