@@ -54,7 +54,13 @@ public class Astronaut : MonoBehaviour
     public Transform[] visualDamageParticles;
     [Tooltip("How hard the solar wind should push the astronaut")]
     public float solarWindPushForce = 25000f;
-    public AudioSource bonkSource;
+
+    [Tooltip("Audio clip for collecting a star piece that isn't the last one")]
+    public AudioClip collectStarPiece;
+    [Tooltip("Audio clip for collecting the last star piece")]
+    public AudioClip collectFinalStarPiece;
+    [Tooltip("Audio clip for when the player crashes into something they shouldn't crash into")]
+    public AudioClip bonkSound;
     // TODO: restructure code. It might not be worth having all these variables
     public float apoapsis = 5;
     public float periapsis = 5;
@@ -74,6 +80,7 @@ public class Astronaut : MonoBehaviour
     private Vector3 yawAxis = new Vector3(0, 0, 1);
     private bool inSolarWind = false;
     private SolarWind solarWindArea;
+    private AudioSource astronautAudio;
 
     private List<objectInOrbit> orbitingObjects;
     class objectInOrbit
@@ -87,6 +94,7 @@ public class Astronaut : MonoBehaviour
 
     void Start()
     {
+        astronautAudio = this.GetComponent<AudioSource>();
         // Initialize `orbitGoals`
         orbitingObjects = new List<objectInOrbit>();
         startPosition = transform.position;
@@ -191,7 +199,7 @@ public class Astronaut : MonoBehaviour
     {
         if (other.collider.tag == "Debris")
         {
-            bonkSource.PlayOneShot(bonkSource.clip);
+            astronautAudio.PlayOneShot(bonkSound);
             hitCount++;
             if (hitCount > visualDamageParticles.Length)
             {
@@ -225,11 +233,11 @@ public class Astronaut : MonoBehaviour
             {
                 print("you're winner !");
                 canvas.enabled = true;
-                bonkSource.PlayOneShot(bonkSource.clip);
+                astronautAudio.PlayOneShot(collectFinalStarPiece);
             }
             else
             {
-                bonkSource.PlayOneShot(bonkSource.clip);
+                astronautAudio.PlayOneShot(collectStarPiece);
             }
         }
 
