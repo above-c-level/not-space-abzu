@@ -34,7 +34,7 @@ public class Boid : MonoBehaviour
     public int numPerceivedFlockmates;
 
     // Cached material, position, and target to help speed things up
-    Material material;
+    Material material = null;
     Transform cachedTransform;
     Transform target;
 
@@ -44,7 +44,14 @@ public class Boid : MonoBehaviour
     void Awake()
     {
         // Cache the material and transform for faster lookups later
-        material = transform.GetComponentInChildren<MeshRenderer>().material;
+        try
+        {
+            material = transform.GetComponentInChildren<MeshRenderer>().material;
+        }
+        catch
+        {
+
+        }
         cachedTransform = transform;
     }
 
@@ -57,6 +64,15 @@ public class Boid : MonoBehaviour
     {
         // Set this particular boid's target and settings to the provided ones
         this.target = target;
+        Initialize(settings);
+    }
+    /// <summary>
+    /// Starts setup for the boid
+    /// </summary>
+    /// <param name="settings">The settings file that this boid will use</param>
+    public void Initialize(BoidSettings settings)
+    {
+        // Set this particular boid's target and settings to the provided ones
         this.settings = settings;
 
         // Also cache the position and forward direction

@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6194ee95dedb4d71a8fe738abba0f47, type: 3}
   m_Name: Mantas
   m_EditorClassIdentifier: 
-  minSpeed: 2
-  maxSpeed: 5
-  perceptionRadius: 2.5
-  avoidanceRadius: 1
-  maxSteerForce: 3
+  minSpeed: 4
+  maxSpeed: 8
+  perceptionRadius: 30
+  avoidanceRadius: 20
+  maxSteerForce: 0.5
   alignWeight: 1
   cohesionWeight: 1
-  separateWeight: 1
-  targetWeight: 1
+  separateWeight: 1.5
+  targetWeight: 0
   distanceEpsilon: 10
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 0
-  boundsRadius: 0.27
+    m_Bits: 4294967295
+  boundsRadius: 3
   avoidCollisionWeight: 10
-  collisionAvoidDst: 5
+  collisionAvoidDst: 20
   showEpsilonSphere: 1

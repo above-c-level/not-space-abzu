@@ -46,8 +46,15 @@ public class BoidManager : MonoBehaviour
         // Then, for each of them
         foreach (Boid boid in boids)
         {
-            // Initialize them with the settings file and aiming for `target`
-            boid.Initialize(settings, target);
+            if (target != null)
+            {
+                // Initialize them with the settings file and aiming for `target`
+                boid.Initialize(settings, target);
+            }
+            else
+            {
+                boid.Initialize(settings);
+            }
         }
 
     }
@@ -126,7 +133,10 @@ public class BoidManager : MonoBehaviour
         {
             // Then draw a wire sphere showing the range
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(target.position, settings.distanceEpsilon);
+            if (target != null)
+            {
+                Gizmos.DrawWireSphere(target.position, settings.distanceEpsilon);
+            }
         }
         // If the spawn region variable is set to `Always`
         if (showSpawnRegion == GizmoType.Always)
