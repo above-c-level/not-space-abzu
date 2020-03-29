@@ -58,6 +58,8 @@ public class Astronaut : MonoBehaviour
     public AudioClip collectFinalStarPiece;
     [Tooltip("Audio clip for when the player crashes into something they shouldn't crash into")]
     public AudioClip bonkSound;
+    [Tooltip("How strong the force of gravity should be")]
+    public float gravity = 0;
 
     private Vector3 startPosition;
 
@@ -178,6 +180,7 @@ public class Astronaut : MonoBehaviour
 
     void FixedUpdate()
     {
+        cacheRigidbody.AddForce(Vector3.down * gravity);
         // Add relative rotational roll torque when steering left/right
         if (Input.GetKey(KeyCode.Q))
         {
