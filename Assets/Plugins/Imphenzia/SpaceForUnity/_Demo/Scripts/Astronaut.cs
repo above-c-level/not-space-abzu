@@ -175,7 +175,6 @@ public class Astronaut : MonoBehaviour
                                                                    leadingDisplacement / closeEnough);
             }
         }
-
     }
 
     void FixedUpdate()
