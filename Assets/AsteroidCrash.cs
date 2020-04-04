@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class AsteroidCrash : MonoBehaviour
 {
-    public float rotationStrength = 100;
-    public float maxMovementForce = 25;
+    public float rotationStrength = 1000;
+    public float maxMovementForce = 10;
     public GameObject otherAsteroid;
     private Rigidbody cacheRigidbody;
     // Start is called before the first frame update
