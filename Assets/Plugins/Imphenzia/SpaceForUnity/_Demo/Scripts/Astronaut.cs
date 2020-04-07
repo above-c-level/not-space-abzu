@@ -75,8 +75,11 @@ public class Astronaut : MonoBehaviour
     private bool inSolarWind = false;
     private SolarWind solarWindArea;
     private AudioSource astronautAudio;
-    private List<Transform> collectedStarPieces = new List<Transform>();
+    private List<Transform> followList = new List<Transform>();
     private List<Vector3> breadcrumbs = new List<Vector3>();
+    private bool playerHasKey = false;
+    private bool playerHasLock = false;
+    private int collectedStarPieces = 0;
     void Start()
     {
         astronautAudio = this.GetComponent<AudioSource>();
@@ -181,15 +184,15 @@ public class Astronaut : MonoBehaviour
         if (leadingDisplacement != 0 && breadcrumbs.Count > 1)
         {
             Vector3 pos = Vector3.Lerp(breadcrumbs[1], breadcrumbs[0], leadingDisplacement / closeEnough);
-            collectedStarPieces[0].position = pos;
-            collectedStarPieces[0].rotation = Quaternion.Slerp(Quaternion.LookRotation(breadcrumbs[0] - breadcrumbs[1]),
+            followList[0].position = pos;
+            followList[0].rotation = Quaternion.Slerp(Quaternion.LookRotation(breadcrumbs[0] - breadcrumbs[1]),
                                                                Quaternion.LookRotation(transform.position - breadcrumbs[0]),
                                                                leadingDisplacement / closeEnough);
-            for (int i = 1; i < collectedStarPieces.Count; i++)
+            for (int i = 1; i < followList.Count; i++)
             {
                 pos = Vector3.Lerp(breadcrumbs[i + 1], breadcrumbs[i], leadingDisplacement / closeEnough);
-                collectedStarPieces[i].position = pos;
-                collectedStarPieces[i].rotation = Quaternion.Slerp(Quaternion.LookRotation(breadcrumbs[i] - breadcrumbs[i + 1]),
+                followList[i].position = pos;
+                followList[i].rotation = Quaternion.Slerp(Quaternion.LookRotation(breadcrumbs[i] - breadcrumbs[i + 1]),
                                                                    Quaternion.LookRotation(breadcrumbs[i - 1] - breadcrumbs[i]),
                                                                    leadingDisplacement / closeEnough);
             }
@@ -203,7 +206,8 @@ public class Astronaut : MonoBehaviour
     /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionEnter(Collision other)
     {
-        if (other.collider.tag == "Debris")
+        if (other.collider.tag == "Debris"
+            || other.collider.tag == "Lock")
         {
             astronautAudio.PlayOneShot(bonkSound);
             hitCount++;
@@ -224,6 +228,22 @@ public class Astronaut : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "Key")
+        {
+            // starpiece.parent = this.transform;
+            other.GetComponent<Collider>().enabled = false;
+            StartCoroutine(FadeIntensity(other.transform.GetChild(1).GetComponent<Light>()));
+            followList.Add(other.transform);
+            breadcrumbs.Add(other.transform.position);
+            playerHasKey = true;
+        }
+
+        if (other.tag == "Lock" && playerHasKey)
+        {
+            print("Insert starpiece collection here");
+            collectedStarPieces++;
+        }
+
         if (other.tag == "StarPiece")
         {
 
@@ -233,27 +253,26 @@ public class Astronaut : MonoBehaviour
             // starpiece.parent = this.transform;
             other.GetComponent<Collider>().enabled = false;
             StartCoroutine(FadeIntensity(other.transform.GetChild(1).GetComponent<Light>()));
-            collectedStarPieces.Add(other.transform);
+            followList.Add(other.transform);
             breadcrumbs.Add(other.transform.position);
-            if (collectedStarPieces.Count >= 5)
+            collectedStarPieces++;
+
+        }
+        if (collectedStarPieces >= 5 && other.tag != "Wind")
+        {
+            if (SceneManager.GetActiveScene().name == "Level1layout")
             {
                 astronautAudio.PlayOneShot(collectFinalStarPiece);
-                if (SceneManager.GetActiveScene().name == "Level1layout")
-                {
-                    Invoke("GoToWinScene", 4);
-                }
-                else if (SceneManager.GetActiveScene().name == "Flat")
-                {
-                    Invoke("GoToSpace", 4);
-                }
+                Invoke("GoToWinScene", 4);
+
             }
-            else
+            else if (SceneManager.GetActiveScene().name == "Flat")
             {
-                astronautAudio.PlayOneShot(collectStarPiece);
+                astronautAudio.PlayOneShot(collectFinalStarPiece);
+                Invoke("GoToSpace", 4);
             }
         }
-
-        if (other.tag == "Wind")
+        else if (other.tag == "Wind")
         {
             inSolarWind = true;
             solarWindArea = other.GetComponent<SolarWind>();
@@ -261,6 +280,13 @@ public class Astronaut : MonoBehaviour
             solarWindArea.windForce = solarWindPushForce;
             solarWindArea.astronautBody = cacheRigidbody;
         }
+        else
+        {
+            astronautAudio.PlayOneShot(collectStarPiece);
+            print(collectedStarPieces);
+        }
+
+
     }
     void GoToSpace()
     {

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1438271008617176115}
   - component: {fileID: 962491272767384708}
   - component: {fileID: 6802684891025461373}
-  - component: {fileID: 2332831149832305253}
   - component: {fileID: 1476019128291268021}
   m_Layer: 0
   m_Name: StarPiece
@@ -82,29 +81,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2332831149832305253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2715276968408411680}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a83542723cd75f41a70efe041bf6938, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedMultiplier: 1
-  apoapsis: 45
-  periapsis: 25
-  inclinationNodeDegrees: 0
-  inclinationAngleDegrees: 0
-  mass: 1
-  startingPosition: 0
-  rotationAxis: {x: 1, y: 2, z: 3}
-  rotationSpeed: 1
-  focusPoint: {fileID: 0}
-  usePrecalculatedOrbit: 1
 --- !u!135 &1476019128291268021
 SphereCollider:
   m_ObjectHideFlags: 0

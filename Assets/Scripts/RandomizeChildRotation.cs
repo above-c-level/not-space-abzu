@@ -24,7 +24,9 @@ public class RandomizeChildRotation : MonoBehaviour
             // For each grandchild
             foreach (Transform debrisItem in debrisGroup)
             {
-                if (debrisItem.tag == "StarPiece")
+                if (debrisItem.tag == "StarPiece"
+                    || debrisItem.tag == "Key"
+                    || debrisItem.tag == "Lock")
                 {
                     continue;
                 }
