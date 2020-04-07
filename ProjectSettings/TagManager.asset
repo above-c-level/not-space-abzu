@@ -14,6 +14,7 @@ TagManager:
   - StarPiece
   - Debris
   - Wind
+  - Planet
   layers:
   - Default
   - TransparentFX

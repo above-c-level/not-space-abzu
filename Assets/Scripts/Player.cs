@@ -10,22 +10,23 @@ public class Player : MonoBehaviour
     public float speed = 4;
     public float JumpHeight = 1.2f;
 
-    public float gravity = 100;
+    public float gravity = 1000f;
 
     private bool playerOnGround = false;
-    private bool outsideSOI = false;
+    private bool outsideSOI;
     private float distanceToGround;
     private Vector3 Groundnormal;
     private Rigidbody rb;
-    private Planet[] allPlanets;
+    private GameObject[] allPlanets;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        allPlanets = FindObjectsOfType<Planet>();
+        allPlanets = GameObject.FindGameObjectsWithTag("Planet");
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        outsideSOI = false;
     }
 
     // Update is called once per frame
@@ -63,12 +64,6 @@ public class Player : MonoBehaviour
             {
                 playerOnGround = true;
 
-                //Jump
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    rb.AddForce(transform.up * 40000 * JumpHeight * Time.deltaTime);
-                }
-
             }
             else
             {
@@ -80,24 +75,43 @@ public class Player : MonoBehaviour
 
         //GRAVITY and ROTATION
 
-        Vector3 gravDirection = (transform.position - closestPlanet.transform.position).normalized;
+        Vector3 gravDirection = (closestPlanet.transform.position - transform.position).normalized;
 
-        if (playerOnGround == false)
+        if (playerOnGround == false && !outsideSOI)
         {
-            rb.AddForce(gravDirection * -gravity);
+            rb.AddForce(gravDirection * gravity);
         }
 
         Quaternion toRotation = Quaternion.FromToRotation(transform.up, Groundnormal) * transform.rotation;
         transform.rotation = toRotation;
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void FixedUpdate()
+    {
+        // Jump
+        if (Input.GetKeyDown(KeyCode.Space) && playerOnGround)
+        {
+            rb.AddForce(transform.up * 40000 * JumpHeight * Time.deltaTime);
+            playerOnGround = false;
+        }
         if (outsideSOI)
         {
-            foreach (Planet planet in allPlanets)
+            Vector3 forceToApply = Vector3.zero;
+
+            for (int i = 0; i < allPlanets.Length; i++)
             {
-                float distanceFromPlanet = Vector3.Distance(transform.position, 
-                                                            planet.transform.position);
-
+                GameObject planet = allPlanets[i];
+                print("Applying gravity for planet " + i);
+                // Squared distance between player and planets
+                float dSquared = Vector3.SqrMagnitude(transform.position - planet.transform.position);
+                // Apply gravity to transform
+                Vector3 gravDirection = (planet.transform.position - transform.position).normalized;
+                forceToApply += (6.67408f * gravity * gravDirection * 50) / dSquared;
             }
-
+            rb.AddForce(forceToApply);
         }
     }
 
@@ -107,6 +121,7 @@ public class Player : MonoBehaviour
     /// <param name="other">The other Collider involved in this collision.</param>
     void OnTriggerExit(Collider other)
     {
+        print("leaving SOI");
         outsideSOI = true;
     }
 
@@ -118,6 +133,7 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        print("entering SOI");
         outsideSOI = false;
         if (collision.transform != closestPlanet.transform)
         {
@@ -133,7 +149,6 @@ public class Player : MonoBehaviour
 
 
             playerPlaceHolder.GetComponent<TutorialPlayerPlaceholder>().NewPlanet(closestPlanet);
-
         }
     }
 

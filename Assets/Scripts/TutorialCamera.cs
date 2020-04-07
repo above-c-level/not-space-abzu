@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour
+public class TutorialCamera : MonoBehaviour
 {
 
     public GameObject target;
@@ -14,12 +14,12 @@ public class Camera : MonoBehaviour
 
 
 
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetMouseButton(1))
         {
 

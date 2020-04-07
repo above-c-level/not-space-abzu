@@ -14,8 +14,8 @@ public class TutorialPlayerPlaceholder : MonoBehaviour
     void Update()
     {
        //SMOOTH
-        
-        
+
+
         //POSITION
         transform.position = Vector3.Lerp(transform.position, Player.transform.position, 0.1f);
 
@@ -24,7 +24,7 @@ public class TutorialPlayerPlaceholder : MonoBehaviour
 
         //ROTATION
         Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDirection) * transform.rotation;
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, 0.1f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 0.1f);
 
     }
 
