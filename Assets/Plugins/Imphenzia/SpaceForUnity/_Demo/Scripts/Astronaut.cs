@@ -152,6 +152,25 @@ public class Astronaut : MonoBehaviour
             }
         }
 
+    }
+
+    void FixedUpdate()
+    {
+        cacheRigidbody.AddForce(Vector3.down * gravity);
+        // Add relative rotational roll torque when steering left/right
+        if (Input.GetKey(KeyCode.Q))
+        {
+            cacheRigidbody.AddRelativeTorque(rollRate * cacheRigidbody.mass * rollAxis);
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            cacheRigidbody.AddRelativeTorque(-rollRate * cacheRigidbody.mass * rollAxis);
+        }
+
+        // Add rudder yaw torque when steering left/right
+        cacheRigidbody.AddRelativeTorque(-Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass * yawAxis);
+        // Add pitch torque when steering up/down
+        cacheRigidbody.AddRelativeTorque(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass * pitchAxis);
         float leadingDisplacement = (transform.position - breadcrumbs[0]).magnitude;
         if (leadingDisplacement >= closeEnough)
         {
@@ -175,25 +194,6 @@ public class Astronaut : MonoBehaviour
                                                                    leadingDisplacement / closeEnough);
             }
         }
-    }
-
-    void FixedUpdate()
-    {
-        cacheRigidbody.AddForce(Vector3.down * gravity);
-        // Add relative rotational roll torque when steering left/right
-        if (Input.GetKey(KeyCode.Q))
-        {
-            cacheRigidbody.AddRelativeTorque(rollRate * cacheRigidbody.mass * rollAxis);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            cacheRigidbody.AddRelativeTorque(-rollRate * cacheRigidbody.mass * rollAxis);
-        }
-
-        // Add rudder yaw torque when steering left/right
-        cacheRigidbody.AddRelativeTorque(-Input.GetAxis("Horizontal") * yawRate * cacheRigidbody.mass * yawAxis);
-        // Add pitch torque when steering up/down
-        cacheRigidbody.AddRelativeTorque(Input.GetAxis("Vertical") * pitchRate * cacheRigidbody.mass * pitchAxis);
     }
 
     /// <summary>
