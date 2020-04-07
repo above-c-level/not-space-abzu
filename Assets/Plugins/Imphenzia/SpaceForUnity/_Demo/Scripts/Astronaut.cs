@@ -5,8 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-// set up rocket on beginning of level / connect two levels - lukas / jesse
-//// Figure out why particles randomly stop working with astronaut
 
 
 public class Astronaut : MonoBehaviour

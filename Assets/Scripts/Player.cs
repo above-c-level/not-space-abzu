@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     public GameObject playerPlaceHolder;
     public float speed = 4;
     public float JumpHeight = 1.2f;
-
     public float gravity = 1000f;
 
     private bool playerOnGround = false;
@@ -48,9 +47,6 @@ public class Player : MonoBehaviour
         {
             transform.Rotate(0, -150 * Time.deltaTime, 0);
         }
-
-
-
 
         //GroundControl
 
