@@ -24,26 +24,23 @@ public class RandomizeChildRotation : MonoBehaviour
             // For each grandchild
             foreach (Transform debrisItem in debrisGroup)
             {
-                if (debrisItem.tag == "StarPiece"
-                    || debrisItem.tag == "Key"
-                    || debrisItem.tag == "Lock")
+                if (debrisItem.tag == "Debris")
                 {
-                    continue;
+                    // Rotate this object to a random x, y, and z angle, but convert first
+                    // to a quaternion, since that's how things are stored internally.
+                    debrisItem.rotation = Quaternion.Euler(
+                        Random.Range(0f, 360f),
+                        Random.Range(0f, 360f),
+                        Random.Range(0f, 360f)
+                    );
+                    // Then, move this item randomly along each axis up to `maxDistancePeraxis`
+                    debrisItem.position = debrisItem.position
+                                          + new Vector3(
+                                            Random.Range(-maxDistancePerAxis, maxDistancePerAxis),
+                                            Random.Range(-maxDistancePerAxis, maxDistancePerAxis),
+                                            Random.Range(-maxDistancePerAxis, maxDistancePerAxis)
+                                          );
                 }
-                // Rotate this object to a random x, y, and z angle, but convert first
-                // to a quaternion, since that's how things are stored internally.
-                debrisItem.rotation = Quaternion.Euler(
-                    Random.Range(0f, 360f),
-                    Random.Range(0f, 360f),
-                    Random.Range(0f, 360f)
-                );
-                // Then, move this item randomly along each axis up to `maxDistancePeraxis`
-                debrisItem.position = debrisItem.position
-                                      + new Vector3(
-                                        Random.Range(-maxDistancePerAxis, maxDistancePerAxis),
-                                        Random.Range(-maxDistancePerAxis, maxDistancePerAxis),
-                                        Random.Range(-maxDistancePerAxis, maxDistancePerAxis)
-                                      );
             }
         }
     }

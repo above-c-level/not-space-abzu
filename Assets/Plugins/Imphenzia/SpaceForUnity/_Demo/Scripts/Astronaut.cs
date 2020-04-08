@@ -78,8 +78,11 @@ public class Astronaut : MonoBehaviour
     private bool playerHasKey = false;
     private bool playerHasLock = false;
     private int collectedStarPieces = 0;
+    private AsyncOperation asyncLoad;
     void Start()
     {
+        // asyncLoad = SceneManager.LoadSceneAsync(NextSceneName(), LoadSceneMode.Additive);
+        // StartCoroutine(LoadSceneAsync());
         astronautAudio = this.GetComponent<AudioSource>();
         startPosition = transform.position;
         breadcrumbs.Add(transform.position);
@@ -234,16 +237,18 @@ public class Astronaut : MonoBehaviour
             followList.Add(other.transform);
             breadcrumbs.Add(other.transform.position);
             playerHasKey = true;
+            PlayCollectionSound();
         }
 
         if (other.tag == "Lock" && playerHasKey)
         {
-            print("Insert starpiece collection here");
+            PlayCollectionSound();
             collectedStarPieces++;
         }
 
         if (other.tag == "StarPiece")
         {
+            PlayCollectionSound();
 
             // other.GetComponent<ObjectOrbit>().enabled = true;
             Transform starpiece = other.GetComponent<Transform>();
@@ -256,19 +261,13 @@ public class Astronaut : MonoBehaviour
             collectedStarPieces++;
 
         }
+        // if (collectedStarPieces == 4 && other.tag != "Wind")
+        // {
+
+        // }
         if (collectedStarPieces >= 5 && other.tag != "Wind")
         {
-            if (SceneManager.GetActiveScene().name == "Level1layout")
-            {
-                astronautAudio.PlayOneShot(collectFinalStarPiece);
-                Invoke("GoToWinScene", 4);
-
-            }
-            else if (SceneManager.GetActiveScene().name == "Flat")
-            {
-                astronautAudio.PlayOneShot(collectFinalStarPiece);
-                Invoke("GoToSpace", 4);
-            }
+            HardLoadNextScene();
         }
         else if (other.tag == "Wind")
         {
@@ -278,21 +277,49 @@ public class Astronaut : MonoBehaviour
             solarWindArea.windForce = solarWindPushForce;
             solarWindArea.astronautBody = cacheRigidbody;
         }
-        else
+    }
+    void PlayCollectionSound()
+    {
+        if (collectedStarPieces <= 4)
         {
             astronautAudio.PlayOneShot(collectStarPiece);
-            print(collectedStarPieces);
         }
+        else
+        {
+            astronautAudio.PlayOneShot(collectFinalStarPiece);
+        }
+    }
+    string NextSceneName()
+    {
+        if (SceneManager.GetActiveScene().name == "Level1layout")
+        {
+            // return "Win";
+            return "Level1layout";
+
+        }
+        else if (SceneManager.GetActiveScene().name == "Flat")
+        {
+            return "Level1layout";
+        }
+        return null;
+    }
+    IEnumerator LoadSceneAsync()
+    {
+        // The Application loads the Scene in the background as the current Scene runs.
+        // This is particularly good for creating loading screens.
+        // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
+        // a sceneBuildIndex of 1 as shown in Build Settings.
 
 
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
-    void GoToSpace()
+    void HardLoadNextScene()
     {
-        SceneManager.LoadScene("Level1layout");
-    }
-    void GoToWinScene()
-    {
-        SceneManager.LoadScene("Win");
+        SceneManager.LoadScene(NextSceneName());
     }
 
     /// <summary>
