@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
 
     public GameObject closestPlanet;
     public GameObject playerPlaceHolder;
-    public float speed = 4;
+    public float moveSpeed = 4f;
+    public float rotationSpeed = 150f;
     public float JumpHeight = 1.2f;
     public float gravity = 1000f;
 
@@ -32,21 +33,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         //MOVEMENT
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        float x = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
+        float z = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
 
-        transform.Translate(x, 0, z);
+        transform.Rotate(0, x * 150f * rotationSpeed * Time.deltaTime, 0);
+        transform.Translate(0, 0, z);
 
-        //Local Rotation
-        if (Input.GetKey(KeyCode.E))
-        {
-            transform.Rotate(0, 150 * Time.deltaTime, 0);
-        }
-
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.Rotate(0, -150 * Time.deltaTime, 0);
-        }
 
         //GroundControl
 
