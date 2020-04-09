@@ -213,7 +213,7 @@ public class Boid : MonoBehaviour
     {
         // All the directions the rays can be cast. More information is in the
         // `BoidHelper` class.
-        Vector3[] rayDirections = BoidHelper.directions;
+        Vector3[] rayDirections = new PointsOnSphere().directions;
 
         // For each pre-calculated direction
         for (int i = 0; i < rayDirections.Length; i++)

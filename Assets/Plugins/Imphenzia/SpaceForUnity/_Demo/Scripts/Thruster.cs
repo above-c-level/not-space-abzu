@@ -3,8 +3,7 @@ using System.Collections;
 
 public class Thruster : MonoBehaviour
 {
-    [Tooltip("The thruster force to be applied to its rigidbody parent when active")]
-    public float thrusterForce = 10000;
+
 
     [Tooltip("Whether or not to add force at position which introduces torque, use with care as it is super sensitive for positioning")]
     public bool addForceAtPosition = false;
@@ -18,12 +17,14 @@ public class Thruster : MonoBehaviour
     private Rigidbody _cacheParentRigidbody;
     private Light _cacheLight;
     private ParticleSystem _cacheParticleSystem;
+    private float thrusterForce;
 
     /// <summary>
     /// Call StartThruster() function from other scripts to start the thruster
     /// </summary>
-    public void StartThruster()
+    public void StartThruster(float thrusterForce)
     {
+        this.thrusterForce = thrusterForce;
         // Set the thruster active flag to true
         _isActive = true;
     }

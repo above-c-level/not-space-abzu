@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Flat.unity
     guid: 167317eb7377d1b488931cc715d5f955
   - enabled: 1
+    path: Assets/Scenes/MultiPlanet Test.unity
+    guid: 670acae0089b4eb42a84cf191957b3f8
+  - enabled: 1
     path: Assets/Scenes/Level1layout.unity
     guid: 7db91555e226a2843b5c5eecd61a40ab
   - enabled: 1

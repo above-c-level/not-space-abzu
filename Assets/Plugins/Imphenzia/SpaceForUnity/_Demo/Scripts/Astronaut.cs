@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 
 public class Astronaut : MonoBehaviour
 {
+    [Tooltip("The thruster force to be applied when active")]
+    public float thrusterForce = 10000;
     [Tooltip("Thruster array containing reference to thrusters prefabs attached to the ship for propulsion")]
     public Thruster[] thrusters;
 
@@ -35,17 +37,12 @@ public class Astronaut : MonoBehaviour
     public AudioClip collectFinalStarPiece;
     [Tooltip("Audio clip for when the player crashes into something they shouldn't crash into")]
     public AudioClip bonkSound;
-    [Tooltip("How strong the force of gravity should be")]
-    public float gravity = 0;
 
     private Vector3 startPosition;
 
     // Private variables
     private int hitCount;
     private Rigidbody cacheRigidbody;
-    private TravelWarp travelWarp;
-    private float orgWarpSpeed;
-    private float orgWarpStrength;
     private Vector3 rollAxis = new Vector3(0, 1, 0);
     private Vector3 pitchAxis = new Vector3(1, 0, 0);
     private Vector3 yawAxis = new Vector3(0, 0, 1);
@@ -58,10 +55,14 @@ public class Astronaut : MonoBehaviour
     private bool playerHasLock = false;
     private int collectedStarPieces = 0;
     private AsyncOperation asyncLoad;
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+    }
     void Start()
     {
-        // asyncLoad = SceneManager.LoadSceneAsync(NextSceneName(), LoadSceneMode.Additive);
-        // StartCoroutine(LoadSceneAsync());
         astronautAudio = this.GetComponent<AudioSource>();
         startPosition = transform.position;
         breadcrumbs.Add(transform.position);
@@ -80,19 +81,6 @@ public class Astronaut : MonoBehaviour
         {
             Debug.LogError("Spaceship has no rigidbody - the thruster scripts will fail. Add rigidbody component to the spaceship.");
         }
-
-        // If there is a SU_TravelWarp component on this ship, grab the reference to it
-        if (gameObject.GetComponent<TravelWarp>() != null)
-        {
-            travelWarp = gameObject.GetComponent<TravelWarp>();
-        }
-
-        // Remember the original parameters to return to when exiting ultra warp (demo)
-        if (travelWarp)
-        {
-            orgWarpSpeed = travelWarp.visualTextureSpeed;
-            orgWarpStrength = travelWarp.visualWarpEffectMagnitude;
-        }
     }
 
     void Update()
@@ -102,7 +90,7 @@ public class Astronaut : MonoBehaviour
         {
             foreach (Thruster thruster in thrusters)
             {
-                thruster.StartThruster();
+                thruster.StartThruster(thrusterForce);
             }
 
         }
@@ -119,7 +107,6 @@ public class Astronaut : MonoBehaviour
 
     void FixedUpdate()
     {
-        cacheRigidbody.AddForce(Vector3.down * gravity);
         // Add relative rotational roll torque when steering left/right
         if (Input.GetKey(KeyCode.Q))
         {
