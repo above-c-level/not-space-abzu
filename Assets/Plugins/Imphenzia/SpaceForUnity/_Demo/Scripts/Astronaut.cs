@@ -22,25 +22,25 @@ public class Astronaut : MonoBehaviour
     public float pitchRate = 100.0f;
 
     [Tooltip("Vector3 array for mount points relative to ship where weapons will fire from")]
-    public Vector3[] weaponMountPoints;
+    private Vector3[] weaponMountPoints;
 
     [Tooltip("Reference to Laser Shot prefab, i.e. the laser bullet prefab to be instanitated")]
-    public Transform laserShotPrefab;
+    private Transform laserShotPrefab;
 
     [Tooltip("Sound effect audio clip to be played when firing weapon")]
-    public AudioClip soundEffectFire;
+    private AudioClip soundEffectFire;
 
     [Tooltip("Audio source to play weapon")]
-    public AudioSource audioSourceLaser;
+    private AudioSource audioSourceLaser;
 
     [Tooltip("Array of particle systems to play during warp speed")]
-    public ParticleSystem[] warpFlames;
+    private ParticleSystem[] warpFlames;
 
     [Tooltip("Particle system with speed lines around the ship")]
-    public ParticleSystem warpUltra;
+    private ParticleSystem warpUltra;
 
     [Tooltip("Audio source for spaceship warp speed sound effect")]
-    public AudioSource audioSourceWarpUltra;
+    private AudioSource audioSourceWarpUltra;
     [Tooltip("How quickly an object should move towards its goal")]
     public float moveTowardsSpeed = 100;
     [Tooltip("How close the object should be to its target before it's close enough")]
