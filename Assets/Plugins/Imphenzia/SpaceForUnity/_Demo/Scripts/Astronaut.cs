@@ -237,7 +237,18 @@ public class Astronaut : MonoBehaviour
     }
     void LoadNextScene()
     {
+        Invoke("DelayedSceneLoad", 4);
+    }
+
+    void DelayedSceneLoad()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+        // while (!asyncLoad.isDone)
+        // {
+        //     yield return null;
+        // }
+
     }
 
     /// <summary>

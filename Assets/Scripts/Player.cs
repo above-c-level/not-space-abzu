@@ -59,9 +59,8 @@ public class Player : MonoBehaviour
         // }
 
         // Jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButton("Jump"))
         {
-            print(playerOnGround);
             if (playerOnGround)
             {
                 rb.AddForce(transform.up * 4000000 * JumpHeight * Time.deltaTime);
