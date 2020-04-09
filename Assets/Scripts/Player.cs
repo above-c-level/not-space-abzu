@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         //GroundControl
 
         RaycastHit hit = new RaycastHit();
-        if (Physics.Raycast(transform.position, -transform.up, out hit, 10))
+        if (Physics.Raycast(transform.position, -transform.up, out hit, 100))
         {
             distanceToGround = hit.distance;
             Groundnormal = hit.normal;
@@ -71,12 +71,12 @@ public class Player : MonoBehaviour
 
         //GRAVITY and ROTATION
 
-        Vector3 gravDirection = (closestPlanet.transform.position - transform.position).normalized;
+        // Vector3 gravDirection = (closestPlanet.transform.position - transform.position).normalized;
 
-        if (playerOnGround == false && !outsideSOI)
-        {
-            rb.AddForce(gravDirection * gravity);
-        }
+        // if (playerOnGround == false && !outsideSOI)
+        // {
+        //     rb.AddForce(gravDirection * gravity);
+        // }
 
         Quaternion toRotation = Quaternion.FromToRotation(transform.up, Groundnormal) * transform.rotation;
         transform.rotation = toRotation;
@@ -93,33 +93,33 @@ public class Player : MonoBehaviour
             rb.AddForce(transform.up * 40000 * JumpHeight * Time.deltaTime);
             playerOnGround = false;
         }
-        if (outsideSOI)
+        // if (outsideSOI)
+        // {
+        Vector3 forceToApply = Vector3.zero;
+
+        for (int i = 0; i < allPlanets.Length; i++)
         {
-            Vector3 forceToApply = Vector3.zero;
-
-            for (int i = 0; i < allPlanets.Length; i++)
-            {
-                GameObject planet = allPlanets[i];
-                print("Applying gravity for planet " + i);
-                // Squared distance between player and planets
-                float dSquared = Vector3.SqrMagnitude(transform.position - planet.transform.position);
-                // Apply gravity to transform
-                Vector3 gravDirection = (planet.transform.position - transform.position).normalized;
-                forceToApply += (6.67408f * gravity * gravDirection * 50) / dSquared;
-            }
-            rb.AddForce(forceToApply);
+            GameObject planet = allPlanets[i];
+            // print("Applying gravity for planet " + i);
+            // Squared distance between player and planets
+            float dSquared = Vector3.SqrMagnitude(transform.position - planet.transform.position);
+            // Apply gravity to transform
+            Vector3 gravDirection = (planet.transform.position - transform.position).normalized;
+            forceToApply += (6.67408f * gravity * gravDirection * 50) / dSquared;
         }
+        rb.AddForce(forceToApply);
+        // }
     }
 
-    /// <summary>
-    /// OnTriggerExit is called when the Collider other has stopped touching the trigger.
-    /// </summary>
-    /// <param name="other">The other Collider involved in this collision.</param>
-    void OnTriggerExit(Collider other)
-    {
-        print("leaving SOI");
-        outsideSOI = true;
-    }
+    // /// <summary>
+    // /// OnTriggerExit is called when the Collider other has stopped touching the trigger.
+    // /// </summary>
+    // /// <param name="other">The other Collider involved in this collision.</param>
+    // void OnTriggerExit(Collider other)
+    // {
+    //     print("leaving SOI");
+    //     outsideSOI = true;
+    // }
 
     //CHANGE PLANET
 
@@ -129,8 +129,8 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        print("entering SOI");
-        outsideSOI = false;
+        // print("entering SOI");
+        // outsideSOI = false;
         if (collision.transform != closestPlanet.transform)
         {
             closestPlanet = collision.transform.gameObject;

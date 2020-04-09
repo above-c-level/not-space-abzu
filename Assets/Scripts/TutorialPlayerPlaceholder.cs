@@ -17,14 +17,16 @@ public class TutorialPlayerPlaceholder : MonoBehaviour
 
 
         //POSITION
-        transform.position = Vector3.Lerp(transform.position, Player.transform.position, 0.1f);
+        transform.position = Vector3.Lerp(transform.position, Player.transform.position, 0.5f);
 
         Vector3 gravDirection = (transform.position - Planet.transform.position).normalized;
 
 
         //ROTATION
         Quaternion toRotation = Quaternion.FromToRotation(transform.up, gravDirection) * transform.rotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 0.1f);
+        transform.rotation = Quaternion.Slerp(transform.rotation,
+                                              toRotation,
+                                              0.05f * Mathf.Abs(Quaternion.Dot(transform.rotation, toRotation)));
 
     }
 
