@@ -19000,7 +19000,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8be4659d883094781adb7da2494b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrusterForce: 7500
   addForceAtPosition: 0
   soundEffectVolume: 0.15
 --- !u!108 &711469186
@@ -29710,7 +29709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8be4659d883094781adb7da2494b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrusterForce: 7500
   addForceAtPosition: 0
   soundEffectVolume: 0.15
 --- !u!108 &823009840
@@ -72304,10 +72302,12 @@ GameObject:
   - component: {fileID: 2078828466}
   - component: {fileID: 2078828465}
   - component: {fileID: 2078828464}
+  - component: {fileID: 2078828469}
   - component: {fileID: 2078828463}
   - component: {fileID: 2078828462}
   - component: {fileID: 2078828461}
   - component: {fileID: 2078828467}
+  - component: {fileID: 2078828468}
   m_Layer: 0
   m_Name: AstroIdle
   m_TagString: Untagged
@@ -72457,19 +72457,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33cded4ff31f8b64593dc0fc3975a6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrusterForce: 10000
   thrusters:
   - {fileID: 711469185}
   - {fileID: 823009839}
-  rollRate: 25
-  yawRate: 25
-  pitchRate: 25
-  weaponMountPoints: []
-  laserShotPrefab: {fileID: 0}
-  soundEffectFire: {fileID: 0}
-  audioSourceLaser: {fileID: 0}
-  warpFlames: []
-  warpUltra: {fileID: 0}
-  audioSourceWarpUltra: {fileID: 0}
+  rollRate: 0
+  yawRate: 0
+  pitchRate: 0
   moveTowardsSpeed: 1
   closeEnough: 20
   visualDamageParticles:
@@ -72480,7 +72474,6 @@ MonoBehaviour:
   collectFinalStarPiece: {fileID: 8300000, guid: aa4157fec99a6644cb6cbe8c133dc72c,
     type: 3}
   bonkSound: {fileID: 8300000, guid: 0bdf7dffe2e11ef43b63e76386101f9f, type: 3}
-  gravity: 3000
 --- !u!95 &2078828465
 Animator:
   serializedVersion: 3
@@ -72648,6 +72641,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!65 &2078828468
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078828460}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03, y: 0.05, z: -0.01}
+  m_Center: {x: 0, y: -0.025, z: 0.009}
+--- !u!114 &2078828469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078828460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a225ff59fe8a4eaeb70bacc75ec86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityStrength: 1000
 --- !u!1 &2081795870
 GameObject:
   m_ObjectHideFlags: 0
@@ -73602,6 +73621,26 @@ PrefabInstance:
     - target: {fileID: 376785752916192848, guid: 520bfdd9e96aac44880e554e6231c604,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868436755136090326, guid: 520bfdd9e96aac44880e554e6231c604,
+        type: 3}
+      propertyPath: rollRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868436755136090326, guid: 520bfdd9e96aac44880e554e6231c604,
+        type: 3}
+      propertyPath: yawRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868436755136090326, guid: 520bfdd9e96aac44880e554e6231c604,
+        type: 3}
+      propertyPath: pitchRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5868436755136090326, guid: 520bfdd9e96aac44880e554e6231c604,
+        type: 3}
+      propertyPath: gravity
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7051411654609099219, guid: 520bfdd9e96aac44880e554e6231c604,

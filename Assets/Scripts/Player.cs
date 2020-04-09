@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
         // Jump
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("oof");
             print(playerOnGround);
             if (playerOnGround)
             {
