@@ -20,27 +20,6 @@ public class Astronaut : MonoBehaviour
 
     [Tooltip("Specify the pitch rate (multiplier for pitch when steering up/down)")]
     public float pitchRate = 100.0f;
-
-    [Tooltip("Vector3 array for mount points relative to ship where weapons will fire from")]
-    private Vector3[] weaponMountPoints;
-
-    [Tooltip("Reference to Laser Shot prefab, i.e. the laser bullet prefab to be instanitated")]
-    private Transform laserShotPrefab;
-
-    [Tooltip("Sound effect audio clip to be played when firing weapon")]
-    private AudioClip soundEffectFire;
-
-    [Tooltip("Audio source to play weapon")]
-    private AudioSource audioSourceLaser;
-
-    [Tooltip("Array of particle systems to play during warp speed")]
-    private ParticleSystem[] warpFlames;
-
-    [Tooltip("Particle system with speed lines around the ship")]
-    private ParticleSystem warpUltra;
-
-    [Tooltip("Audio source for spaceship warp speed sound effect")]
-    private AudioSource audioSourceWarpUltra;
     [Tooltip("How quickly an object should move towards its goal")]
     public float moveTowardsSpeed = 100;
     [Tooltip("How close the object should be to its target before it's close enough")]
@@ -133,26 +112,6 @@ public class Astronaut : MonoBehaviour
             foreach (Thruster thruster in thrusters)
             {
                 thruster.StopThruster();
-            }
-        }
-
-        if (Input.GetButtonDown("Fire2"))
-        {
-            // Iterate through each weapon mount point Vector3 in array
-            foreach (Vector3 wmp in weaponMountPoints)
-            {
-                // Calculate where the position is in world space for the mount point
-                Vector3 pos = transform.position + transform.right * wmp.x + transform.up * wmp.y + transform.forward * wmp.z;
-                // Instantiate the laser prefab at position with the spaceships rotation
-                Transform laserShot = (Transform)Instantiate(laserShotPrefab, pos, transform.rotation);
-                // Specify which transform it was that fired this round so we can ignore it for collision/hit
-                laserShot.GetComponent<LaserShot>().firedBy = transform;
-
-            }
-            // Play sound effect when firing
-            if (soundEffectFire != null)
-            {
-                audioSourceLaser.PlayOneShot(soundEffectFire);
             }
         }
 
@@ -261,13 +220,9 @@ public class Astronaut : MonoBehaviour
             collectedStarPieces++;
 
         }
-        // if (collectedStarPieces == 4 && other.tag != "Wind")
-        // {
-
-        // }
         if (collectedStarPieces >= 5 && other.tag != "Wind")
         {
-            HardLoadNextScene();
+            LoadNextScene();
         }
         else if (other.tag == "Wind")
         {
@@ -289,37 +244,13 @@ public class Astronaut : MonoBehaviour
             astronautAudio.PlayOneShot(collectFinalStarPiece);
         }
     }
-    string NextSceneName()
+    string GetSceneName()
     {
-        if (SceneManager.GetActiveScene().name == "Level1layout")
-        {
-            // return "Win";
-            return "Level1layout";
-
-        }
-        else if (SceneManager.GetActiveScene().name == "Flat")
-        {
-            return "Level1layout";
-        }
-        return null;
+        return SceneManager.GetActiveScene().name;
     }
-    IEnumerator LoadSceneAsync()
+    void LoadNextScene()
     {
-        // The Application loads the Scene in the background as the current Scene runs.
-        // This is particularly good for creating loading screens.
-        // You could also load the Scene by using sceneBuildIndex. In this case Scene2 has
-        // a sceneBuildIndex of 1 as shown in Build Settings.
-
-
-        // Wait until the asynchronous scene fully loads
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
-        }
-    }
-    void HardLoadNextScene()
-    {
-        SceneManager.LoadScene(NextSceneName());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /// <summary>
