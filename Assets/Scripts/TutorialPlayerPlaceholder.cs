@@ -5,8 +5,8 @@ using UnityEngine;
 public class TutorialPlayerPlaceholder : MonoBehaviour
 {
 
-    public GameObject Player;
-    public GameObject Planet;
+    public GameObject player;
+    public GameObject planet;
 
 
 
@@ -17,9 +17,9 @@ public class TutorialPlayerPlaceholder : MonoBehaviour
 
 
         //POSITION
-        transform.position = Vector3.Lerp(transform.position, Player.transform.position, 0.5f);
+        transform.position = Vector3.Lerp(transform.position, player.transform.position, 0.5f);
 
-        Vector3 gravDirection = (transform.position - Planet.transform.position).normalized;
+        Vector3 gravDirection = (transform.position - planet.transform.position).normalized;
 
 
         //ROTATION
@@ -33,8 +33,7 @@ public class TutorialPlayerPlaceholder : MonoBehaviour
 
     public void NewPlanet(GameObject newPlanet)
     {
-        Planet = newPlanet;
-
+        planet = newPlanet;
     }
 
 

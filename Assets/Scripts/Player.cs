@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 
     public GameObject closestPlanet;
-    public GameObject playerPlaceHolder;
+    public TutorialPlayerPlaceholder playerPlaceHolder;
     public float moveSpeed = 4f;
     public float rotationSpeed = 150f;
     public float JumpHeight = 1.2f;
@@ -85,6 +85,11 @@ public class Player : MonoBehaviour
         Vector3 vectorToPlanet = (championPlanet.position - transform.position);
         Quaternion toRotation = Quaternion.FromToRotation(astronautDown, vectorToPlanet) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, gravityTurnSpeed);
+        if (closestPlanet.transform.position != championPlanet.transform.position)
+        {
+            closestPlanet = championPlanet.gameObject;
+            playerPlaceHolder.NewPlanet(closestPlanet);
+        }
     }
 
     /// <summary>
@@ -137,7 +142,7 @@ public class Player : MonoBehaviour
             rb.AddForce(gravDirection * gravity);
 
 
-            playerPlaceHolder.GetComponent<TutorialPlayerPlaceholder>().NewPlanet(closestPlanet);
+            playerPlaceHolder.NewPlanet(closestPlanet);
         }
     }
 
