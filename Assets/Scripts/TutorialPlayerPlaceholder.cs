@@ -35,6 +35,4 @@ public class TutorialPlayerPlaceholder : MonoBehaviour
     {
         planet = newPlanet;
     }
-
-
 }
