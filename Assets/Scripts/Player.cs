@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float JumpHeight = 1.2f;
     public float gravity = 1000f;
     public float gravityTurnSpeed;
+    public float parabolicDistancePull;
 
     private bool playerOnGround = false;
     private bool outsideSOI;
@@ -106,7 +107,14 @@ public class Player : MonoBehaviour
             float dSquared = Vector3.SqrMagnitude(transform.position - planet.transform.position);
             // Apply gravity to transform
             Vector3 gravDirection = (planet.transform.position - transform.position).normalized;
-            forceToApply += (6.67408f * gravity * gravDirection * 50) / dSquared;
+            Vector3 parabolaPull = Vector3.zero;
+            if (dSquared > 25000f)
+            {
+                float coefficient = parabolicDistancePull * parabolicDistancePull;
+                parabolaPull = (coefficient * (dSquared - 25000f)) * gravDirection;
+            }
+
+            forceToApply += ((6.67408f * gravity * gravDirection * 50) / dSquared) + parabolaPull;
             // print("Force from planet " + i + ": " + forceToApply);
         }
         rb.AddForce(forceToApply);

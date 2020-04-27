@@ -537,8 +537,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: You have successfully collected all of the shards required to progress to
-    the next level
+  m_Text: Insert end credits and a final win scene here
 --- !u!222 &1384508569
 CanvasRenderer:
   m_ObjectHideFlags: 0

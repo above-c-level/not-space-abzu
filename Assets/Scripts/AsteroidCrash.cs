@@ -16,14 +16,5 @@ public class AsteroidCrash : MonoBehaviour
 
         cacheRigidbody.AddTorque(Random.onUnitSphere * rotationStrength * 10000000);
         cacheRigidbody.AddForce(heading * maxMovementForce * 10000);
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
