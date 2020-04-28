@@ -18,6 +18,8 @@ TagManager:
   - Lock
   - Key
   - Portal
+  - Terrain
+  - KeyStarpiece
   layers:
   - Default
   - TransparentFX

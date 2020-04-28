@@ -53,7 +53,9 @@ public class Astronaut : MonoBehaviour
     private List<Vector3> breadcrumbs = new List<Vector3>();
     private bool playerHasKey = false;
     private bool playerHasLock = false;
-    private int collectedStarPieces = 0;
+    public int collectedStarPieces = 0;
+
+    private GameObject keyObject;
     private AsyncOperation asyncLoad;
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -179,17 +181,21 @@ public class Astronaut : MonoBehaviour
         {
             // starpiece.parent = this.transform;
             other.GetComponent<Collider>().enabled = false;
-            StartCoroutine(FadeIntensity(other.transform.GetChild(1).GetComponent<Light>()));
+            StartCoroutine(FadeIntensity(other.transform.GetChild(3).GetComponent<Light>()));
             followList.Add(other.transform);
             breadcrumbs.Add(other.transform.position);
             playerHasKey = true;
             PlayCollectionSound();
+            keyObject = other.gameObject;
         }
 
         if (other.tag == "Lock" && playerHasKey)
         {
             PlayCollectionSound();
             collectedStarPieces++;
+            StartCoroutine(Crossfade(keyObject.transform.GetChild(1),
+                                     keyObject.transform.GetChild(0)));
+            StartCoroutine(ShrinkLock(other.transform));
         }
 
         if (other.tag == "StarPiece")
@@ -207,10 +213,6 @@ public class Astronaut : MonoBehaviour
             collectedStarPieces++;
 
         }
-        if (collectedStarPieces >= 5 && other.tag != "Wind")
-        {
-            LoadNextScene();
-        }
         else if (other.tag == "Wind")
         {
             inSolarWind = true;
@@ -218,6 +220,10 @@ public class Astronaut : MonoBehaviour
             solarWindArea.isActive = true;
             solarWindArea.windForce = solarWindPushForce;
             solarWindArea.astronautBody = cacheRigidbody;
+        }
+        if (other.tag == "Portal")
+        {
+            LoadNextScene();
         }
     }
     void PlayCollectionSound()
@@ -237,17 +243,12 @@ public class Astronaut : MonoBehaviour
     }
     void LoadNextScene()
     {
-        Invoke("DelayedSceneLoad", 4);
+        Invoke("DelayedSceneLoad", 0);
     }
 
     void DelayedSceneLoad()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        // AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-        // while (!asyncLoad.isDone)
-        // {
-        //     yield return null;
-        // }
 
     }
 
@@ -272,11 +273,41 @@ public class Astronaut : MonoBehaviour
     IEnumerator FadeIntensity(Light lightSource)
     {
         // While the intensity is greater than 0.05
-        while (lightSource.intensity > 0.05)
+        while (lightSource.intensity > 0f)
         {
             // Decrease the intensity by 0.001
             lightSource.intensity -= 0.001f;
             // But yield to other processes in the meantime
+            yield return null;
+        }
+    }
+    /// <summary>
+    /// Fades the intensity of a light source down to 0.05 when started as
+    /// coroutine
+    /// </summary>
+    /// <param name="lightSource">The light source to fade</param>
+    IEnumerator Crossfade(Transform smallToBig, Transform bigToSmall)
+    {
+        while (smallToBig.localScale.x < 1f || bigToSmall.localScale.x >= 0.001)
+        {
+            if (bigToSmall.localScale.x <= 0.05)
+            {
+                bigToSmall.gameObject.SetActive(false);
+            }
+            smallToBig.localScale = Vector3.Lerp(smallToBig.localScale, Vector3.one, 0.01f);
+            bigToSmall.localScale = Vector3.Lerp(bigToSmall.localScale, Vector3.zero, 0.01f);
+            yield return null;
+        }
+    }
+    IEnumerator ShrinkLock(Transform lockAsteroid)
+    {
+        while (lockAsteroid.localScale.x > 0)
+        {
+            if (lockAsteroid.localScale.x <= 0.001f)
+            {
+                lockAsteroid.gameObject.SetActive(false);
+            }
+            lockAsteroid.localScale = Vector3.Lerp(lockAsteroid.localScale, Vector3.zero, 0.01f);
             yield return null;
         }
     }
