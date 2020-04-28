@@ -1,5 +1,3 @@
-using System;
-using System.Drawing;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,6 +35,14 @@ public class Astronaut : MonoBehaviour
     public AudioClip collectFinalStarPiece;
     [Tooltip("Audio clip for when the player crashes into something they shouldn't crash into")]
     public AudioClip bonkSound;
+    public AudioClip introAudio;
+    public AudioClip onFirstCollect;
+    public AudioClip onSecondCollect;
+    public AudioClip onFinalCollect;
+    public AudioClip pushClip;
+    public AudioClip[] damageClips;
+    public AudioClip[] idleClips;
+    public AudioClip[] windClips;
 
     private Vector3 startPosition;
 
@@ -54,17 +60,14 @@ public class Astronaut : MonoBehaviour
     private bool playerHasKey = false;
     private bool playerHasLock = false;
     public int collectedStarPieces = 0;
+    private float lastAudioPlaytime;
 
     private GameObject keyObject;
     private AsyncOperation asyncLoad;
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
-    {
-    }
+    private bool alreadyPlayedPush = false;
     void Start()
     {
+        lastAudioPlaytime = Time.time;
         astronautAudio = this.GetComponent<AudioSource>();
         startPosition = transform.position;
         breadcrumbs.Add(transform.position);
@@ -83,6 +86,12 @@ public class Astronaut : MonoBehaviour
         {
             Debug.LogError("Spaceship has no rigidbody - the thruster scripts will fail. Add rigidbody component to the spaceship.");
         }
+        Invoke("DelayedStartAudio", 1f);
+    }
+    void DelayedStartAudio()
+    {
+        lastAudioPlaytime = Time.time + 5f;
+        astronautAudio.PlayOneShot(introAudio, 1f);
     }
 
     void Update()
@@ -104,6 +113,8 @@ public class Astronaut : MonoBehaviour
                 thruster.StopThruster();
             }
         }
+        TryPlayIdleAudio();
+
 
     }
 
@@ -148,6 +159,30 @@ public class Astronaut : MonoBehaviour
         }
     }
 
+    void TryPlayIdleAudio()
+    {
+        if (idleClips.Length == 0)
+        {
+            return;
+        }
+        float audioWaitTime = 30f;
+        if (Time.time - lastAudioPlaytime > audioWaitTime)
+        {
+            audioWaitTime = 30f + Random.Range(0f, 30f);
+            AudioClip clip = idleClips[Random.Range(0, idleClips.Length - 1)];
+            if (Random.Range(0f, 1f) > 0.95f)
+            {
+                clip = idleClips[idleClips.Length];
+            }
+            if (!alreadyPlayedPush && collectedStarPieces == 0 && pushClip != null)
+            {
+                clip = pushClip;
+            }
+            astronautAudio.PlayOneShot(clip);
+            lastAudioPlaytime = Time.time;
+        }
+    }
+
     /// <summary>
     /// OnCollisionEnter is called when this collider/rigidbody has begun
     /// touching another rigidbody/collider.
@@ -159,6 +194,7 @@ public class Astronaut : MonoBehaviour
             || other.collider.tag == "Lock")
         {
             astronautAudio.PlayOneShot(bonkSound);
+            Invoke("PlayDamageAudio", 1f);
             hitCount++;
             if (hitCount > visualDamageParticles.Length)
             {
@@ -168,6 +204,19 @@ public class Astronaut : MonoBehaviour
             {
                 visualDamageParticles[hitCount - 1].gameObject.SetActive(true);
             }
+        }
+    }
+
+    void PlayDamageAudio()
+    {
+        if (damageClips.Length == 0)
+        {
+            return;
+        }
+        if (Random.Range(0f, 1f) < 0.25f && Time.time - lastAudioPlaytime > 8f)
+        {
+            astronautAudio.PlayOneShot(damageClips[Random.Range(0, damageClips.Length)]);
+            lastAudioPlaytime = Time.time;
         }
     }
 
@@ -211,6 +260,18 @@ public class Astronaut : MonoBehaviour
             followList.Add(other.transform);
             breadcrumbs.Add(other.transform.position);
             collectedStarPieces++;
+            if (collectedStarPieces == 1)
+            {
+                Invoke("PlayFirstCollect", 1f);
+            }
+            else if (collectedStarPieces == 2)
+            {
+                Invoke("PlaySecondCollect", 1f);
+            }
+            else if (collectedStarPieces == 5)
+            {
+                Invoke("PlayFinalCollect", 1f);
+            }
 
         }
         else if (other.tag == "Wind")
@@ -220,10 +281,47 @@ public class Astronaut : MonoBehaviour
             solarWindArea.isActive = true;
             solarWindArea.windForce = solarWindPushForce;
             solarWindArea.astronautBody = cacheRigidbody;
+            Invoke("PlayWindClip", 0.1f);
         }
         if (other.tag == "Portal")
         {
             LoadNextScene();
+        }
+    }
+    void PlayWindClip()
+    {
+        if (windClips.Length == 0)
+        {
+            return;
+        }
+        if (Random.Range(0f, 1f) < 0.25f && Time.time - lastAudioPlaytime > 8f)
+        {
+            astronautAudio.PlayOneShot(windClips[Random.Range(0, windClips.Length)]);
+            lastAudioPlaytime = Time.time;
+        }
+    }
+    void PlayFirstCollect()
+    {
+        if (onFirstCollect != null && Time.time - lastAudioPlaytime > 8f)
+        {
+            astronautAudio.PlayOneShot(onFirstCollect);
+            lastAudioPlaytime = Time.time;
+        }
+    }
+    void PlaySecondCollect()
+    {
+        if (onSecondCollect != null && Time.time - lastAudioPlaytime > 8f)
+        {
+            astronautAudio.PlayOneShot(onSecondCollect);
+            lastAudioPlaytime = Time.time;
+        }
+    }
+    void PlayFinalCollect()
+    {
+        if (onFinalCollect != null && Time.time - lastAudioPlaytime > 8f)
+        {
+            astronautAudio.PlayOneShot(onFinalCollect);
+            lastAudioPlaytime = Time.time;
         }
     }
     void PlayCollectionSound()
